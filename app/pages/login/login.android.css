@@ -1,0 +1,21 @@
+StackLayout {
+  height: 340;
+}
+Image {
+  width: 90%;
+  margin-top: 15%;
+
+}
+Button {
+  background-color: #223D98;
+}
+TextField{
+    color:black;
+}
+
+Label {
+  color:#EE2933;
+}
+.modal-view-style{
+  background-color: white;
+}

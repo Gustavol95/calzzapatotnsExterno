@@ -1,0 +1,60 @@
+StackLayout {
+  margin-left: 30;
+  margin-right: 30;
+  padding-bottom: 15;
+  background: "#EEEEEE";
+}
+
+Image {
+  margin-top: 60;
+  margin-bottom: 30;
+  height:120;
+
+
+}
+
+TextField {
+  margin-top: 10;
+  margin-right:16 ;
+  margin-left: 16;
+  color: white;
+  border-bottom-width: 2;
+  border-bottom-color: white;
+  placeholder-color:white;
+  padding: 3;
+}
+
+Button {
+  margin:16;
+  color: white;
+  background-color: #EE2933;
+  margin-top: 50;
+  font-weight: 700;
+
+}
+
+.submit-button {
+  background-color: #CB1D00;
+  color: white;
+  margin-top: 20;
+}
+
+ListView {
+  opacity: 0;
+}
+
+.visible {
+  animation-name: show;
+  animation-duration: 1s;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+

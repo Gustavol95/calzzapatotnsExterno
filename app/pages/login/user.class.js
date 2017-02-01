@@ -1,0 +1,8 @@
+"use strict";
+var User = (function () {
+    function User() {
+    }
+    return User;
+}());
+exports.User = User;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlci5jbGFzcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbInVzZXIuY2xhc3MudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBO0lBQUE7SUFTQSxDQUFDO0lBQUQsV0FBQztBQUFELENBQUMsQUFURCxJQVNDO0FBVFksWUFBSSxPQVNoQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIFVzZXJ7XHJcbiAgcHVibGljIGlkOiBudW1iZXI7XHJcbiAgcHVibGljIG5hbWU6IHN0cmluZztcclxuICBwdWJsaWMgZW1haWwgOnN0cmluZztcclxuICBwdWJsaWMgcGFzc3dvcmQ6IHN0cmluZztcclxuICBwdWJsaWMgdG9rZW46IHN0cmluZztcclxuICBwdWJsaWMgY3JlYXRlZF9hdDogc3RyaW5nO1xyXG4gIHB1YmxpYyB1cGRhdGVkX2F0OiBzdHJpbmc7XHJcbiAgcHVibGljIGRlbGV0ZWRfYXQ6IHN0cmluZztcclxufVxyXG4iXX0=
