@@ -18,4 +18,11 @@ Label {
 }
 .modal-view-style{
   background-color: white;
+  width: 100%;
+}
+.title{
+  color:#EE2933;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 5%;
 }

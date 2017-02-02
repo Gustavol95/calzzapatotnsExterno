@@ -1,4 +1,15 @@
 <StackLayout class="modal-view-style" sdkExampleTitle sdkToggleNavButton>
-
-    <Button class="btn btn-primary btn-active" text="Submit" (tap)="submit()"></Button>
+    <GridLayout>
+        <grid-layout columns="*, *" rows="*, *, *, *, *, *">
+            <stack-layout row="0" col="0" colSpan="2">
+                <Label class="title" text="Recuperar Contraseña"></Label>
+            </stack-layout>
+            <stack-layout row="1" col="0" colSpan="2" marginTop="10%">
+                <TextField hint="Usuario" keyboardType="next" [(ngModel)]="user.usuario" autocorrect="true" autocapitalizationType="none"></TextField>
+            </stack-layout>
+            <stack-layout row="2" col="0" colSpan="2" marginTop="10%">
+                <TextField hint="Email" keyboardType="next" [(ngModel)]="user.email" autocorrect="true" autocapitalizationType="none"></TextField>
+            </stack-layout>
+        </grid-layout>
+    </GridLayout>
 </StackLayout>
