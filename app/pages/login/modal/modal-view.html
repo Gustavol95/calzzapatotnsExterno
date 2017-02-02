@@ -1,15 +1,11 @@
 <StackLayout class="modal-view-style" sdkExampleTitle sdkToggleNavButton>
-    <GridLayout>
-        <grid-layout columns="*, *" rows="*, *, *, *, *, *">
-            <stack-layout row="0" col="0" colSpan="2">
-                <Label class="title" text="Recuperar Contraseña"></Label>
-            </stack-layout>
-            <stack-layout row="1" col="0" colSpan="2" marginTop="10%">
-                <TextField hint="Usuario" keyboardType="next" [(ngModel)]="user.usuario" autocorrect="true" autocapitalizationType="none"></TextField>
-            </stack-layout>
-            <stack-layout row="2" col="0" colSpan="2" marginTop="10%">
-                <TextField hint="Email" keyboardType="next" [(ngModel)]="user.email" autocorrect="true" autocapitalizationType="none"></TextField>
-            </stack-layout>
-        </grid-layout>
-    </GridLayout>
+    <Label class="title" text="Recuperar Contraseña"></Label>
+    <TextField hint="Usuario" keyboardType="next" [(ngModel)]="user.usuario" autocorrect="true" autocapitalizationType="none" marginBottom="5%"></TextField>
+    <TextField hint="Email" keyboardType="next" [(ngModel)]="user.email" autocorrect="true" autocapitalizationType="none" marginBottom="5%"></TextField>
+    <Label text="ó" horizontalAlignment="center" marginBottom="1%"></Label>
+    <TextField hint="Teléfono" keyboardType="phone" [(ngModel)]="user.telefono" autocorrect="true" autocapitalizationType="none" marginBottom="5%"></TextField>
+    <grid-layout columns="*, *" rows="*" style="border-color: #D9D9D9;border-width: 1 0 0 0;">
+        <Label row="0" col="0" [text]="'CANCELAR'" horizontalAlignment="center" marginTop="30%" (tap)="cerrar()"></Label>
+        <Label row="0" col="1" [text]="'SOLICITAR'" horizontalAlignment="center" marginTop="30%"></Label>
+    </grid-layout>
 </StackLayout>

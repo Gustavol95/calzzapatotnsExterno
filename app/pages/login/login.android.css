@@ -19,10 +19,16 @@ Label {
 .modal-view-style{
   background-color: white;
   width: 100%;
+  height: 45%;
 }
 .title{
   color:#EE2933;
   font-size: 20px;
   font-weight: bold;
   margin-top: 5%;
+  margin-bottom: 10%;
+  margin-left: 15px;
+}
+grid-layout Label{
+  color:#223D98;
 }

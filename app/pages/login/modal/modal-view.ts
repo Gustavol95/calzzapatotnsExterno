@@ -1,8 +1,6 @@
-import { Component, OnInit, NgModule } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
-import { DatePicker } from "ui/date-picker";
 import { Page } from "ui/page";
-import {User} from "../user.class";
 
 // >> passing-parameters
 @Component({
@@ -25,6 +23,10 @@ export class ModalViewComponent implements OnInit {
     }
 
     public submit() {
+        this.params.closeCallback(null);
+    }
+
+    cerrar(){
         this.params.closeCallback(null);
     }
 }
