@@ -1,4 +1,12 @@
-<GridLayout cols="auto,*">
-    <Label col="0" text="Maribel Orozco Cota" ></Label>
-    <Label col="1" text="Platino" > </Label>
-</GridLayout>
+<StackLayout>
+    <GridLayout columns="*,*" rows="auto" >
+        <Label col="0" text="Maribel Orozco Cota" textWrap="true" style="vertical-align: center;"></Label>
+        <Label col="1" text="Platino" textWrap="true"  style="text-align: right;vertical-align: center;"></Label>
+    </GridLayout>
+    <ScrollView>
+        <GridLayout columns="*,4*,4*,*" rows="auto">
+            <Image src="~/assets/miCuenta.png" col="0"  stretch="aspectFit" width="10%" textWrap="true" style="vertical-align: center;"></Image>
+            <Label col="1" text="Promociones" textWrap="true"  style="text-align: left;vertical-align: center;"></Label>
+        </GridLayout>
+    </ScrollView>
+</StackLayout>
