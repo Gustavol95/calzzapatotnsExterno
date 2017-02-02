@@ -1,0 +1,26 @@
+grid-layout {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+grid-layout StackLayout{
+    border-radius: 50px;
+    height: 100%;
+    width: 100%;
+}
+
+grid-layout StackLayout Image{
+    width: 50px;
+}
+grid-layout StackLayout Label {
+    font-size: 20px;
+    margin: 0px 0px 0px 15px;
+
+}
+Button {
+    background-color: #223D98;
+    color:white;
+}
+
+ScrollView {
+    height: 100%;
+}

@@ -7,9 +7,9 @@
             </StackLayout>
             <ScrollView>
             <StackLayout class="container" style="font-size: 19px">
-                <grid-layout columns="55,*" rows="*,*,*,*,*,*,*,*,*,*">
+                <grid-layout columns="55,*" rows="*,*,*,*,*,*,*,*,*,*,*">
                     <Image row="0" col="0" src="~/assets/miCuenta.png" horizontalAlignment="center"></Image>
-                    <Label row="0" col="1" text="Mi Cuenta"></Label>
+                    <Label row="0" col="1" text="Mi Cuenta" (tap)="redireccion('micuenta')"></Label>
                     <Image row="1" col="0" src="~/assets/corteSaldoCredigana.png" horizontalAlignment="center"></Image>
                     <Label row="1" col="1" text="Corte y Saldo" ></Label>
                     <Image row="2" col="0" src="~/assets/misClientes.png" horizontalAlignment="center"></Image>
@@ -28,14 +28,16 @@
                     <Label row="8" col="1" text="Notificaciones"></Label>
                     <Image row="9" col="0" src="~/assets/oficinaCredito.png" horizontalAlignment="center"></Image>
                     <Label row="9" col="1" text="Oficina de Crédito"></Label>
+                    <Image row="10" col="0" src="~/assets/salir.png" horizontalAlignment="center" *ngIf="user.name!='Anónimo'"></Image>
+                    <Label row="10" col="1" text="Salir" (tap) = "salir()" *ngIf="user.name!='Anónimo'"></Label>
                 </grid-layout>
             </StackLayout>
             </ScrollView>
         </StackLayout>
         <StackLayout tkMainContent>
             <ActionBar title="Calzzapato">
-                <NavigationButton  text="Menú" android.systemIcon="ic_menu_moreoverflow" (tap)=openDrawer()></NavigationButton>
-                <ActionItem  *ngIf="plataforma" ios.position="left" android.position="none"  text="Menu" android.systemIcon="ic_ab_back_holo_dark" (tap)=openDrawer()></ActionItem>
+                <NavigationButton *ngIf="user.name!='Anónimo'"  text="Menú" android.systemIcon="ic_menu_moreoverflow" (tap)=openDrawer()></NavigationButton>
+                <ActionItem  *ngIf="plataforma && user.name!='Anónimo'" ios.position="left" android.position="none"  text="Menu" android.systemIcon="ic_ab_back_holo_dark" (tap)=openDrawer()></ActionItem>
                 <ActionItem  android.systemIcon="ic_menu_moreoverflow_normal_holo_light" ios.position="right"></ActionItem>
             </ActionBar>
             <router-outlet>

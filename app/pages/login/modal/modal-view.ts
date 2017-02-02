@@ -19,7 +19,7 @@ export class ModalViewComponent implements OnInit {
         this.currentdate = new Date(params.context);
     }
 
-    ngOnInit() { 
+    ngOnInit() {
     }
 
     public submit() {
