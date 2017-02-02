@@ -41,3 +41,15 @@ lib/
 node_modules/
 platforms/
 .idea/
+app/app.component.js
+app/app.module.js
+app/app.routing.js
+app/main.js
+app/pages/login/modal/modal-view.js
+calzzapatotns.rar
+calzzapatotns2.rar
+app/pages/login/login.component.js
+app/pages/login/login.module.js
+app/pages/login/login.service.js
+app/pages/login/user.class.js
+app/pages/inicio/inicio.component.js

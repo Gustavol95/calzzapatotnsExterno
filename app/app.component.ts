@@ -43,6 +43,9 @@ export class AppComponent extends Observable implements OnInit {
         this.usr.fetch().then(usuario => {
             if (usuario) {
                 this.user = usuario;
+                //this.drawer.android.setIsLocked(false);
+            }else{
+                //this.drawer.android.setIsLocked(true);
             }
         });
 
@@ -127,6 +130,7 @@ export class AppComponent extends Observable implements OnInit {
         this.drawer.closeDrawer();
         this.usr.truncate();
         this.user = {name: "Anónimo"};
+        this.router.navigate(["/"]);
     }
 
     error401() {
