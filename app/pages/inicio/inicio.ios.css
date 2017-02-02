@@ -1,0 +1,30 @@
+.titulo{
+    font-size: 25;
+    color: #223D98;
+    font-weight: bold;
+    vertical-align: center;
+}
+.icono{
+    margin:5;
+    vertical-align: center;
+    horiz-align: center;
+}
+
+.numero{
+    text-align: right;
+    vertical-align: center;
+    color: #000;
+    font-size: 20;
+    font-weight: 600;
+}
+
+.flecha{
+    margin:3%;
+    vertical-align: center;
+    horiz-align: center;
+}
+
+.scroll GridLayout{
+    border-bottom-width: 1;
+    border-bottom-color: #BCBCBC ;
+}

@@ -3,10 +3,20 @@
         <Label col="0" text="Maribel Orozco Cota" textWrap="true" style="vertical-align: center;"></Label>
         <Label col="1" text="Platino" textWrap="true"  style="text-align: right;vertical-align: center;"></Label>
     </GridLayout>
-    <ScrollView>
+    <ScrollView class="scroll">
         <GridLayout columns="*,4*,4*,*" rows="auto">
-            <Image src="~/assets/miCuenta.png" col="0"  stretch="aspectFit" width="10%" textWrap="true" style="vertical-align: center;"></Image>
-            <Label col="1" text="Promociones" textWrap="true"  style="text-align: left;vertical-align: center;"></Label>
+            <Image class="icono" col="0" src="~/assets/promociones-rojo.png"   stretch="aspectFit" width="10%" ></Image>
+            <Label class="titulo" col="1" text="Promociones" textWrap="true"  ></Label>
+            <Label class="numero" col="2" text="5" textWrap="true"></Label>
+            <Image class="flecha" col="3" src="~/assets/flecha.png"   stretch="aspectFit" ></Image>
+        </GridLayout>
+        <GridLayout columns="*,4*,4*,*" rows="auto">
+            <Image class="icono" col="0" src="~/assets/promociones-rojo.png"   stretch="aspectFit" width="10%" ></Image>
+            <Label class="titulo" col="1" text="Promociones" textWrap="true"  ></Label>
+            <GridLayout  col="2" cols="*,*">
+                <Label col="0" text="hola"></Label>
+            </GridLayout>
+            <Image class="flecha" col="3" src="~/assets/flecha.png"   stretch="aspectFit" ></Image>
         </GridLayout>
     </ScrollView>
 </StackLayout>
