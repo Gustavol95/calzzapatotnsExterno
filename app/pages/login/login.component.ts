@@ -5,11 +5,10 @@ import {Router} from "@angular/router";
 import {UserModel} from "../../model/user.model";
 import {Page} from "ui/page";
 //import {Page} from "ui/page";
-import {CheckBox} from 'nativescript-checkbox';
 import {registerElement} from "nativescript-angular/element-registry";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {ModalViewComponent} from "./modal/modal-view";
-registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
+//registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 
 @Component({
     selector: "my-app",
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
     user: User;
     isLoggingIn = true;
     @ViewChild("container") container: ElementRef;
-    @ViewChild("CB1") FirstCheckBox: ElementRef;
+    //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
 
     constructor(private router: Router, private loginService: LoginService, private usuario: UserModel, private page: Page, private _modalService: ModalDialogService, private vcRef: ViewContainerRef) {
