@@ -11,9 +11,16 @@ import {Component, OnInit} from "@angular/core";
 })
 
 export class InicioComponent implements OnInit {
+
+    extenderSaldo=false;
+
     ngOnInit(): void {
         console.log("Hola entró");
     }
 
+    onSaldoClicked(){
+        this.extenderSaldo=!this.extenderSaldo;
+        console.log("esto es: "+this.extenderSaldo);
+    }
 
 }
