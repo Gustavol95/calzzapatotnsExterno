@@ -45,6 +45,10 @@
                 <TextField keyboardType="phone" (tap)="onTap('label6')" fontSize="15" row="1"  text=""></TextField>
             </GridLayout>
         </StackLayout>
-        <Button [text]="'Aceptar'" marginTop="5%" marginLeft="15px"></Button>
+        <StackLayout class="p-20">
+            <GridLayout rows="20 auto">
+                <Button row="0" rowSpan="2" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" style="padding: 0px;margin:0px"></Button>
+            </GridLayout>
+        </StackLayout>
     </StackLayout>
 </ScrollView>
