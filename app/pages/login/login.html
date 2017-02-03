@@ -1,8 +1,10 @@
 <Image src="~/assets/logo_calzzapato.png" stretch="aspectFit" horizontalAlignment="center" ></Image>
-
-<TextField hint="Usuario" keyboardType="email" [(ngModel)]="user.email"
-           autocorrect="false" autocapitalizationType="none"></TextField>
-<TextField hint="Contraseña" secure="true" [(ngModel)]="user.password"></TextField>
-<Button [text]="'Ingresar'" (tap)="login()" marginBottom="5%"></Button>
-<!--<CheckBox #CB1 text="Mantenerme conectado" checked="false" fillColor="#223D98" horizontalAlignment="center" marginBottom="5%"></CheckBox>-->
-<Label text="Olvidé la Contraseña" horizontalAlignment="center" (tap)="recuperarPassword()"></Label>
+<ScrollView style="height: 100%;width: 100%">
+    <StackLayout style="margin: 0">
+    <TextField hint="Usuario" keyboardType="email" [(ngModel)]="user.email" autocorrect="true" autocapitalizationType="none"></TextField>
+    <TextField hint="Contraseña" secure="true" [(ngModel)]="user.password"></TextField>
+    <Button [text]="'Ingresar'" (tap)="login()" marginBottom="5%"></Button>
+    <CheckBox #CB1 text="Mantenerme conectado" checked="false" fillColor="#223D98" horizontalAlignment="center" marginBottom="5%"></CheckBox>
+    <Label text="Olvidé la Contraseña" horizontalAlignment="center" (tap)="recuperarPassword()"></Label>
+    </StackLayout>
+</ScrollView>
