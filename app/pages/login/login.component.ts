@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
                 let user: User = data.user as User;
                 this.usuario.insert(user);
                 this.usuario.fetch();
-                this.router.navigate(["/home"]);
+                this.router.navigate(["/home/inicio"]);
             }, error => {
                 alert("Usuario y/o contraseña incorrectos o no cuenta con acceso a internet.");
             });

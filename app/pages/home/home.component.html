@@ -35,8 +35,8 @@
     </StackLayout>
     <StackLayout tkMainContent>
         <ActionBar title="Calzzapato">
-            <NavigationButton *ngIf="user.name!='Anónimo'"  text="Menú" android.systemIcon="ic_menu_moreoverflow" (tap)=openDrawer()></NavigationButton>
-            <ActionItem  *ngIf="plataforma && user.name!='Anónimo'" ios.position="left" android.position="none"  text="Menu" android.systemIcon="ic_ab_back_holo_dark" (tap)=openDrawer()></ActionItem>
+            <NavigationButton *ngIf="user.name!='Anónimo'"  text="Menú" android.systemIcon="ic_menu_moreoverflow" (tap)="openDrawer()"></NavigationButton>
+            <ActionItem  *ngIf="plataforma && user.name!='Anónimo'" ios.position="left" android.position="none"  text="Menu" android.systemIcon="ic_ab_back_holo_dark" (tap)="openDrawer()"></ActionItem>
             <ActionItem  android.systemIcon="ic_menu_moreoverflow_normal_holo_light" ios.position="right"></ActionItem>
         </ActionBar>
 

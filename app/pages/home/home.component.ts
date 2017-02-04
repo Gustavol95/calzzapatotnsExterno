@@ -19,7 +19,6 @@ import * as application from "application";
 export class HomeComponent implements OnInit {
 
     @ViewChild("container") container: ElementRef;
-    isLoading = false;
     public user: any = {};
     plataforma = false;
 
@@ -27,13 +26,6 @@ export class HomeComponent implements OnInit {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
-        if (application.android) {
-            console.log("We are running on Android device!");
-            this.plataforma=false;
-        } else if (application.ios) {
-            console.log("We are running on iOS device");
-            this.plataforma=true;
-        }
     }
 
     public onDrawerOpening() {
@@ -42,7 +34,7 @@ export class HomeComponent implements OnInit {
             if (usuario) {
                 this.user = usuario;
                 //this.drawer.android.setIsLocked(false);
-            }else{
+            } else {
                 //this.drawer.android.setIsLocked(true);
             }
         });
@@ -70,9 +62,17 @@ export class HomeComponent implements OnInit {
         this._sideDrawerTransition = new SlideInOnTopTransition();
     }
 
-    ngOnInit() {
+    openDrawer() {
+        console.log("openDrawer");
+        if (this.drawer.getIsOpen()) {
+            this.drawer.closeDrawer();
+        } else {
+            this.drawer.showDrawer();
+        }
     }
 
+    ngOnInit() {
+    }
 
 
 }
