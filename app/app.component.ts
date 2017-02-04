@@ -3,8 +3,6 @@ import {Color} from "color";
 import {Page} from "ui/page";
 import {Router} from "@angular/router";
 import {Observable} from "data/observable";
-import {RadSideDrawerComponent, SideDrawerType} from "nativescript-telerik-ui/sidedrawer/angular";
-import {DrawerTransitionBase, SlideInOnTopTransition} from 'nativescript-telerik-ui/sidedrawer';
 import {DbService} from "./model/db.service";
 import {UserModel} from "./model/user.model";
 import {HttpService} from "./custom-http/http-service";
@@ -26,9 +24,9 @@ export class AppComponent extends Observable implements OnInit {
 
     constructor(private page: Page, private _changeDetectionRef: ChangeDetectorRef, private router: Router, private usr: UserModel, private dbService: DbService, private http: HttpService) {
         super();
-        this.onDrawerOpening();
-        this.user = {name: "Anónimo"};
-        page.on("loaded", this.onLoaded, this);
+        //this.onDrawerOpening();
+        //this.user = {name: "Anónimo"};
+        //page.on("loaded", this.onLoaded, this);
         if (application.android) {
             console.log("We are running on Android device!");
             this.plataforma=false;
@@ -38,39 +36,7 @@ export class AppComponent extends Observable implements OnInit {
         }
     }
 
-    public onDrawerOpening() {
-        this.user = {name: "Anónimo"};
-        this.usr.fetch().then(usuario => {
-            if (usuario) {
-                this.user = usuario;
-                //this.drawer.android.setIsLocked(false);
-            }else{
-                //this.drawer.android.setIsLocked(true);
-            }
-        });
-
-    }
-
-    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
-    private _sideDrawerTransition: DrawerTransitionBase;
-    private drawer: SideDrawerType;
-
-    ngAfterViewInit() {
-        this.drawer = this.drawerComponent.sideDrawer;
-        this._changeDetectionRef.detectChanges();
-    }
-
-    public get sideDrawerTransition(): DrawerTransitionBase {
-        return this._sideDrawerTransition;
-    }
-
-    public toggle() {
-        this.drawer.toggleDrawerState();
-    }
-
-    public onLoaded(args) {
-        this._sideDrawerTransition = new SlideInOnTopTransition();
-    }
+    
 
     ngOnInit() {
         this.http.start.subscribe(() => this.isLoading = true);
@@ -99,13 +65,6 @@ export class AppComponent extends Observable implements OnInit {
     }
 
 
-    public openDrawer() {
-        if (this.drawer.getIsOpen()) {
-            this.drawer.closeDrawer();
-        } else {
-            this.drawer.showDrawer();
-        }
-    }
 
     public redireccion(args) {
         console.log("redireccion", args);
@@ -118,16 +77,16 @@ export class AppComponent extends Observable implements OnInit {
             return true;
         }
         this.router.navigate(["/" + args]);
-        this.drawer.closeDrawer();
+       
     }
 
     login() {
-        this.drawer.closeDrawer();
+       
         this.router.navigate(["/login"]);
     }
 
     salir() {
-        this.drawer.closeDrawer();
+        //this.drawer.closeDrawer();
         this.usr.truncate();
         this.user = {name: "Anónimo"};
         this.router.navigate(["/"]);
