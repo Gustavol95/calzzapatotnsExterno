@@ -6,7 +6,8 @@ import { Page } from "ui/page";
 // >> passing-parameters
 @Component({
     moduleId: module.id,
-    templateUrl: "./date-picker.html",
+    templateUrl: "./date-picker.html"
+
 })
 export class DatepickerComponent implements OnInit {
     public currentdate: Date;

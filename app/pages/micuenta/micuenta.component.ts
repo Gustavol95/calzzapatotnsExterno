@@ -42,6 +42,7 @@ export class MicuentaComponent implements OnInit {
                     .then((dateresult: Date) => {
                         console.log("date result " + dateresult);
                     });
+                this.onTap('label4');
     }
     public onTap(lbl) {
         var label: Label = <Label> this.page.getViewById(lbl);
