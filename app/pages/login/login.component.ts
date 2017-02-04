@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, ViewContainerRef} from "@angular/core";
+import {Component, OnInit, ViewChild, ElementRef, ViewContainerRef,Injectable, ChangeDetectorRef} from "@angular/core";
 import {User} from "./user.class";
 import {LoginService} from "./login.service";
 import {Router} from "@angular/router";
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
                 let user: User = data.user as User;
                 this.usuario.insert(user);
                 this.usuario.fetch();
-                this.router.navigate(["/incio"]);
+                this.router.navigate(["/home"]);
             }, error => {
                 alert("Usuario y/o contraseña incorrectos o no cuenta con acceso a internet.");
             });

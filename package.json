@@ -6,7 +6,7 @@
   "nativescript": {
     "id": "org.nativescript.calzzapatotns",
     "tns-android": {
-      "version": "2.4.1"
+      "version": "2.6.0-next-2017-02-01-1648"
     },
     "tns-ios": {
       "version": "2.5.0"
@@ -29,7 +29,6 @@
     "nativescript-theme-core": "^0.2.1",
     "reflect-metadata": "~0.1.8",
     "rxjs": "5.0.0-rc.4",
-    "tns-android": "^2.5.0",
     "tns-core-modules": "2.4.4"
   },
   "devDependencies": {
