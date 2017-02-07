@@ -27,6 +27,13 @@ export class HomeComponent implements OnInit {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
+        if (application.android) {
+            console.log("We are running on Android device!");
+            this.plataforma=false;
+        } else if (application.ios) {
+            console.log("We are running on iOS device");
+            this.plataforma=true;
+        }
     }
 
     public onDrawerOpening() {
@@ -74,7 +81,7 @@ export class HomeComponent implements OnInit {
 
     public redireccion(args) {
         console.log("redireccion", args);
-        this.routerExtensions.navigate(["/home/" + args]);
+        this.routerExtensions.navigate(["/home/" + args], {clearHistory: true});
         this.drawer.closeDrawer();
 
     }
@@ -82,7 +89,7 @@ export class HomeComponent implements OnInit {
         //this.drawer.closeDrawer();
         this.usr.truncate();
         this.user = {name: "Anónimo"};
-        this.routerExtensions.navigate(["/"]);
+        this.router.navigate(["/"]);
     }
 
     ngOnInit() {
