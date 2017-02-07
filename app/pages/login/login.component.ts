@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, ViewContainerRef,Injectable, ChangeDetectorRef} from "@angular/core";
+import {Component, OnInit, ViewChild, ElementRef, ViewContainerRef, Injectable, ChangeDetectorRef} from "@angular/core";
 import {User} from "./user.class";
 import {LoginService} from "./login.service";
 import {Router} from "@angular/router";
@@ -8,6 +8,7 @@ import {Page} from "ui/page";
 import {registerElement} from "nativescript-angular/element-registry";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {ModalViewComponent} from "./modal/modal-view";
+import {RouterExtensions} from "nativescript-angular";
 //registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 
 @Component({
@@ -23,15 +24,26 @@ export class LoginComponent implements OnInit {
     //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
 
-    constructor(private router: Router, private loginService: LoginService, private usuario: UserModel, private page: Page, private _modalService: ModalDialogService, private vcRef: ViewContainerRef) {
+    constructor(private routerExtensions: RouterExtensions, private router: Router, private loginService: LoginService, private usuario: UserModel, private page: Page, private _modalService: ModalDialogService, private vcRef: ViewContainerRef) {
         this.user = new User();
         this.user.email = "test@mail.com";
         this.user.password = "secret";
     }
 
+    ngAfterViewInit() {
+        this.usuario.fetch().then(usuario => {
+            if (usuario) {
+                this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
+            } else {
+                this.routerExtensions.navigate(["/"]);
+            }
+        });
+    }
+
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Iniciar Sesión";
+
 
     }
 
@@ -42,7 +54,7 @@ export class LoginComponent implements OnInit {
                 let user: User = data.user as User;
                 this.usuario.insert(user);
                 this.usuario.fetch();
-                this.router.navigate(["/home/inicio"]);
+                this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
             }, error => {
                 alert("Usuario y/o contraseña incorrectos o no cuenta con acceso a internet.");
             });

@@ -64,34 +64,6 @@ export class AppComponent extends Observable implements OnInit {
         });
     }
 
-
-
-    public redireccion(args) {
-        console.log("redireccion", args);
-        if (args == 'login') {
-            this.login();
-            return true;
-        }
-        if (args == 'salir') {
-            this.salir();
-            return true;
-        }
-        this.router.navigate(["/" + args]);
-       
-    }
-
-    login() {
-       
-        this.router.navigate(["/login"]);
-    }
-
-    salir() {
-        //this.drawer.closeDrawer();
-        this.usr.truncate();
-        this.user = {name: "Anónimo"};
-        this.router.navigate(["/"]);
-    }
-
     error401() {
         let r = this.router;
         dialogs.alert({

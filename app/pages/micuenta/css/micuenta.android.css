@@ -1,17 +1,17 @@
-grid-layout {
+GridLayout {
     margin-top: 15px;
     margin-left: 15px;
 }
-grid-layout StackLayout{
+GridLayout StackLayout{
     border-radius: 50px;
     height: 100%;
     width: 100%;
 }
 
-grid-layout StackLayout Image{
+GridLayout StackLayout Image{
     width: 50px;
 }
-grid-layout StackLayout Label {
+GridLayout StackLayout Label {
     font-size: 20px;
     margin: 0px 0px 0px 15px;
 
@@ -23,4 +23,7 @@ Button {
 
 ScrollView {
     height: 100%;
+}
+TextField {
+    margin-top: 15px;
 }

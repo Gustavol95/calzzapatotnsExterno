@@ -18,6 +18,11 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 
 var application = require("application");
 
+// iOS Google Maps API Key Setup
+declare var GMSServices: any;
+if(application.ios) {
+    GMSServices.provideAPIKey("AIzaSyCCbRydI84FEFapTzFo5qtGCv5i6NGuQgE");
+}
 
 @NgModule({
     imports: [

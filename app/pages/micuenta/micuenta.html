@@ -1,24 +1,24 @@
-<grid-layout columns="100,*" rows="100">
+<GridLayout columns="100,*" rows="100">
     <StackLayout row="0" col="0" backgroundColor="#EE2933" horizontalAlignment="center" verticalAlignment="center">
         <Image row="0" col="0" src="~/assets/camara.png" ></Image>
     </StackLayout>
     <StackLayout row="0" col="1" verticalAlignment="center">
         <Label text="Usuario" color="#EE2933"></Label>
-        <Label text="Henrry Cañedo Zamudio"></Label>
+        <Label text="{{user.name}}"></Label>
     </StackLayout>
-</grid-layout>
+</GridLayout>
 <ScrollView>
-    <StackLayout marginRight="15px">
+    <StackLayout [formGroup]="form" marginRight="15px" marginTop="15%">
         <StackLayout class="p-20">
             <GridLayout rows="20 auto">
                 <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label1')" fontSize="15" row="1"  text=""></TextField>
+                <TextField keyboardType="next" [(ngModel)]="valor_inicial" (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="name"></TextField>
             </GridLayout>
         </StackLayout>
         <StackLayout class="p-20">
             <GridLayout rows="20 auto">
                 <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label2')" fontSize="15" row="1"  text=""></TextField>
+                <TextField keyboardType="next"  (tap)="onTap('label2')" fontSize="15" row="1"  text=""></TextField>
             </GridLayout>
         </StackLayout>
         <StackLayout class="p-20">
@@ -30,7 +30,7 @@
         <StackLayout class="p-20">
             <GridLayout rows="20 auto">
                 <Label row="1" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false"></TextField>
+                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha"></TextField>
             </GridLayout>
         </StackLayout>
         <StackLayout class="p-20">
@@ -47,7 +47,7 @@
         </StackLayout>
         <StackLayout class="p-20">
             <GridLayout rows="20 auto">
-                <Button row="0" rowSpan="2" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" style="padding: 0px;margin:0px"></Button>
+                <Button row="0" rowSpan="2" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" style="padding: 0px;margin:0px" (tap)="guardar()"></Button>
             </GridLayout>
         </StackLayout>
     </StackLayout>

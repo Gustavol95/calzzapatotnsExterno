@@ -11,6 +11,7 @@ import {HttpService} from "../../custom-http/http-service";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 var dialogs = require("ui/dialogs");
 import * as application from "application";
+import {RouterExtensions} from "nativescript-angular";
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/home/home.component.html",
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
     public user: any = {};
     plataforma = false;
 
-    constructor(private page: Page, private _changeDetectionRef: ChangeDetectorRef, private router: Router, private usr: UserModel, private dbService: DbService, private http: HttpService) {
+    constructor(private routerExtensions: RouterExtensions, private page: Page, private _changeDetectionRef: ChangeDetectorRef, private router: Router, private usr: UserModel, private dbService: DbService, private http: HttpService) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
@@ -69,6 +70,19 @@ export class HomeComponent implements OnInit {
         } else {
             this.drawer.showDrawer();
         }
+    }
+
+    public redireccion(args) {
+        console.log("redireccion", args);
+        this.routerExtensions.navigate(["/home/" + args]);
+        this.drawer.closeDrawer();
+
+    }
+    salir() {
+        //this.drawer.closeDrawer();
+        this.usr.truncate();
+        this.user = {name: "Anónimo"};
+        this.routerExtensions.navigate(["/"]);
     }
 
     ngOnInit() {
