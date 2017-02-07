@@ -4,15 +4,15 @@
     </StackLayout>
     <StackLayout row="0" col="1" verticalAlignment="center">
         <Label text="Usuario" color="#EE2933" textWrap="true"></Label>
-        <Label text="Henrry Cañedo Zamudio" textWrap="true" ></Label>
+        <Label text="{{user.name}}"></Label>
     </StackLayout>
 </grid-layout>
 <ScrollView>
-    <StackLayout marginRight="15px">
+    <StackLayout [formGroup]="form" marginRight="15px" marginTop="15%">
 
             <GridLayout rows="20 auto">
                 <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label1')" fontSize="15" row="1"  text=""></TextField>
+                <TextField keyboardType="next" [(ngModel)]="valor_inicial" (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="name"></TextField>
             </GridLayout>
 
 
@@ -29,7 +29,7 @@
 
             <GridLayout rows="20 auto">
                 <Label row="1" id="label4" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false"></TextField>
+                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha"></TextField>
             </GridLayout>
 
 
@@ -43,7 +43,8 @@
                 <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Teléfono" textWrap="true"></Label>
                 <TextField keyboardType="phone" (tap)="onTap('label6')" fontSize="15" row="1"  text=""></TextField>
             </GridLayout>
-
-        <Button [text]="'Aceptar'" marginTop="5%" marginLeft="15px"></Button>
+            <GridLayout rows="20 auto">
+                <Button row="1" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" (tap)="guardar()"></Button>
+            </GridLayout>
     </StackLayout>
 </ScrollView>
