@@ -44,7 +44,7 @@ export class MicuentaComponent implements OnInit {
 
     }
 
-    /*configure(datePicker: DatePicker) {
+    configure(datePicker: DatePicker) {
         datePicker.year = 1980;
         datePicker.month = 2;
         datePicker.day = 9;
@@ -65,6 +65,7 @@ export class MicuentaComponent implements OnInit {
             console.log("Fecha 123",fecha);
             console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
                 this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
+                this.onTap('label4');
             });
     }
 
@@ -88,6 +89,6 @@ export class MicuentaComponent implements OnInit {
             duration: 500,
             curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
         });
-    }*/
+    }
 
 }
