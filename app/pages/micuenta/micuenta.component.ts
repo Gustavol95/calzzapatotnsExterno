@@ -64,7 +64,7 @@ export class MicuentaComponent implements OnInit {
             let fecha = new Date(dateresult);
             console.log("Fecha 123",fecha);
             console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
-                this.form.get('fecha').setValue(moment(dateresult).format('MM/DD/YYYY'));
+                this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
             });
     }
 
