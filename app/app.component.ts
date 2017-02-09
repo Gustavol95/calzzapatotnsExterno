@@ -28,10 +28,10 @@ export class AppComponent extends Observable implements OnInit {
         //this.user = {name: "Anónimo"};
         //page.on("loaded", this.onLoaded, this);
         if (application.android) {
-            console.log("We are running on Android device!");
+            //console.log("We are running on Android device!");
             this.plataforma=false;
         } else if (application.ios) {
-            console.log("We are running on iOS device");
+            //console.log("We are running on iOS device");
             this.plataforma=true;
         }
     }

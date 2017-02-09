@@ -38,7 +38,7 @@ export class MicuentaComponent implements OnInit {
             if (usuario) {
                 this.user = usuario;
                 this.form.reset(this.user);
-                console.log("Usuario => ", JSON.stringify(this.user));
+                //console.log("Usuario => ", JSON.stringify(this.user));
             }
         });
 
@@ -53,7 +53,7 @@ export class MicuentaComponent implements OnInit {
     }
 
     modalPicker() {
-        console.log("modalpICKER");
+        //console.log("modalpICKER");
         let options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
             fullscreen: false
@@ -62,15 +62,15 @@ export class MicuentaComponent implements OnInit {
         this._modalService.showModal(DatepickerComponent, options)
             .then((dateresult: Date) => {
             let fecha = new Date(dateresult);
-            console.log("Fecha 123",fecha);
-            console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
+            //console.log("Fecha 123",fecha);
+            //console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
                 this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
                 this.onTap('label4');
             });
     }
 
     guardar() {
-        console.log("modalpICKER");
+        //console.log("modalpICKER");
         let options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
             fullscreen: false
@@ -78,7 +78,7 @@ export class MicuentaComponent implements OnInit {
         // >> returning-result
         this._modalService.showModal(MapaComponent, options)
             .then((dateresult: Date) => {
-                console.log("date result " + dateresult);
+                //console.log("date result " + dateresult);
             });
     }
 

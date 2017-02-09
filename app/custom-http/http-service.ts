@@ -10,6 +10,7 @@ import {
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Router} from "@angular/router";
+import {UserModel} from "../model/user.model";
 
 
 @Injectable()
@@ -26,7 +27,8 @@ export class HttpService extends Http {
     constructor(backend: XHRBackend,
                 defaultOptions: RequestOptions,
                 private router: Router,
-                private _url: string) {
+                private _url: string,
+                private _usuarioModel: UserModel) {
 
         super(backend, defaultOptions);
 
@@ -56,7 +58,7 @@ export class HttpService extends Http {
             .do((res: Response) => {
                 this.onSubscribeSuccess(res);
             }, (error: any) => {
-            	console.log(error);
+            	//console.log(error);
                 this.onSubscribeError(error);
             })
             .finally(() => {
@@ -76,7 +78,6 @@ export class HttpService extends Http {
      * @returns {Observable<>}
      */
     post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-
         this.requestInterceptor();
         return super.post(this.getFullUrl(url), body, this.requestOptions(options))
 			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
@@ -89,6 +90,21 @@ export class HttpService extends Http {
             .finally(() => {
                 this.onFinally();
             });
+    }
+
+    login(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+           this.requestInterceptor();
+           return super.post(this.getFullUrl(url), body, options)
+   			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
+               .catch(this.onCatch)
+               .do((res: Response) => {
+                   this.onSubscribeSuccess(res);
+               }, (error: any) => {
+                   this.onSubscribeError(error);
+               })
+               .finally(() => {
+                   this.onFinally();
+               });
     }
 
     /**
@@ -149,8 +165,15 @@ export class HttpService extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        //options.headers.append('Authorization', 'Bearer ' +);
-		//options.headers.append('Accept', 'application/json');
+        let token = '';
+        /*this._usuarioModel.fetch().then(usuario=>{
+            if(usuario){
+                token = usuario.token;
+            }
+        });*/
+        console.log("TOKEN",token);
+        options.headers.append('Authorization', 'Bearer ' +token);
+		options.headers.append('Accept', 'application/json');
 
         return options;
     }

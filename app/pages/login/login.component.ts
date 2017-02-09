@@ -9,6 +9,7 @@ import {registerElement} from "nativescript-angular/element-registry";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {ModalViewComponent} from "./modal/modal-view";
 import {RouterExtensions} from "nativescript-angular";
+import {ClienteModel} from "../../model/cliente.model";
 //registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 
 @Component({
@@ -24,9 +25,9 @@ export class LoginComponent implements OnInit {
     //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
 
-    constructor(private routerExtensions: RouterExtensions, private router: Router, private loginService: LoginService, private usuario: UserModel, private page: Page, private _modalService: ModalDialogService, private vcRef: ViewContainerRef) {
+    constructor(private routerExtensions: RouterExtensions, private router: Router, private loginService: LoginService, private usuario: UserModel, private cliente: ClienteModel, private page: Page, private _modalService: ModalDialogService, private vcRef: ViewContainerRef) {
         this.user = new User();
-        this.user.email = "test@mail.com";
+        this.user.email = "58536";
         this.user.password = "secret";
     }
 
@@ -50,18 +51,17 @@ export class LoginComponent implements OnInit {
     login() {
         this.loginService.login(this.user)
             .subscribe(data => {
-
                 let user: User = data.user as User;
+                //console.log("Usuario",JSON.stringify(user));
                 this.usuario.insert(user);
-                this.usuario.fetch();
+                //this.cliente.insert(user.cliente);
+                //this.usuario.fetch();
                 this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
-            }, error => {
-                alert("Usuario y/o contraseña incorrectos o no cuenta con acceso a internet.");
             });
     }
 
     recuperarPassword() {
-        console.log("recuperarPassword");
+        //console.log("recuperarPassword");
         let options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
             fullscreen: false
@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
         // >> returning-result
         this._modalService.showModal(ModalViewComponent, options)
             .then((dateresult: Date) => {
-                console.log("date result " + dateresult);
+                //console.log("date result " + dateresult);
             });
 
     }
