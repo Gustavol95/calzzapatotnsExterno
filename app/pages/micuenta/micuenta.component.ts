@@ -10,7 +10,9 @@ import {MapaComponent} from "../modals/mapa/mapa.component";
 import {UserModel} from "../../model/user.model";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import moment = require("moment");
+import { registerElement } from "nativescript-angular/element-registry";
 
+registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 @Component({
     selector: "my-app",
     providers: [],

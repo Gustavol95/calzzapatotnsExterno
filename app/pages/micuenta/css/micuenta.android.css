@@ -27,3 +27,9 @@ ScrollView {
 TextField {
     margin-top: 15px;
 }
+.fab-button {
+    margin: 15;
+    horizontal-align: right;
+    vertical-align: bottom;
+    background-color: #EE2933;
+}
