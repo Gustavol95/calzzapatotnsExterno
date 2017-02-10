@@ -4,15 +4,15 @@
     </StackLayout>
     <StackLayout row="0" col="1" verticalAlignment="center">
         <Label text="Usuario" color="#EE2933" textWrap="true"></Label>
-        <Label text="{{user.name}}"></Label>
+        <Label text="{{cte.nombre}}"></Label>
     </StackLayout>
 </grid-layout>
 <ScrollView>
-    <StackLayout [formGroup]="form" marginRight="15px" marginTop="15%">
+    <StackLayout marginRight="15px" marginTop="15%">
 
             <GridLayout rows="20 auto">
                 <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
-                <TextField keyboardType="next" [(ngModel)]="valor_inicial" (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="name"></TextField>
+                <TextField keyboardType="next" [(ngModel)]="cte.nombre" (tap)="onTap('label1')" fontSize="15" row="1"  text="" ></TextField>
             </GridLayout>
 
 
@@ -27,10 +27,10 @@
                 <TextField keyboardType="next" (tap)="onTap('label3')" fontSize="15" row="1"  text=""></TextField>
             </GridLayout>
 
-            <GridLayout rows="20 auto">
+            <!--<GridLayout rows="20 auto">
                 <Label row="1" id="label4" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
                 <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha"></TextField>
-            </GridLayout>
+            </GridLayout>-->
 
 
             <GridLayout rows="20 auto">
@@ -38,13 +38,13 @@
                 <TextField keyboardType="next" (tap)="onTap('label5')" fontSize="15" row="1"  text=""></TextField>
             </GridLayout>
 
-
+            <GridLayout rows="20 auto">
+                <Button row="1" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" (tap)="guardar()"></Button>
+            </GridLayout>
             <GridLayout class="ultimo" rows="20 auto">
                 <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Teléfono" textWrap="true"></Label>
                 <TextField keyboardType="phone" (tap)="onTap('label6')" fontSize="15" row="1"  text=""></TextField>
             </GridLayout>
-            <GridLayout rows="20 auto">
-                <Button row="1" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" (tap)="guardar()"></Button>
-            </GridLayout>
+
     </StackLayout>
 </ScrollView>

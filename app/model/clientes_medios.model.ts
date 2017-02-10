@@ -23,5 +23,9 @@ export class ClientesMediosModel {
         this.db.getDatabase().execSQL("DELETE FROM clientes_medios");
     }
 
+    public medios(cliente_id){
+        return this.db.getDatabase().get('SELECT * FROM clientes_medios where cliente_id=?', [cliente_id]);
+    }
+
 
 }

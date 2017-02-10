@@ -7,9 +7,8 @@ import {DatePicker} from "ui/date-picker";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {DatepickerComponent} from "../modals/datepicker/date-picker";
 import {MapaComponent} from "../modals/mapa/mapa.component";
-import {UserModel} from "../../model/user.model";
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import moment = require("moment");
+import {ClienteModel} from "../../model/cliente.model";
 
 @Component({
     selector: "my-app",
@@ -18,28 +17,25 @@ import moment = require("moment");
     styleUrls: ["pages/micuenta/css/micuenta.css"]
 })
 export class MicuentaComponent implements OnInit {
-    public user: any = {name: ' '};
-    form: FormGroup;
-    protected _fb: FormBuilder;
+    public cte: any = {nombre: '1'};
     valor_inicial: string = "1";
 
-    constructor(private router: Router, private usr: UserModel, private page: Page, private vcRef: ViewContainerRef, private _modalService: ModalDialogService, fb: FormBuilder) {
-        this._fb = fb;
+    constructor(
+        private router: Router,
+        private _clienteModel: ClienteModel,
+        private page: Page,
+        private vcRef: ViewContainerRef,
+        private _modalService: ModalDialogService) {
     }
 
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Mi Cuenta";
-        this.form = this._fb.group({
-            name: [null, [Validators.required, Validators.maxLength(128)]],
-            fecha: [null, [Validators.required, Validators.maxLength(255)]]
-        });
-        this.usr.fetch().then(usuario => {
-            if (usuario) {
-                this.user = usuario;
-                this.form.reset(this.user);
-                //console.log("Usuario => ", JSON.stringify(this.user));
-            }
+        this._clienteModel.fetch().then(cliente => {
+            console.log("Cliente 123=> ",JSON.stringify(cliente));
+            this.cte = cliente;
+            //this.form.get('nombre').setValue(cliente.nombre);
+            //this.form.reset(cliente);
         });
 
     }
@@ -64,8 +60,8 @@ export class MicuentaComponent implements OnInit {
             let fecha = new Date(dateresult);
             //console.log("Fecha 123",fecha);
             //console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
-                this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
-                this.onTap('label4');
+            //this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
+            this.onTap('label4');
             });
     }
 

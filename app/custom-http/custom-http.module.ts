@@ -26,8 +26,8 @@ export class CustomHttpModule {
             providers: [
                 {
                     provide: HttpService,
-                    useFactory: (xhrBackend, requestOptions, router,_usuarioModel) => {
-                        return new HttpService(xhrBackend, requestOptions, router, url, _usuarioModel);
+                    useFactory: (xhrBackend, requestOptions, router) => {
+                        return new HttpService(xhrBackend, requestOptions, router, url);
                     },
                     deps: [XHRBackend, BaseRequestOptions, Router],
                 }

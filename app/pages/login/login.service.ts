@@ -15,11 +15,11 @@ export class LoginService {
     }
 
     login(user: User) {
-        console.log("Va a hacer login");
         return this.http.login("login", {email: user.email,password: user.password}).map(response => response.json());
     }
 
     sincronizacion(){
-
+        console.log("Entro servicio de sincronizacion");
+        return this.http.get("sincronizacion",{}).map(response => response.json());
     }
 }

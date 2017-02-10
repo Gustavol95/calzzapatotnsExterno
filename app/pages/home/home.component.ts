@@ -15,6 +15,7 @@ import {UserModel} from "../../model/user.model";
 import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
+var appSettings = require("application-settings");
 
 @Component({
     selector: "inicio-inc",
@@ -110,6 +111,7 @@ export class HomeComponent implements OnInit {
     salir() {
         this.truncateDatabase();
         this.user = {name: "Anónimo"};
+        appSettings.clear();
         this.router.navigate(["/"]);
     }
 

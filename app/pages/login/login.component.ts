@@ -10,7 +10,10 @@ import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal
 import {ModalViewComponent} from "./modal/modal-view";
 import {RouterExtensions} from "nativescript-angular";
 import {ClienteModel} from "../../model/cliente.model";
+import {TiposMedioModel} from "../../model/tipos_medio.model";
 //registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
+
+var appSettings = require("application-settings");
 
 @Component({
     selector: "my-app",
@@ -24,15 +27,24 @@ export class LoginComponent implements OnInit {
     @ViewChild("container") container: ElementRef;
     //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
-
-    constructor(private routerExtensions: RouterExtensions, private router: Router, private loginService: LoginService, private usuario: UserModel, private cliente: ClienteModel, private page: Page, private _modalService: ModalDialogService, private vcRef: ViewContainerRef) {
+    constructor(
+        private routerExtensions: RouterExtensions,
+        private router: Router,
+        private loginService: LoginService,
+        private _usuarioModel: UserModel,
+        private _clienteModel: ClienteModel,
+        private page: Page,
+        private _modalService: ModalDialogService,
+        private vcRef: ViewContainerRef,
+        private _tipoMedioModel: TiposMedioModel,
+    ) {
         this.user = new User();
         this.user.email = "58536";
         this.user.password = "secret";
     }
 
     ngAfterViewInit() {
-        this.usuario.fetch().then(usuario => {
+        this._usuarioModel.fetch().then(usuario => {
             if (usuario) {
                 this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
             } else {
@@ -50,13 +62,17 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loginService.login(this.user)
-            .subscribe(data => {
-                let user: User = data.user as User;
-                //console.log("Usuario",JSON.stringify(user));
-                this.usuario.insert(user);
-                //this.cliente.insert(user.cliente);
-                //this.usuario.fetch();
-                this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
+            .subscribe(data =>{
+                this.user = data.user as User;
+                console.log("USUARIO",JSON.stringify(this.user));
+                appSettings.setString("token", data.token);
+                this.loginService.sincronizacion().subscribe(d=>{
+                    console.log("SINCRONIZAOCION",JSON.stringify(d.tipos_medios));
+                    this._usuarioModel.insert(this.user);
+                    this._clienteModel.insert(this.user.cliente);
+                    this._tipoMedioModel.insert(d.tipos_medios);
+                    this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
+                });
             });
     }
 

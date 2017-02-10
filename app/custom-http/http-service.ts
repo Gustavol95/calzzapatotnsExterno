@@ -10,8 +10,7 @@ import {
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Router} from "@angular/router";
-import {UserModel} from "../model/user.model";
-
+var appSettings = require("application-settings");
 
 @Injectable()
 export class HttpService extends Http {
@@ -27,8 +26,7 @@ export class HttpService extends Http {
     constructor(backend: XHRBackend,
                 defaultOptions: RequestOptions,
                 private router: Router,
-                private _url: string,
-                private _usuarioModel: UserModel) {
+                private _url: string) {
 
         super(backend, defaultOptions);
 
@@ -56,12 +54,15 @@ export class HttpService extends Http {
 			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
             .catch(this.onCatch)
             .do((res: Response) => {
+                console.log("DO");
                 this.onSubscribeSuccess(res);
             }, (error: any) => {
-            	//console.log(error);
+                console.log("ERROR");
+            	console.log(JSON.stringify(error));
                 this.onSubscribeError(error);
             })
             .finally(() => {
+                console.log("FINALLY");
                 this.onFinally();
             });
     }
@@ -165,16 +166,8 @@ export class HttpService extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        let token = '';
-        /*this._usuarioModel.fetch().then(usuario=>{
-            if(usuario){
-                token = usuario.token;
-            }
-        });*/
-        console.log("TOKEN",token);
-        options.headers.append('Authorization', 'Bearer ' +token);
+        options.headers.append('Authorization', 'Bearer ' +appSettings.getString("token"));
 		options.headers.append('Accept', 'application/json');
-
         return options;
     }
 

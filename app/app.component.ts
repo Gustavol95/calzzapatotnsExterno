@@ -52,6 +52,8 @@ export class AppComponent extends Observable implements OnInit {
                 }
             } else if (e.status == 401) {
                 this.error401();
+            } else if (e.status == 403) {
+                this.error403();
             } else if (e.status == 404) {
                 this.error404();
             } else if (e.status == 422) {
@@ -74,7 +76,16 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/login"]);
         });
     }
-
+    error403() {
+        let r = this.router;
+        dialogs.alert({
+            title: "Permisos!",
+            message: "No cuenta con suficientes permisos.",
+            okButtonText: "Aceptar"
+        }).then(function () {
+            r.navigate(["/"]);
+        });
+    }
     error404() {
         let r = this.router;
         dialogs.alert({
