@@ -9,12 +9,12 @@
         </StackLayout>
     </grid-layout>
     <ScrollView row="1">
-        <StackLayout [formGroup]="form" marginRight="15px" marginTop="15%">
+        <WrapLayout [formGroup]="form" marginRight="15px" marginTop="15%">
             <GridLayout rows="20 auto">
                 <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)"
                        textWrap="true"></Label>
-                <TextField keyboardType="next" [(ngModel)]="valor_inicial" (tap)="onTap('label1')" fontSize="15" row="1"
-                           text="" formControlName="name"></TextField>
+                <TextField keyboardType="next" (tap)="onTap('label1')" fontSize="15" row="1"
+                           text="" ></TextField>
             </GridLayout>
             <GridLayout rows="20 auto">
                 <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno"
@@ -43,7 +43,7 @@
             <GridLayout>
                 <Button [text]="'Aceptar'" marginTop="5%" marginLeft="15px"></Button>
             </GridLayout>
-        </StackLayout>
+        </WrapLayout>
     </ScrollView>
     <FAB row="1" icon="~/assets/map-marker.png" rippleColor="#f1f1f1" (tap)="guardar()" class="fab-button"></FAB>
 </GridLayout>
