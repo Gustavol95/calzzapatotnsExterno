@@ -11,10 +11,8 @@
     <ScrollView row="1">
         <WrapLayout [formGroup]="form" marginRight="15px" marginTop="15%">
             <GridLayout rows="20 auto">
-                <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)"
-                       textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label1')" fontSize="15" row="1"
-                           text="" ></TextField>
+                <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
+                <TextField keyboardType="next" [(ngModel)]="cte.nombre" (tap)="onTap('label1')" fontSize="15" row="1"  text="" ></TextField>
             </GridLayout>
             <GridLayout rows="20 auto">
                 <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno"
@@ -26,22 +24,26 @@
                        textWrap="true"></Label>
                 <TextField keyboardType="next" (tap)="onTap('label3')" fontSize="15" row="1" text=""></TextField>
             </GridLayout>
-            <GridLayout rows="20 auto">
+
+            <!--<GridLayout rows="20 auto">
                 <Label row="1" id="label4" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1" text="" [editable]="false"
-                           formControlName="fecha"></TextField>
-            </GridLayout>
+                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha"></TextField>
+            </GridLayout>-->
+
+
             <GridLayout rows="20 auto">
                 <Label row="1" id="label5" fontSize="15" (tap)="onTap('label5')" text="Email" textWrap="true"></Label>
                 <TextField keyboardType="next" (tap)="onTap('label5')" fontSize="15" row="1" text=""></TextField>
             </GridLayout>
+
+
             <GridLayout class="ultimo" rows="20 auto">
                 <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Teléfono"
                        textWrap="true"></Label>
                 <TextField keyboardType="phone" (tap)="onTap('label6')" fontSize="15" row="1" text=""></TextField>
             </GridLayout>
-            <GridLayout>
-                <Button [text]="'Aceptar'" marginTop="5%" marginLeft="15px"></Button>
+            <GridLayout rows="20 auto">
+                <Button row="1" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" (tap)="guardar()"></Button>
             </GridLayout>
         </WrapLayout>
     </ScrollView>

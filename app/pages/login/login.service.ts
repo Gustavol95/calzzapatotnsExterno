@@ -15,27 +15,11 @@ export class LoginService {
     }
 
     login(user: User) {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-
-        return this.http.post("login",
-            JSON.stringify({
-                email: user.email,
-                password: user.password,
-                grant_type: "password"
-            }),
-            {headers: headers}
-        )
-            .map(response => response.json())
-            .do(data => {
-                console.log("dato => ", JSON.stringify(data));
-                Config.token = data.token;
-            })
-            .catch(this.handleErrors);
+        return this.http.login("login", {email: user.email,password: user.password}).map(response => response.json());
     }
 
-    handleErrors(error: Response) {
-        console.log("errores", JSON.stringify(error.json()));
-        return Observable.throw(error);
+    sincronizacion(){
+        console.log("Entro servicio de sincronizacion");
+        return this.http.get("sincronizacion",{}).map(response => response.json());
     }
 }

@@ -15,6 +15,9 @@ import {CustomHttpModule} from "./custom-http/custom-http.module";
 import {Config} from "./shared/config";
 import actionBarModule = require("ui/action-bar");
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
+import {ClienteModel} from "./model/cliente.model";
+import {TiposMedioModel} from "./model/tipos_medio.model";
+import {ClientesMediosModel} from "./model/clientes_medios.model";
 
 
 
@@ -34,7 +37,14 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
         SIDEDRAWER_DIRECTIVES
     ],
     bootstrap: [AppComponent],
-    providers: [DbService,UserModel,ModalDialogService]
+    providers: [
+        DbService,
+        UserModel,
+        ModalDialogService,
+        ClienteModel,
+        TiposMedioModel,
+        ClientesMediosModel
+    ]
 })
 export class AppModule {
     constructor(dbServ : DbService){

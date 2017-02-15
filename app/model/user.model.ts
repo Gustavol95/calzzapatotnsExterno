@@ -12,7 +12,7 @@ export class UserModel {
     }
 
     public insert(user: any) {
-        this.db.getDatabase().execSQL("INSERT INTO user (id,name,email,created_at,updated_at,deleted_at) VALUES(?,?,?,?,?,?)", [user.id, user.name, user.email, user.created_at, user.updated_at, user.deleted_at]);
+        this.db.getDatabase().execSQL("INSERT INTO user (id,email,password,first_name,last_name,cliente_id,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?)", [user.id, user.email, user.password, user.first_name, user.last_name, user.cliente_id, user.created_at, user.updated_at]);
     }
 
     public fetch() {

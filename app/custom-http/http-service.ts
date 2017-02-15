@@ -10,7 +10,7 @@ import {
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Router} from "@angular/router";
-
+var appSettings = require("application-settings");
 
 @Injectable()
 export class HttpService extends Http {
@@ -54,12 +54,15 @@ export class HttpService extends Http {
 			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
             .catch(this.onCatch)
             .do((res: Response) => {
+                console.log("DO");
                 this.onSubscribeSuccess(res);
             }, (error: any) => {
-            	console.log(error);
+                console.log("ERROR");
+            	console.log(JSON.stringify(error));
                 this.onSubscribeError(error);
             })
             .finally(() => {
+                console.log("FINALLY");
                 this.onFinally();
             });
     }
@@ -76,7 +79,6 @@ export class HttpService extends Http {
      * @returns {Observable<>}
      */
     post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
-
         this.requestInterceptor();
         return super.post(this.getFullUrl(url), body, this.requestOptions(options))
 			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
@@ -89,6 +91,21 @@ export class HttpService extends Http {
             .finally(() => {
                 this.onFinally();
             });
+    }
+
+    login(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
+           this.requestInterceptor();
+           return super.post(this.getFullUrl(url), body, options)
+   			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
+               .catch(this.onCatch)
+               .do((res: Response) => {
+                   this.onSubscribeSuccess(res);
+               }, (error: any) => {
+                   this.onSubscribeError(error);
+               })
+               .finally(() => {
+                   this.onFinally();
+               });
     }
 
     /**
@@ -149,9 +166,8 @@ export class HttpService extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        //options.headers.append('Authorization', 'Bearer ' +);
-		//options.headers.append('Accept', 'application/json');
-
+        options.headers.append('Authorization', 'Bearer ' +appSettings.getString("token"));
+		options.headers.append('Accept', 'application/json');
         return options;
     }
 

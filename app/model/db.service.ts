@@ -7,11 +7,10 @@ export class DbService {
     private _database: any;
     private _version : number = 2;
     private count : number = 0;
-
     constructor() {
 
         this.count++;
-        console.log("entra a DBService", this.count);
+        //console.log("entra a DBService", this.count);
         var version = this._version;
 
 
@@ -31,7 +30,7 @@ export class DbService {
 
         }, error => {
 
-            console.log("ERROR AL ABRIR LA BD", error);
+            //console.log("ERROR AL ABRIR LA BD", error);
 
         });
     }
@@ -40,20 +39,12 @@ export class DbService {
         return this._database;
     }
 
-    deleteDatabase(){
-        //this._database.execSQL("TRUNCATE");
-        /*if (Sqlite.exists("conymat.db")) {
-            console.log("BASE DE DATOS BORRADA");
-            Sqlite.deleteDatabase("conymat.db");
-        }else{
-            console.log("NO SE PUDO BORRAR LA BASE DE DATOS");
-        }*/
-    }
-
     private createTables(db : any){
 
-        db.execSQL("CREATE TABLE IF NOT EXISTS user (id INTEGER, name TEXT, email TEXT, created_at TEXT, updated_at TEXT, deleted_at TEXT)");
-
+        db.execSQL("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, email VARCHAR(255), password VARCHAR(255), first_name VARCHAR(255), last_name VARCHAR(255), cliente_id INT(10), created_at TIMESTAMP, updated_at TIMESTAMP)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, codigo INT(10), paterno VARCHAR(255), materno VARCHAR(255), nombre VARCHAR(255), rfc VARCHAR(255), plaza_id CHAR(2), tipocredito_id CHAR(2), cp CHAR(5), asentamiento_id INT(10))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS tipos_medio (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre VARCHAR(255))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS clientes_medios (id INTEGER PRIMARY KEY AUTOINCREMENT, cliente_id INT(10), cliente_codigo INT(10), tipomedio_id INT(10), referencia VARCHAR(255), notas VARCHAR(255), estado TINYINT(1))");
     }
 
 

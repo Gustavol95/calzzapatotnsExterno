@@ -38,7 +38,7 @@ export class MapaComponent implements OnInit {
 
     enableLocation() {
         if (!geolocation.isEnabled()) {
-            console.log('Location not enabled, requesting.');
+            //console.log('Location not enabled, requesting.');
             return geolocation.enableLocationRequest();
         } else {
             return Promise.resolve(true);
@@ -109,7 +109,7 @@ export class MapaComponent implements OnInit {
     };
 
     locationReceived = (position: Position) => {
-        console.log('GPS Update Received');
+        //console.log('GPS Update Received');
 
         if (this.mapView && position && !this.centeredOnLocation) {
             this.mapView.latitude = position.latitude;
@@ -177,21 +177,21 @@ export class MapaComponent implements OnInit {
     }
 
     error(err) {
-        console.log('Error: ' + JSON.stringify(err));
+        //console.log('Error: ' + JSON.stringify(err));
     }
 
     onMarkerSelect(event) {
-        console.log('Clicked on ' + JSON.stringify(event.marker.data));
+        //console.log('Clicked on ' + JSON.stringify(event.marker.data));
 
     }
 
     onCameraChanged(event) {
-        console.log('Camera changed: ' + JSON.stringify(event.camera));
+        //console.log('Camera changed: ' + JSON.stringify(event.camera));
     }
 
     guardar() {
         let position: any = {latitude:this.tapMarker.position.latitude, longitude: this.tapMarker.position.longitude};
-        console.log('position =D => ',JSON.stringify(position));
+        //console.log('position =D => ',JSON.stringify(position));
         this.params.closeCallback(position);
     }
 }

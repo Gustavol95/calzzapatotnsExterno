@@ -28,10 +28,10 @@ export class AppComponent extends Observable implements OnInit {
         //this.user = {name: "Anónimo"};
         //page.on("loaded", this.onLoaded, this);
         if (application.android) {
-            console.log("We are running on Android device!");
+            //console.log("We are running on Android device!");
             this.plataforma=false;
         } else if (application.ios) {
-            console.log("We are running on iOS device");
+            //console.log("We are running on iOS device");
             this.plataforma=true;
         }
     }
@@ -52,6 +52,8 @@ export class AppComponent extends Observable implements OnInit {
                 }
             } else if (e.status == 401) {
                 this.error401();
+            } else if (e.status == 403) {
+                this.error403();
             } else if (e.status == 404) {
                 this.error404();
             } else if (e.status == 422) {
@@ -74,7 +76,16 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/login"]);
         });
     }
-
+    error403() {
+        let r = this.router;
+        dialogs.alert({
+            title: "Permisos!",
+            message: "No cuenta con suficientes permisos.",
+            okButtonText: "Aceptar"
+        }).then(function () {
+            r.navigate(["/"]);
+        });
+    }
     error404() {
         let r = this.router;
         dialogs.alert({

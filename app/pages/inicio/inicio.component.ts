@@ -29,7 +29,7 @@ export class InicioComponent implements OnInit {
     onSaldoClicked(){
         let grid: GridLayout = <GridLayout> this.page.getViewById("gridSaldo");
         this.extenderSaldo=!this.extenderSaldo;
-        console.log(this.extenderSaldo);
+        //console.log(this.extenderSaldo);
 
         if(this.extenderSaldo==false){
             grid.visibility='visible';
