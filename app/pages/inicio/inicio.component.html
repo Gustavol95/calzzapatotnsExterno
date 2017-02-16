@@ -24,7 +24,7 @@
                     <Label height="10%" class="info-titulo" col="0" text="Corte" textWrap="true"></Label>
                     <Label height="10%" class="info" col="1" text="03 Oct 2017" textWrap="true"></Label>
                 </GridLayout>
-                <Image class="flecha" col="3" src="~/assets/flecha.png" stretch="aspectFit"></Image>
+                <Image class="flecha" col="3" src="~/assets/flecha.png" (tap)="redireccion('corte')" stretch="aspectFit"></Image>
             </GridLayout>
             <!-- Corte y Saldo Extendido -->
             <GridLayout class="grid-extendido" columns="*,4*,4*,*" rows="auto,auto,auto"

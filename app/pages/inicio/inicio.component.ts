@@ -7,6 +7,7 @@ import {Component, OnInit} from "@angular/core";
 import {Page} from "ui/page";
 import {GridLayout} from "ui/layouts/grid-layout";
 import {AnimationCurve} from "ui/enums";
+import {Router} from "@angular/router";
 
 @Component({
     selector: "inicio-inc",
@@ -18,7 +19,7 @@ export class InicioComponent implements OnInit {
 
     extenderSaldo=true;
 
-    constructor(private page:Page){
+    constructor(private page:Page, private router:Router){
 
     }
 
@@ -46,5 +47,11 @@ export class InicioComponent implements OnInit {
 
         }
     }
+
+
+     redireccion(args) {
+            this.router.navigate(["/" + args]);
+        }
+
 
 }

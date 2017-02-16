@@ -5,6 +5,7 @@ import {MicuentaComponent} from "./pages/micuenta/micuenta.component";
 import {DatepickerComponent} from "./pages/modals/datepicker/date-picker";
 import {HomeComponent} from "./pages/home/home.component";
 import {MapaComponent} from "./pages/modals/mapa/mapa.component";
+import {CorteComponent} from "./pages/corte/corte.component";
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
@@ -13,7 +14,8 @@ export const routes = [
             {path: 'inicio', component: InicioComponent},
             {path: 'micuenta', component: MicuentaComponent},
             {path: 'modal-datepicker', component: DatepickerComponent},
-            {path: 'modal-mapa', component: MapaComponent}
+            {path: 'modal-mapa', component: MapaComponent},
+            {path: 'corte', component: CorteComponent}
         ]
     }
 ];
@@ -24,5 +26,6 @@ export const navigatableComponents = [
     MicuentaComponent,
     DatepickerComponent,
     HomeComponent,
-    MapaComponent
+    MapaComponent,
+    CorteComponent
 ];
