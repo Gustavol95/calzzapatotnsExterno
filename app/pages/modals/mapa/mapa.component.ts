@@ -6,6 +6,7 @@ let geolocation = require('nativescript-geolocation');
 import {MapView, Marker, Polyline, Position} from 'nativescript-google-maps-sdk';
 var mapsModule = require("nativescript-google-maps-sdk");
 import {Color} from "color";
+var imageSource = require("image-source");
 var style = require('./map-style.json');
 import {Image} from "ui/image";
 import {ImageSource} from "image-source";
@@ -144,13 +145,11 @@ export class MapaComponent implements OnInit {
         marker.snippet = args.title;
         marker.userData = args.userData;
         marker.data = args.data;
-        let imgSrc = new ImageSource();
-        imgSrc.fromFile(args.icon);
-        let image = new Image();
-        image.imageSource = imgSrc;
-        marker.icon = image;
+        marker.icon = 'icon';
         this.mapView.addMarker(marker);
         return marker;
+
+
     };
 
     clearGpsLine() {
