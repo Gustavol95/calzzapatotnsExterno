@@ -18,6 +18,7 @@ import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import {ClienteModel} from "./model/cliente.model";
 import {TiposMedioModel} from "./model/tipos_medio.model";
 import {ClientesMediosModel} from "./model/clientes_medios.model";
+import {ErrorFeedbackComponent} from "./shared/error-feedback/error-feedback.component";
 
 
 
@@ -34,7 +35,8 @@ import {ClientesMediosModel} from "./model/clientes_medios.model";
     declarations: [
         AppComponent,
         ...navigatableComponents,
-        SIDEDRAWER_DIRECTIVES
+        SIDEDRAWER_DIRECTIVES,
+        ErrorFeedbackComponent
     ],
     bootstrap: [AppComponent],
     providers: [

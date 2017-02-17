@@ -9,6 +9,8 @@ import {DatepickerComponent} from "../modals/datepicker/date-picker";
 import {MapaComponent} from "../modals/mapa/mapa.component";
 import moment = require("moment");
 import {ClienteModel} from "../../model/cliente.model";
+import {ClientesMediosModel} from "../../model/clientes_medios.model";
+import {TiposMedioModel} from "../../model/tipos_medio.model";
 
 @Component({
     selector: "my-app",
@@ -17,27 +19,29 @@ import {ClienteModel} from "../../model/cliente.model";
     styleUrls: ["pages/micuenta/css/micuenta.css"]
 })
 export class MicuentaComponent implements OnInit {
-    public cte: any = {nombre: '1'};
+    public cte: any = {nombre: '1', medios: []};
     valor_inicial: string = "1";
 
-    constructor(
-        private router: Router,
-        private _clienteModel: ClienteModel,
-        private page: Page,
-        private vcRef: ViewContainerRef,
-        private _modalService: ModalDialogService) {
+    constructor(private router: Router,
+                private _clienteModel: ClienteModel,
+                private _clienteMediosModel: ClientesMediosModel,
+                private _tiposMediosModel: TiposMedioModel,
+                private page: Page,
+                private vcRef: ViewContainerRef,
+                private _modalService: ModalDialogService) {
     }
 
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Mi Cuenta";
         this._clienteModel.fetch().then(cliente => {
-            console.log("Cliente 123=> ",JSON.stringify(cliente));
+            console.log("Cliente 123=> ", JSON.stringify(cliente));
             this.cte = cliente;
-            //this.form.get('nombre').setValue(cliente.nombre);
-            //this.form.reset(cliente);
+            this._clienteMediosModel.fetch().then(medios => {
+                console.log("MEDIOS=> ", JSON.stringify(medios));
+                this.cte.medios = medios;
+            });
         });
-
     }
 
     configure(datePicker: DatePicker) {
@@ -57,11 +61,11 @@ export class MicuentaComponent implements OnInit {
         // >> returning-result
         this._modalService.showModal(DatepickerComponent, options)
             .then((dateresult: Date) => {
-            let fecha = new Date(dateresult);
-            //console.log("Fecha 123",fecha);
-            //console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
-            //this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
-            this.onTap('label4');
+                let fecha = new Date(dateresult);
+                //console.log("Fecha 123",fecha);
+                //console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
+                //this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
+                this.onTap('label4');
             });
     }
 
@@ -81,10 +85,22 @@ export class MicuentaComponent implements OnInit {
     public onTap(lbl) {
         var label: Label = <Label> this.page.getViewById(lbl);
         label.animate({
-            translate: {x: 0, y: -15},
+            translate: {x: -10, y: -15},
             duration: 500,
             curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
         });
+    }
+
+    public onTap2(lbl, valor) {
+        if (valor != "") {
+            var label: Label = <Label> this.page.getViewById(lbl);
+            label.animate({
+                translate: {x: -10, y: -15},
+                duration: 500,
+                curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
+            });
+        }
+        return true;
     }
 
 }

@@ -27,3 +27,7 @@ ScrollView {
 TextField {
     margin-top: 15px;
 }
+.medios-header Label{
+    font-weight: bold;
+}
+

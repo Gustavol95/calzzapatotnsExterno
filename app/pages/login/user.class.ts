@@ -8,5 +8,5 @@ export class User {
     public updated_at: string;
     public deleted_at: string;
     public usuario: string;
-    public cliente: any[];
+    public cliente: any = {medios:[]};
 }

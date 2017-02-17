@@ -11,6 +11,7 @@ import {ModalViewComponent} from "./modal/modal-view";
 import {RouterExtensions} from "nativescript-angular";
 import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
+import {ClientesMediosModel} from "../../model/clientes_medios.model";
 //registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 
 var appSettings = require("application-settings");
@@ -27,17 +28,17 @@ export class LoginComponent implements OnInit {
     @ViewChild("container") container: ElementRef;
     //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
-    constructor(
-        private routerExtensions: RouterExtensions,
-        private router: Router,
-        private loginService: LoginService,
-        private _usuarioModel: UserModel,
-        private _clienteModel: ClienteModel,
-        private page: Page,
-        private _modalService: ModalDialogService,
-        private vcRef: ViewContainerRef,
-        private _tipoMedioModel: TiposMedioModel,
-    ) {
+    constructor(private routerExtensions: RouterExtensions,
+                private router: Router,
+                private loginService: LoginService,
+                private _usuarioModel: UserModel,
+                private _clienteModel: ClienteModel,
+                private _clienteMediosModel: ClientesMediosModel,
+                private _tiposMediosModel: TiposMedioModel,
+                private page: Page,
+                private _modalService: ModalDialogService,
+                private vcRef: ViewContainerRef,
+                private _tipoMedioModel: TiposMedioModel,) {
         this.user = new User();
         this.user.email = "58536";
         this.user.password = "secret";
@@ -62,16 +63,19 @@ export class LoginComponent implements OnInit {
 
     login() {
         this.loginService.login(this.user)
-            .subscribe(data =>{
+            .subscribe(data => {
                 this.user = data.user as User;
-                console.log("USUARIO",JSON.stringify(this.user));
+                console.log("USUARIO", JSON.stringify(this.user));
+                console.log("CLIENTE", JSON.stringify(this.user.cliente));
                 appSettings.setString("token", data.token);
-                this.loginService.sincronizacion().subscribe(d=>{
-                    console.log("SINCRONIZAOCION",JSON.stringify(d.tipos_medios));
-                    this._usuarioModel.insert(this.user);
-                    this._clienteModel.insert(this.user.cliente);
-                    this._tipoMedioModel.insert(d.tipos_medios);
+                this._usuarioModel.insert(this.user);
+                this._clienteModel.insert(this.user.cliente);
+                this._clienteMediosModel.insert(this.user.cliente.medios);
+                this.loginService.sincronizacion().subscribe(d => {
+                    console.log("SINCRONIZAOCION", JSON.stringify(d.tipos_medios));
                     this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
+                    this._tiposMediosModel.insert(d.tipos_medios);
+                    this.isLoggingIn = true;
                 });
             });
     }

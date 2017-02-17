@@ -15,11 +15,13 @@ import {UserModel} from "../../model/user.model";
 import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
+import {LoginService} from "../login/login.service";
 var appSettings = require("application-settings");
 
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/home/home.component.html",
+    providers: [LoginService]
 })
 
 export class HomeComponent implements OnInit {
@@ -27,17 +29,17 @@ export class HomeComponent implements OnInit {
     @ViewChild("container") container: ElementRef;
     public user: any = {};
     plataforma = false;
+    isLoggingIn = false;
 
     constructor(private routerExtensions: RouterExtensions,
                 private page: Page,
                 private _changeDetectionRef: ChangeDetectorRef,
                 private router: Router,
-                private dbService: DbService,
-                private http: HttpService,
                 private _userModel: UserModel,
                 private _clienteModel: ClienteModel,
                 private _tiposMediosModel: TiposMedioModel,
-                private _clientesMedios: ClientesMediosModel) {
+                private _clientesMedios: ClientesMediosModel,
+                private loginService: LoginService) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
