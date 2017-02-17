@@ -17,7 +17,7 @@
     <GridLayout  row="1" col="0">
         <StackLayout height="100%">
             <Label class="titulo" text="Pago Mínimo" textWrap="true"> </Label>
-            <Label class="contenido" text="$33,000.00" textWrap="true"> </Label>
+            <Label class="contenido" [text]="pagoMinimo" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Fecha de Pago -->
@@ -37,7 +37,7 @@
     <GridLayout row="3" col="0" colSpan="2">
         <StackLayout height="100%">
             <Label class="titulo" text="Saldo Disponible" textWrap="true"> </Label>
-            <Label class="contenido" text="$45,888.00" textWrap="true"> </Label>
+            <Label class="contenido" [text]="saldo" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Programa CrediGana -->

@@ -1,30 +1,44 @@
-/**
- * Created by iedeveloper on 01/02/17.
- */
-
-
 import {Component, OnInit} from "@angular/core";
 import {Page} from "ui/page";
 import {GridLayout} from "ui/layouts/grid-layout";
-import {AnimationCurve} from "ui/enums";
-import {Router} from "@angular/router";
+import {Router, NavigationExtras} from "@angular/router";
+import {ClienteModel} from "../../model/cliente.model";
+import {InicioService} from "./inicio.service";
 
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/inicio/inicio.component.html",
-    styleUrls: ["pages/inicio/inicio-common.css", "pages/inicio/inicio.css"]
+    styleUrls: ["pages/inicio/inicio-common.css", "pages/inicio/inicio.css"],
+    providers:[InicioService]
+
 })
 
 export class InicioComponent implements OnInit {
 
+    info : any;
     extenderSaldo=true;
+    saldo="";
+    pagoMinimo="";
 
-    constructor(private page:Page, private router:Router){
-
+    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService){
+        console.log("constructor");
     }
 
     ngOnInit(): void {
         this.page.actionBar.title="Inicio";
+    }
+    ngAfterViewInit() {
+        console.log("chingado1");
+        this._clienteModel.fetch().then(usuario => {
+            console.log(usuario.id);
+            this._inicioService.getClienteInfo(usuario.id)
+                .subscribe(info=>{
+                    this.info=info[0];
+                    console.log("info",JSON.stringify(info));
+                    this.saldo="$"+info[0].saldo;
+                    this.pagoMinimo="$"+info[0].pago_minimo;
+                });
+        });
     }
 
     onSaldoClicked(){
@@ -44,7 +58,6 @@ export class InicioComponent implements OnInit {
                 opacity: 0,
                 duration: 200
             }).then( (d)=>{ grid.visibility='collapse';} )
-
         }
     }
 
@@ -52,6 +65,16 @@ export class InicioComponent implements OnInit {
      redireccion(args) {
             this.router.navigate(["/" + args]);
         }
+
+    corte(){
+        console.log("Tap corte");
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "info": JSON.stringify(this.info)
+            }
+        };
+        this.router.navigate(['/home/corte'], navigationExtras);
+    }
 
 
 }

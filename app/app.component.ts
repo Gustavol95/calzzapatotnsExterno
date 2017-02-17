@@ -73,7 +73,7 @@ export class AppComponent extends Observable implements OnInit {
             message: "No cuenta con suficientes permisos.",
             okButtonText: "Aceptar"
         }).then(function () {
-            r.navigate(["/login"]);
+            r.navigate(["/"]);
         });
     }
     error403() {
