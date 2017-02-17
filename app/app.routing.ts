@@ -5,6 +5,8 @@ import {MicuentaComponent} from "./pages/micuenta/micuenta.component";
 import {DatepickerComponent} from "./pages/modals/datepicker/date-picker";
 import {HomeComponent} from "./pages/home/home.component";
 import {MapaComponent} from "./pages/modals/mapa/mapa.component";
+import {ListadoClienteComponent} from "./pages/cliente/listado/listado.cliente.component";
+import {FormularioClienteComponent} from "./pages/cliente/formulario/formulario.cliente.component";
 import {CorteComponent} from "./pages/corte/corte.component";
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
@@ -16,6 +18,9 @@ export const routes = [
             {path: 'modal-datepicker', component: DatepickerComponent},
             {path: 'modal-mapa', component: MapaComponent},
             {path: 'corte', component: CorteComponent}
+            {path: 'clientes', component:ListadoClienteComponent},
+            {path: 'cliente/create', component:FormularioClienteComponent}
+
         ]
     }
 ];
@@ -27,5 +32,7 @@ export const navigatableComponents = [
     DatepickerComponent,
     HomeComponent,
     MapaComponent,
-    CorteComponent
+    CorteComponent,
+    ListadoClienteComponent,
+    FormularioClienteComponent
 ];

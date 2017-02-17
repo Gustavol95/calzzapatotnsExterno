@@ -12,7 +12,9 @@ export class TiposMedioModel {
     }
 
     public insert(medios: any) {
-        this.db.getDatabase().execSQL("INSERT INTO tipos_medio (id,nombre) VALUES(?,?)", [medios.id, medios.nombre]);
+        for (let medio of medios) {
+            this.db.getDatabase().execSQL("INSERT INTO tipos_medio (id,nombre) VALUES(?,?)", [medio.id, medio.nombre]);
+        }
     }
 
     public fetch() {

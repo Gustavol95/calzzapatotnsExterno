@@ -54,15 +54,11 @@ export class HttpService extends Http {
 			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
             .catch(this.onCatch)
             .do((res: Response) => {
-                console.log("DO");
                 this.onSubscribeSuccess(res);
             }, (error: any) => {
-                console.log("ERROR");
-            	console.log(JSON.stringify(error));
                 this.onSubscribeError(error);
             })
             .finally(() => {
-                console.log("FINALLY");
                 this.onFinally();
             });
     }

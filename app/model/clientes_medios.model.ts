@@ -8,24 +8,20 @@ import {DbService} from "./db.service";
 export class ClientesMediosModel {
 
 
-    constructor(private db :DbService ) {
+    constructor(private db: DbService) {
     }
 
-    public insert(cliente_medio: any) {
-        this.db.getDatabase().execSQL("INSERT INTO clientes_medios (id,cliente_id,cliente_codigo,tipomedio_id,referencia,notas,estado) VALUES(?,?,?,?,?,?,?)", [cliente_medio.id, cliente_medio.cliente_id, cliente_medio.cliente_codigo, cliente_medio.tipomedio_id, cliente_medio.referencia, cliente_medio.notas, cliente_medio.estado]);
+    public insert(clientes_medios: any) {
+        for (let cliente_medio of clientes_medios) {
+            this.db.getDatabase().execSQL("INSERT INTO clientes_medios (id,cliente_id,cliente_codigo,tipomedio_id,referencia,notas,estado) VALUES(?,?,?,?,?,?,?)", [cliente_medio.id, cliente_medio.cliente_id, cliente_medio.cliente_codigo, cliente_medio.tipomedio_id, cliente_medio.referencia, cliente_medio.notas, cliente_medio.estado]);
+        }
     }
 
     public fetch() {
-        return this.db.getDatabase().get("SELECT * FROM clientes_medios");
+        return this.db.getDatabase().all("SELECT clientes_medios.*,tipos_medio.nombre AS medio FROM clientes_medios INNER JOIN tipos_medio ON clientes_medios.tipomedio_id = tipos_medio.id");
     }
 
-    public truncate(){
+    public truncate() {
         this.db.getDatabase().execSQL("DELETE FROM clientes_medios");
     }
-
-    public medios(cliente_id){
-        return this.db.getDatabase().get('SELECT * FROM clientes_medios where cliente_id=?', [cliente_id]);
-    }
-
-
 }
