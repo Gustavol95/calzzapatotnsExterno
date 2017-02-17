@@ -17,10 +17,10 @@ export class CustomValidators {
         return null;
     }
 
-	static formatoNumero(control: FormControl): any {
+	static celular(control: FormControl): any {
 		let exp: any = /^[0-9]+$/;
 		if (control.value !== undefined && !exp.test(control.value)) {
-			return {'formatoNumero': true, 'currentValue': control.value};
+			return {'celular': true, 'currentValue': control.value};
 		}
 		return null;
 	}

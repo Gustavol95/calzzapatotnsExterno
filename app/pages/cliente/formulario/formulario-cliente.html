@@ -5,7 +5,6 @@
             <TextField keyboardType="next"  (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="nombre"></TextField>
             <app-error-feedback row="2" [messages]="validationMessages.nombre" [formGroup]="form" controlName="nombre"></app-error-feedback>
         </GridLayout>
-
         <GridLayout rows="20 auto,auto">
             <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno" textWrap="true"></Label>
             <TextField keyboardType="next"  (tap)="onTap('label2')" fontSize="15" row="1"  text="" formControlName="paterno"></TextField>
