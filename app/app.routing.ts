@@ -8,8 +8,11 @@ import {MapaComponent} from "./pages/modals/mapa/mapa.component";
 import {ListadoClienteComponent} from "./pages/cliente/listado/listado.cliente.component";
 import {FormularioClienteComponent} from "./pages/cliente/formulario/formulario.cliente.component";
 import {CorteComponent} from "./pages/corte/corte.component";
+import {ClienteDetalleComponent} from "./pages/cliente/detalle/cliente-detalle.component";
+
 export const routes = [
-    {path: '', component: LoginComponent, useAsDefault: true},
+    //{path: '', component: LoginComponent, useAsDefault: true},
+    {path: '', component: ClienteDetalleComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
     {path: 'home',component: HomeComponent,
         children: [
@@ -17,13 +20,13 @@ export const routes = [
             {path: 'micuenta', component: MicuentaComponent},
             {path: 'modal-datepicker', component: DatepickerComponent},
             {path: 'modal-mapa', component: MapaComponent},
-            {path: 'corte', component: CorteComponent}
+            {path: 'corte', component: CorteComponent},
             {path: 'clientes', component:ListadoClienteComponent},
             {path: 'cliente/create', component:FormularioClienteComponent}
-
         ]
     }
 ];
+
 export const navigatableComponents = [
     LoginComponent,
     ModalViewComponent,
@@ -34,5 +37,6 @@ export const navigatableComponents = [
     MapaComponent,
     CorteComponent,
     ListadoClienteComponent,
-    FormularioClienteComponent
+    FormularioClienteComponent,
+    ClienteDetalleComponent
 ];

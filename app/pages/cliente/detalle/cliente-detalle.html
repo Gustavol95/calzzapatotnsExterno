@@ -1,0 +1,51 @@
+<GridLayout width="100%" height="100%" >
+    <TabView #element [(ngModel)]="selectedIndex" >
+        <GridLayout width="100%" height="100%" *tabItem="{title: 'INFO'}" >
+            <CardView height=50% width="90%" elevation="40" radius="5" style="background-color: white" >
+                <GridLayout style="margin:5;" columns="*,*,*,*" rows="*,*,*,*,*,*,auto,*">
+
+
+                    <Label class="circulo" row="0" col="0" height="80" width="80" rowSpan="2" text="LM"  src="~/assets/eventos_r.png" stretch="aspectFit"></Label>
+
+
+                    <Label class="nombre" text="Luisa Martinez" row="0" col="1" colSpan="3"  textWrap="true"></Label>
+                    <Label class="titulo" text="Teléfono" row="1" col="1" colSpan="2" textWrap="true"></Label>
+                    <Label class="titulo" text="Celular" row="2" col="1" colSpan="2" textWrap="true"></Label>
+                    <Label class="titulo" text="Email" row="3" col="1" colSpan="2" textWrap="true"></Label>
+                    <Label class="titulo" text="Fecha de Nac." row="4" col="1" colSpan="2" textWrap="true"></Label>
+                    <Label class="titulo" text="Dirección" row="5" col="1" colSpan="2" textWrap="true"></Label>
+
+                    <Label class="contenido" text="(667) 123 4567" row="1" col="3" textWrap="true"></Label>
+                    <Label class="contenido" text="(667) 123 4567" row="2" col="3" textWrap="true"></Label>
+                    <Label class="contenido" text="luisamartinez@mail.com" row="3" col="3" textWrap="true"></Label>
+                    <Label class="contenido" text="03 Ene 1965" row="4" col="3" textWrap="true" ></Label>
+                    <Label class="contenido" text="Calle Primera 1234, Col. Segunda. C.P. 80000" row="5" col="3" textWrap="true"></Label>
+
+
+                    <Image  height="40" width="40" row="5" col="0" src="~/assets/eventos_r.png" stretch="aspectFit" style="horiz-align: left;vertical-align: top;"></Image>
+
+                    <Label  height="1" row="6" col="1" colSpan="3" style="background-color: #E7E7E7;margin-top: 5; margin-bottom: 3;"></Label>
+
+                    <Image src="~/assets/miCuenta_r.png" height="40" width="40" row="7" col="1" stretch="aspectFit"></Image>
+                    <Image src="~/assets/eventos_r.png" height="40" width="40" row="7" col="2" stretch="aspectFit"></Image>
+
+
+                    <GridLayout row="7" col="3" style="horiz-align: center;vertical-align: center;">
+                       <WrapLayout style="vertical-align: center;horiz-align: center;">
+                           <Image  height="40" width="40" src="~/assets/eventos_r.png" stretch="aspectFit" ></Image>
+                           <Button text="LLAMAR"  style="margin-left: 5"></Button>
+                       </WrapLayout>
+
+                    </GridLayout>
+
+                </GridLayout>
+            </CardView>
+        </GridLayout>
+        <GridLayout height="100%" width="100%" *tabItem="{title: 'CUENTA'}">
+        </GridLayout>
+        <GridLayout height="100%" width="100%" *tabItem="{title: 'PAGOS'}">
+        </GridLayout>
+        <GridLayout height="100%" width="100%" *tabItem="{title: 'COMPRAS'}">
+        </GridLayout>
+    </TabView>
+</GridLayout>
