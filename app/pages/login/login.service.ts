@@ -15,11 +15,19 @@ export class LoginService {
     }
 
     login(user: User) {
-        return this.http.login("login", {email: user.email,password: user.password}).map(response => response.json());
+        return this.http.login("login", {email: user.email, password: user.password}).map(response => response.json());
     }
 
-    sincronizacion(){
+    sincronizacion() {
         console.log("Entro servicio de sincronizacion");
-        return this.http.get("sincronizacion",{}).map(response => response.json());
+        return this.http.get("sincronizacion", {}).map(response => response.json());
+    }
+
+    recuperarPassword(dato) {
+        console.log("recuperarPassword",JSON.stringify(dato));
+        return this.http.login("recuperarcontrasena/"+dato.usuario, {email:dato.email,telefono:dato.celular}).map(response => response.json());
+    }
+    cambiarPassword(dato){
+        return this.http.login("actualizarcontrasena/"+dato.cliente_id, dato.dato).map(response => response.json());
     }
 }

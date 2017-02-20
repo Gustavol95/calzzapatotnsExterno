@@ -8,6 +8,7 @@ import {MapaComponent} from "./pages/modals/mapa/mapa.component";
 import {ListadoClienteComponent} from "./pages/cliente/listado/listado.cliente.component";
 import {FormularioClienteComponent} from "./pages/cliente/formulario/formulario.cliente.component";
 import {CorteComponent} from "./pages/corte/corte.component";
+import {RecuperarComponent} from "./pages/modals/recuperar/recuperar";
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
@@ -17,9 +18,10 @@ export const routes = [
             {path: 'micuenta', component: MicuentaComponent},
             {path: 'modal-datepicker', component: DatepickerComponent},
             {path: 'modal-mapa', component: MapaComponent},
-            {path: 'corte', component: CorteComponent}
+            {path: 'corte', component: CorteComponent},
             {path: 'clientes', component:ListadoClienteComponent},
-            {path: 'cliente/create', component:FormularioClienteComponent}
+            {path: 'cliente/create', component:FormularioClienteComponent},
+            {path: 'modal-recuperar', component:RecuperarComponent}
 
         ]
     }
@@ -34,5 +36,6 @@ export const navigatableComponents = [
     MapaComponent,
     CorteComponent,
     ListadoClienteComponent,
-    FormularioClienteComponent
+    FormularioClienteComponent,
+    RecuperarComponent
 ];

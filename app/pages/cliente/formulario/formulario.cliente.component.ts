@@ -11,86 +11,14 @@ import moment = require("moment");
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../shared/validators/CustomValidators";
 import {Cliente} from "../cliente.class";
+import {UserModel} from "../../../model/user.model";
+import {RouterExtensions} from "nativescript-angular";
+var dialogs = require("ui/dialogs");
 
 @Component({
     selector: "my-app-clientes",
     providers: [ClienteService],
-    //templateUrl: "pages/cliente/formulario/formulario-cliente.html",
-    template: `
-          <ScrollView>
-              <StackLayout [formGroup]="form" style="margin: 15px">
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="nombre"></TextField>
-                      <app-error-feedback row="2" [messages]="validationMessages.nombre" [formGroup]="form" controlName="nombre"></app-error-feedback>
-                  </GridLayout>
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="onTap('label2')" fontSize="15" row="1"  text="" formControlName="paterno"></TextField>
-                      <app-error-feedback [messages]="validationMessages.paterno" [formGroup]="form" controlName="paterno"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label3" fontSize="15" (tap)="onTap('label3')" text="Apellido Materno" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="onTap('label3')" fontSize="15" row="1"  text="" formControlName="materno"></TextField>
-                      <app-error-feedback [messages]="validationMessages.materno" [formGroup]="form" controlName="materno"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label4" fontSize="15" (tap)="onTap('label4')" text="Celular" textWrap="true"></Label>
-                      <TextField keyboardType="phone"  (tap)="onTap('label4')" fontSize="15" row="1"  text="" formControlName="celular"></TextField>
-                      <app-error-feedback [messages]="validationMessages.celular" [formGroup]="form" controlName="celular"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Email" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="onTap('label6')" fontSize="15" row="1"  text="" formControlName="email"></TextField>
-                      <app-error-feedback [messages]="validationMessages.email" [formGroup]="form" controlName="email"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label7" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha_nacimiento"></TextField>
-                      <app-error-feedback [messages]="validationMessages.fecha_nacimiento" [formGroup]="form" controlName="fecha_nacimiento"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label8" fontSize="15" (tap)="onTap('label8')" text="Calle" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="onTap('label8')" fontSize="15" row="1"  text="" formControlName="calle"></TextField>
-                      <app-error-feedback [messages]="validationMessages.calle" [formGroup]="form" controlName="calle"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label9" fontSize="15" (tap)="onTap('label9')" text="Número exterior" textWrap="true"></Label>
-                      <TextField keyboardType="number"  (tap)="onTap('label9')" fontSize="15" row="1"  text="" formControlName=numero_exterior></TextField>
-                      <app-error-feedback [messages]="validationMessages.numero_exterior" [formGroup]="form" controlName="numero_exterior"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label10" fontSize="15" (tap)="onTap('label10')" text="Número interior" textWrap="true"></Label>
-                      <TextField keyboardType="number"  (tap)="onTap('label10')" fontSize="15" row="1"  text="" formControlName="numero_interior"></TextField>
-                      <app-error-feedback [messages]="validationMessages.numero_interior" [formGroup]="form" controlName="numero_interior"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label11" fontSize="15" (tap)="onTap('label11')" text="Colonia" textWrap="true"></Label>
-                      <TextField keyboardType="next"  (tap)="onTap('label11')" fontSize="15" row="1"  text="" formControlName="colonia"></TextField>
-                      <app-error-feedback [messages]="validationMessages.colonia" [formGroup]="form" controlName="colonia"></app-error-feedback>
-                  </GridLayout>
-          
-                  <GridLayout rows="20 auto,auto">
-                      <Label row="1" id="label12" fontSize="15" (tap)="onTap('label12')" text="Cp" textWrap="true"></Label>
-                      <TextField keyboardType="number"  (tap)="onTap('label12')" fontSize="15" row="1"  text="" formControlName="cp"></TextField>
-                      <app-error-feedback [messages]="validationMessages.cp" [formGroup]="form" controlName="cp"></app-error-feedback>
-                  </GridLayout>
-                  
-                  <GridLayout rows="20 auto">
-                      <Button row="1" [text]="'Guardar'" class="button-save" isEnabled = "{{form.valid}}" (tap)="guardar()"></Button>
-                  </GridLayout>
-              </StackLayout>
-          </ScrollView>  
-        
-    `,
+    templateUrl: "pages/cliente/formulario/formulario-cliente.html",
     styleUrls: ["pages/cliente/css/cliente.css"]
 })
 export class FormularioClienteComponent implements OnInit {
@@ -98,8 +26,10 @@ export class FormularioClienteComponent implements OnInit {
     form: FormGroup;
 
     constructor(private router: Router,
+                private routerExtensions: RouterExtensions,
                 private page: Page,
                 private _clienteService: ClienteService,
+                private _userModel: UserModel,
                 private vcRef: ViewContainerRef,
                 private _modalService: ModalDialogService,
                 private _fb: FormBuilder) {
@@ -171,14 +101,14 @@ export class FormularioClienteComponent implements OnInit {
             nombre: ['Henry', [Validators.required, Validators.minLength(1)]],
             paterno: ['Cañedo', [Validators.required, Validators.minLength(1)]],
             materno: ['Zamudio', [Validators.required, Validators.minLength(1)]],
-            celular: ['6691657109', [Validators.required, Validators.minLength(10),Validators.maxLength(10),CustomValidators.celular]],
+            celular: ['6691657109', [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
             email: ['heris161993@gmail.com', [Validators.required, Validators.minLength(1), CustomValidators.email]],
-            fecha_nacimiento: ['09/04/93', [Validators.required, Validators.minLength(1)]],
+            fecha_nacimiento: ['09/04/1993', [Validators.required, Validators.minLength(1)]],
             calle: ['Los Sauces', [Validators.required, Validators.minLength(1)]],
             numero_exterior: ['896', [Validators.required, Validators.minLength(1)]],
             numero_interior: ['402', [Validators.required, Validators.minLength(1)]],
             colonia: ['La campiña', [Validators.required, Validators.minLength(1)]],
-            cp: ['82600', [Validators.required, Validators.minLength(1),Validators.maxLength(10)]]
+            cp: ['82600', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
         });
     }
 
@@ -215,9 +145,19 @@ export class FormularioClienteComponent implements OnInit {
 
     guardar() {
         let cliente: Cliente = this.form.value as Cliente;
-        console.log("Va a guardar",JSON.stringify(cliente));
-        this._clienteService.save(cliente).subscribe(d=>{
-            console.log("se guardo");
+        this._userModel.fetch().then(usuario => {
+            cliente.cliente_id = usuario.cliente_id;
+            console.log("Va a guardar", JSON.stringify(cliente));
+            this._clienteService.save(cliente).subscribe(d => {
+                let route = this.routerExtensions;
+                dialogs.alert({
+                    title: "Cliente",
+                    message: "El cliente se agregó correctamente.",
+                    okButtonText: "Aceptar"
+                }).then(function () {
+                    route.navigate(["/home/clientes"], {clearHistory: true});
+                });
+            });
         });
     }
 }

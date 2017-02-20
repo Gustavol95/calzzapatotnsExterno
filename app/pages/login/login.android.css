@@ -1,36 +1,50 @@
 StackLayout {
-  height: 340;
+    height: 340;
 }
+
 Image {
-  width: 90%;
-  margin-top: 15%;
+    width: 90%;
+    margin-top: 15%;
 
 }
+
 Button {
-  background-color: #223D98;
+    background-color: #223D98;
 }
-TextField{
-    color:black;
+
+TextField {
+    color: black;
 }
 
 Label {
-  color:#EE2933;
+    color: #EE2933;
 }
-.modal-view-style{
-  margin:0px;
-  padding: 0px;
-  background-color: white;
-  width: 100%;
-  height: 43%;
+
+.modal-view-style {
+    margin: 0px;
+    padding: 0px;
+    background-color: white;
+    width: 100%;
+    height: 50%;
 }
-.title{
-  color:#EE2933;
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 5%;
-  margin-bottom: 10%;
-  margin-left: 15px;
+
+.title {
+
+    color: #EE2933;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    margin-left: 15px;
 }
-grid-layout Label{
-  color:#223D98;
+
+grid-layout Label {
+    color: #223D98;
+}
+
+.style1 {
+    background-color: #5c687c;
+}
+.style2 {
+    background-color: #00aafc;
 }

@@ -6,7 +6,7 @@ import {isNullOrUndefined} from "utils/types";
 @Component({
     selector: 'app-error-feedback',
     template: `
-      <Label  *ngIf="formErrors"  text="{{ formErrors }}" row="2" style="margin:0;padding:0;color:red"></Label>
+      <Label  *ngIf="formErrors"  text="{{ formErrors }}" row="2" style="margin:0px 0px 0px 10px;padding:0px 0px 0px 10px;color:red"></Label>
 `
 })
 

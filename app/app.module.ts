@@ -19,6 +19,7 @@ import {ClienteModel} from "./model/cliente.model";
 import {TiposMedioModel} from "./model/tipos_medio.model";
 import {ClientesMediosModel} from "./model/clientes_medios.model";
 import {ErrorFeedbackComponent} from "./shared/error-feedback/error-feedback.component";
+import {EqualValidator} from "./shared/validators/equal-validator.directive";
 
 
 
@@ -36,7 +37,8 @@ import {ErrorFeedbackComponent} from "./shared/error-feedback/error-feedback.com
         AppComponent,
         ...navigatableComponents,
         SIDEDRAWER_DIRECTIVES,
-        ErrorFeedbackComponent
+        ErrorFeedbackComponent,
+        EqualValidator
     ],
     bootstrap: [AppComponent],
     providers: [
