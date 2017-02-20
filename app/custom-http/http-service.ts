@@ -91,6 +91,7 @@ export class HttpService extends Http {
 
     login(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
            this.requestInterceptor();
+           console.log(this.getFullUrl(url),JSON.stringify(body));
            return super.post(this.getFullUrl(url), body, options)
    			.timeout(this._timeout, Observable.throw('timeout_exceeded') )
                .catch(this.onCatch)

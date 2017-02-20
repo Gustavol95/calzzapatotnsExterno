@@ -49,4 +49,10 @@ ListView {
     }
 }
 
+.button-save {
+    background-color: #223D98;
+    color:white;
+    padding-right: 15px;
+}
+
 

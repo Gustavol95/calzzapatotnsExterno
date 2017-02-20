@@ -10,6 +10,10 @@ import {Label} from "ui/label";
 import moment = require("moment");
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../shared/validators/CustomValidators";
+import {Cliente} from "../cliente.class";
+import {UserModel} from "../../../model/user.model";
+import {RouterExtensions} from "nativescript-angular";
+var dialogs = require("ui/dialogs");
 
 @Component({
     selector: "my-app-clientes",
@@ -22,8 +26,10 @@ export class FormularioClienteComponent implements OnInit {
     form: FormGroup;
 
     constructor(private router: Router,
+                private routerExtensions: RouterExtensions,
                 private page: Page,
                 private _clienteService: ClienteService,
+                private _userModel: UserModel,
                 private vcRef: ViewContainerRef,
                 private _modalService: ModalDialogService,
                 private _fb: FormBuilder) {
@@ -47,8 +53,9 @@ export class FormularioClienteComponent implements OnInit {
         },
         celular: {
             required: "El celular es obligatorio",
-            maxLength: "El tamaño máximo del celular es de 255 dígitos",
-            minLength: "El tamaño mínimo del celular es de 1 dígito"
+            maxLength: "El tamaño máximo del celular es de 10 dígitos",
+            minLength: "El tamaño mínimo del celular es de 10 dígitos",
+            celular: "Ingrese un celular válido"
         },
         email: {
             required: "El email es obligatorio",
@@ -83,7 +90,7 @@ export class FormularioClienteComponent implements OnInit {
         },
         cp: {
             required: "El código postal es obligatorio",
-            maxLength: "El tamaño máximo del código postal es de 255 dígitos",
+            maxLength: "El tamaño máximo del código postal es de 10 dígitos",
             minLength: "El tamaño mínimo del código postal es de 1 dígito"
         }
     }
@@ -91,17 +98,17 @@ export class FormularioClienteComponent implements OnInit {
     ngOnInit() {
         this.page.actionBar.title = "Agregar Cliente";
         this.form = this._fb.group({
-            nombre: [null, [Validators.required, Validators.minLength(1)]],
-            paterno: [null, [Validators.required, Validators.minLength(1)]],
-            materno: [null, [Validators.required, Validators.minLength(1)]],
-            celular: [null, [Validators.required, Validators.minLength(1)]],
-            email: [null, [Validators.required, Validators.minLength(1),CustomValidators.email]],
-            fecha_nacimiento: [null, [Validators.required, Validators.minLength(1)]],
-            calle: [null, [Validators.required, Validators.minLength(1)]],
-            numero_exterior: [null, [Validators.required, Validators.minLength(1)]],
-            numero_interior: [null, [Validators.required, Validators.minLength(1)]],
-            colonia: [null, [Validators.required, Validators.minLength(1)]],
-            cp: [null, [Validators.required, Validators.minLength(1)]]
+            nombre: ['Henry', [Validators.required, Validators.minLength(1)]],
+            paterno: ['Cañedo', [Validators.required, Validators.minLength(1)]],
+            materno: ['Zamudio', [Validators.required, Validators.minLength(1)]],
+            celular: ['6691657109', [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
+            email: ['heris161993@gmail.com', [Validators.required, Validators.minLength(1), CustomValidators.email]],
+            fecha_nacimiento: ['09/04/1993', [Validators.required, Validators.minLength(1)]],
+            calle: ['Los Sauces', [Validators.required, Validators.minLength(1)]],
+            numero_exterior: ['896', [Validators.required, Validators.minLength(1)]],
+            numero_interior: ['402', [Validators.required, Validators.minLength(1)]],
+            colonia: ['La campiña', [Validators.required, Validators.minLength(1)]],
+            cp: ['82600', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
         });
     }
 
@@ -115,7 +122,7 @@ export class FormularioClienteComponent implements OnInit {
         this._modalService.showModal(DatepickerComponent, options)
             .then((dateresult: Date) => {
                 this.form.get('fecha_nacimiento').setValue(moment(dateresult).format('DD/MM/YYYY'));
-                this.onTap('label4');
+                this.onTap('label7');
             });
     }
 
@@ -135,7 +142,22 @@ export class FormularioClienteComponent implements OnInit {
             curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
         });
     }
-    guardar(){
-        console.log("Va a guardar");
+
+    guardar() {
+        let cliente: Cliente = this.form.value as Cliente;
+        this._userModel.fetch().then(usuario => {
+            cliente.cliente_id = usuario.cliente_id;
+            console.log("Va a guardar", JSON.stringify(cliente));
+            this._clienteService.save(cliente).subscribe(d => {
+                let route = this.routerExtensions;
+                dialogs.alert({
+                    title: "Cliente",
+                    message: "El cliente se agregó correctamente.",
+                    okButtonText: "Aceptar"
+                }).then(function () {
+                    route.navigate(["/home/clientes"], {clearHistory: true});
+                });
+            });
+        });
     }
 }

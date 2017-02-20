@@ -13,7 +13,7 @@ import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
 //registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
-
+var dialogs = require("ui/dialogs");
 var appSettings = require("application-settings");
 
 @Component({
@@ -88,9 +88,15 @@ export class LoginComponent implements OnInit {
         };
         // >> returning-result
         this._modalService.showModal(ModalViewComponent, options)
-            .then((dateresult: Date) => {
-                //console.log("date result " + dateresult);
+            .then((dato) => {
+                this.loginService.recuperarPassword(dato).subscribe(d=>{
+                    dialogs.alert({
+                        title: "Recuperar contraseña",
+                        message: "Se ha enviado su nueva contraseña a su correo.",
+                        okButtonText: "Aceptar"
+                    }).then(function () {
+                    });
+                });
             });
-
     }
 }

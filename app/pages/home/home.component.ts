@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild, OnInit, Injectable, ChangeDetectorRef} from '@angular/core';
+import {Component, ElementRef, ViewChild, OnInit, ViewContainerRef, ChangeDetectorRef} from '@angular/core';
 import {Color} from "color";
 import {Page} from "ui/page";
 import {Router} from "@angular/router";
@@ -8,7 +8,6 @@ import {DrawerTransitionBase, SlideInOnTopTransition} from 'nativescript-telerik
 import {DbService} from "../../model/db.service";
 import {HttpService} from "../../custom-http/http-service";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
-var dialogs = require("ui/dialogs");
 import * as application from "application";
 import {RouterExtensions} from "nativescript-angular";
 import {UserModel} from "../../model/user.model";
@@ -16,7 +15,10 @@ import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
 import {LoginService} from "../login/login.service";
+import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
+import {RecuperarComponent} from "../modals/recuperar/recuperar";
 var appSettings = require("application-settings");
+var dialogs = require("ui/dialogs");
 
 @Component({
     selector: "inicio-inc",
@@ -39,7 +41,9 @@ export class HomeComponent implements OnInit {
                 private _clienteModel: ClienteModel,
                 private _tiposMediosModel: TiposMedioModel,
                 private _clientesMedios: ClientesMediosModel,
-                private loginService: LoginService) {
+                private _loginService: LoginService,
+                private vcRef: ViewContainerRef,
+                private _modalService: ModalDialogService) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
@@ -57,12 +61,8 @@ export class HomeComponent implements OnInit {
         this._userModel.fetch().then(usuario => {
             if (usuario) {
                 this.user = usuario;
-                //this.drawer.android.setIsLocked(false);
-            } else {
-                //this.drawer.android.setIsLocked(true);
             }
         });
-
     }
 
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -118,6 +118,26 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.user.solicitar == 1) {
+            let options: ModalDialogOptions = {
+                viewContainerRef: this.vcRef,
+                fullscreen: false
+            };
+            // >> returning-result
+            this._modalService.showModal(RecuperarComponent, options)
+                .then((dato) => {
+                    let datos = {cliente_id:this.user.cliente_id,dato:dato};
+                    this._loginService.cambiarPassword(datos).subscribe(d=>{
+                        this._userModel.cambiarSolicitud();
+                        dialogs.alert({
+                            title: "Recuperar contraseña",
+                            message: "La contraseña se ha actualizado correctamente.",
+                            okButtonText: "Aceptar"
+                        }).then(function () {
+                        });
+                    });
+                });
+        }
     }
 
 

@@ -1,8 +1,8 @@
 <GridLayout width="100%" height="100%" >
     <TabView #element [(ngModel)]="selectedIndex" >
-        <GridLayout width="100%" height="100%" *tabItem="{title: 'INFO'}" >
+        <GridLayout width="100%" height="100%" *tabItem="{title: 'INFO'}" rows="auto,150">
             <CardView height=50% width="90%" elevation="40" radius="5" style="background-color: white" >
-                <GridLayout style="margin:5;" columns="*,*,*,*" rows="*,*,*,*,*,*,auto,*">
+                <GridLayout style="margin:5;" columns="*,*,*,*" rows="*,*,*,*,*,*,auto,*" row="0">
 
 
                     <Label class="circulo" row="0" col="0" height="80" width="80" rowSpan="2" text="LM"  src="~/assets/eventos_r.png" stretch="aspectFit"></Label>
@@ -37,7 +37,13 @@
                        </WrapLayout>
 
                     </GridLayout>
-
+                    <FAB row="1" icon="~/assets/map-marker.png" rippleColor="#f1f1f1" (tap)="guardar()" class="fab-button"></FAB>
+                </GridLayout>
+            </CardView>
+            <CardView elevation="40" radius="5" style="background-color: #004195;margin: 5;"  row="1">
+                <GridLayout width="90%" height="10%" columns="*,*" >
+                    <Label class="footer" text="REALIZAR PAGO" col="0"> </Label>
+                    <Label class="footer" text="PROMESA DE PAGO" col="1"> </Label>
                 </GridLayout>
             </CardView>
         </GridLayout>
@@ -48,4 +54,5 @@
         <GridLayout height="100%" width="100%" *tabItem="{title: 'COMPRAS'}">
         </GridLayout>
     </TabView>
+
 </GridLayout>

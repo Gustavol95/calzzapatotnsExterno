@@ -100,6 +100,7 @@ export class AppComponent extends Observable implements OnInit {
     error422(err) {
 
         let msg = "";
+        console.log("Error 422",JSON.stringify(err));
         for (let error of err.errors) {
             msg += error + "\n";
         }
