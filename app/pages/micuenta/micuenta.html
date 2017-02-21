@@ -1,52 +1,43 @@
 <GridLayout rows="auto,*">
-    <grid-layout columns="100,*" rows="100" row="0">
-        <StackLayout class="imagen" row="0" col="0" height="100%" width="100%">
-            <Image src="~/assets/camara.png" style="width:50;"></Image>
+    <GridLayout columns="110,*" rows="110" row="0">
+        <StackLayout class="imagen" row="0" col="0" style="border-radius: 70px;height: 90px">
+            <Image src="~/assets/camara.png" style="width: 50px"></Image>
         </StackLayout>
-        <StackLayout class="stack" row="0" col="1" verticalAlignment="center">
+        <StackLayout class="stack" row="0" col="1">
             <Label text="Usuario" color="#EE2933" textWrap="true"></Label>
-            <Label text="{{user.name}}"></Label>
+            <Label text="{{cte.nombre+' '+cte.paterno}}"></Label>
         </StackLayout>
-    </grid-layout>
+    </GridLayout>
     <ScrollView row="1">
-        <WrapLayout [formGroup]="form" marginRight="15px" marginTop="15%">
+        <WrapLayout marginTop="5%">
             <GridLayout rows="20 auto">
                 <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
-                <TextField keyboardType="next" [(ngModel)]="cte.nombre" (tap)="onTap('label1')" fontSize="15" row="1"  text="" ></TextField>
+                <TextField keyboardType="next" [(ngModel)]="cte.nombre" (tap)="onTap('label1')" fontSize="15" row="1"  text="" [editable]="false"></TextField>
             </GridLayout>
-            <GridLayout rows="20 auto">
-                <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno"
-                       textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label2')" fontSize="15" row="1" text=""></TextField>
-            </GridLayout>
-            <GridLayout rows="20 auto">
-                <Label row="1" id="label3" fontSize="15" (tap)="onTap('label3')" text="Apellido Materno"
-                       textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label3')" fontSize="15" row="1" text=""></TextField>
-            </GridLayout>
-
-            <!--<GridLayout rows="20 auto">
-                <Label row="1" id="label4" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha"></TextField>
-            </GridLayout>-->
 
 
             <GridLayout rows="20 auto">
-                <Label row="1" id="label5" fontSize="15" (tap)="onTap('label5')" text="Email" textWrap="true"></Label>
-                <TextField keyboardType="next" (tap)="onTap('label5')" fontSize="15" row="1" text=""></TextField>
+                <Label row="1" id="label2" fontSize="15" (tap)="onTap('label2')" text="Apellido Paterno" textWrap="true"></Label>
+                <TextField keyboardType="next" [(ngModel)]="cte.paterno" (tap)="onTap('label2')" fontSize="15" row="1"  text="" [editable]="false"></TextField>
             </GridLayout>
 
 
-            <GridLayout class="ultimo" rows="20 auto">
-                <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Teléfono"
-                       textWrap="true"></Label>
-                <TextField keyboardType="phone" (tap)="onTap('label6')" fontSize="15" row="1" text=""></TextField>
-            </GridLayout>
             <GridLayout rows="20 auto">
-                <Button row="1" [text]="'Aceptar'" marginTop="5%" marginLeft="15px" (tap)="guardar()"></Button>
+                <Label row="1" id="label3" fontSize="15" (tap)="onTap('label3')" text="Apellido Materno" textWrap="true"></Label>
+                <TextField keyboardType="next" [(ngModel)]="cte.materno" (tap)="onTap('label3')" fontSize="15" row="1"  text="" [editable]="false"></TextField>
             </GridLayout>
+
+            <GridLayout class="medios-header" columns="*,*" rows="auto">
+                <Label row="0" text="Medio" col="0"></Label>
+                <Label row="0" text="Referencia" col="1"></Label>
+            </GridLayout>
+
+            <GridLayout columns="*,*" rows="auto" *ngFor="let medio of cte.medios; let idx=index;">
+                <Label row="{{idx}}" text="{{medio.medio}}" col="0"></Label>
+                <Label row="{{idx}}" text="{{medio.referencia}}" col="1"></Label>
+            </GridLayout>
+
         </WrapLayout>
     </ScrollView>
     <FAB row="1" icon="~/assets/map-marker.png" rippleColor="#f1f1f1" (tap)="guardar()" class="fab-button"></FAB>
 </GridLayout>
-

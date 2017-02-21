@@ -1,6 +1,6 @@
 <RadSideDrawer #drawer [transition]="sideDrawerTransition" selectionBehavior="None" style="height: 100%;" (drawerOpening)="onDrawerOpening()">
     <StackLayout tkDrawerContent style="background-color: white" columns="*">
-        <StackLayout class="profile" (tap)="redireccion('/')">
+        <StackLayout class="profile" (tap)="redireccion('inicio')">
             <Image src="~/assets/profile.jpg" horizontalAlignment="left" width="100px" marginTop="3%" marginBottom="5"  (tap)="redireccion('')"></Image>
             <Label text="{{user.first_name +' '+user.last_name}}" horizontalAlignment="left" style="color:white;font-weight: bold" marginBottom="3%"></Label>
         </StackLayout>

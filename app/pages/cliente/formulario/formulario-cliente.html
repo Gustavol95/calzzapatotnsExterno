@@ -66,7 +66,7 @@
         </GridLayout>
 
         <GridLayout rows="20 auto">
-          <Button row="1" [text]="'Guardar'" class="button-save" isEnabled = "{{form.valid}}" (tap)="guardar()"></Button>
+          <Button row="1" [text]="'Guardar'" class="button-save" [ngClass]="{'style1': !form.valid}" isEnabled = "{{form.valid}}" (tap)="guardar()"></Button>
         </GridLayout>
     </StackLayout>
 </ScrollView>

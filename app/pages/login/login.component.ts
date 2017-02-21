@@ -15,6 +15,8 @@ import {ClientesMediosModel} from "../../model/clientes_medios.model";
 //registerElement("CheckBox", () => require("nativescript-checkbox").CheckBox);
 var dialogs = require("ui/dialogs");
 var appSettings = require("application-settings");
+import {Label} from "ui/label";
+import {AnimationCurve} from "ui/enums";
 
 @Component({
     selector: "my-app",
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
                 private _tipoMedioModel: TiposMedioModel,) {
         this.user = new User();
         this.user.email = "58536";
-        this.user.password = "secret";
+        this.user.password = "hola";
     }
 
     ngAfterViewInit() {
@@ -49,15 +51,27 @@ export class LoginComponent implements OnInit {
             if (usuario) {
                 this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
             } else {
-                this.routerExtensions.navigate(["/"]);
+                this.routerExtensions.navigate(["/"], {clearHistory: true});
+                this.onTap('label1');
+                this.onTap('label2');
             }
+        });
+    }
+
+    public onTap(lbl) {
+        var label: Label = <Label> this.page.getViewById(lbl);
+        label.animate({
+            translate: {x: 0, y: -15},
+            duration: 500,
+            curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
         });
     }
 
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Iniciar Sesión";
-
+        this.onTap('label1');
+        this.onTap('label2');
 
     }
 
@@ -89,7 +103,7 @@ export class LoginComponent implements OnInit {
         // >> returning-result
         this._modalService.showModal(ModalViewComponent, options)
             .then((dato) => {
-                this.loginService.recuperarPassword(dato).subscribe(d=>{
+                this.loginService.recuperarPassword(dato).subscribe(d => {
                     dialogs.alert({
                         title: "Recuperar contraseña",
                         message: "Se ha enviado su nueva contraseña a su correo.",

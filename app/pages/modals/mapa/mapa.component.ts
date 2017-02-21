@@ -26,6 +26,7 @@ export class MapaComponent implements OnInit {
     tapMarker: any;
     gpsMarker: any;
     centeredOnLocation: boolean = false;
+    valid = false;
     public gMap: any;
 
 
@@ -35,7 +36,9 @@ export class MapaComponent implements OnInit {
     ngOnInit() {
 
     }
-
+    validarButton(){
+        return !this.valid;
+    }
     enableLocation() {
         if (!geolocation.isEnabled()) {
             //console.log('Location not enabled, requesting.');
@@ -106,6 +109,7 @@ export class MapaComponent implements OnInit {
             data: [],
             icon: "~/assets/home.png"
         });
+        this.valid=true;
     };
 
     locationReceived = (position: Position) => {
@@ -191,7 +195,7 @@ export class MapaComponent implements OnInit {
 
     guardar() {
         let position: any = {latitude:this.tapMarker.position.latitude, longitude: this.tapMarker.position.longitude};
-        //console.log('position =D => ',JSON.stringify(position));
+        console.log('position =D => ',JSON.stringify(position));
         this.params.closeCallback(position);
     }
 }

@@ -113,8 +113,8 @@ export class HomeComponent implements OnInit {
     salir() {
         this.truncateDatabase();
         this.user = {name: "Anónimo"};
-        appSettings.clear();
-        this.router.navigate(["/"]);
+        appSettings.clear(); //borrar token sesion
+        this.routerExtensions.navigate(["/"], {clearHistory: true});
     }
 
     ngOnInit() {
@@ -126,16 +126,18 @@ export class HomeComponent implements OnInit {
             // >> returning-result
             this._modalService.showModal(RecuperarComponent, options)
                 .then((dato) => {
-                    let datos = {cliente_id:this.user.cliente_id,dato:dato};
-                    this._loginService.cambiarPassword(datos).subscribe(d=>{
-                        this._userModel.cambiarSolicitud();
-                        dialogs.alert({
-                            title: "Recuperar contraseña",
-                            message: "La contraseña se ha actualizado correctamente.",
-                            okButtonText: "Aceptar"
-                        }).then(function () {
+                    if(dato){
+                        let datos = {cliente_id:this.user.cliente_id,dato:dato};
+                        this._loginService.cambiarPassword(datos).subscribe(d=>{
+                            this._userModel.cambiarSolicitud();
+                            dialogs.alert({
+                                title: "Recuperar contraseña",
+                                message: "La contraseña se ha actualizado correctamente.",
+                                okButtonText: "Aceptar"
+                            }).then(function () {
+                            });
                         });
-                    });
+                    }
                 });
         }
     }

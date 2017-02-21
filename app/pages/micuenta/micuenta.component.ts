@@ -40,6 +40,9 @@ export class MicuentaComponent implements OnInit {
             this._clienteMediosModel.fetch().then(medios => {
                 console.log("MEDIOS=> ", JSON.stringify(medios));
                 this.cte.medios = medios;
+                this.onTap('label1');
+                this.onTap('label2');
+                this.onTap('label3');
             });
         });
     }
@@ -65,7 +68,6 @@ export class MicuentaComponent implements OnInit {
                 //console.log("Fecha 123",fecha);
                 //console.log("Fecha => ",moment(fecha, "MM-DD-YYYY"));
                 //this.form.get('fecha').setValue(moment(dateresult).format('DD/MM/YYYY'));
-                this.onTap('label4');
             });
     }
 
@@ -85,22 +87,10 @@ export class MicuentaComponent implements OnInit {
     public onTap(lbl) {
         var label: Label = <Label> this.page.getViewById(lbl);
         label.animate({
-            translate: {x: -10, y: -15},
+            translate: {x: 0, y: -15},
             duration: 500,
             curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
         });
-    }
-
-    public onTap2(lbl, valor) {
-        if (valor != "") {
-            var label: Label = <Label> this.page.getViewById(lbl);
-            label.animate({
-                translate: {x: -10, y: -15},
-                duration: 500,
-                curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
-            });
-        }
-        return true;
     }
 
 }
