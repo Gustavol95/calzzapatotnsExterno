@@ -1,11 +1,11 @@
 <GridLayout rows="auto,*">
     <GridLayout columns="110,*" rows="110" row="0">
-        <StackLayout class="imagen" row="0" col="0" style="border-radius: 70px;height: 90px">
+        <StackLayout class="imagen" row="0" col="0" style="height: 90px;width: 90px;">
             <Image src="~/assets/camara.png" style="width: 50px"></Image>
         </StackLayout>
         <StackLayout class="stack" row="0" col="1">
             <Label text="Usuario" color="#EE2933" textWrap="true"></Label>
-            <Label text="{{cte.nombre+' '+cte.paterno}}"></Label>
+            <Label text="{{cte.nombre+' '+cte.paterno}}" textWrap="true"></Label>
         </StackLayout>
     </GridLayout>
     <ScrollView row="1">
@@ -33,8 +33,8 @@
             </GridLayout>
 
             <GridLayout columns="*,*" rows="auto" *ngFor="let medio of cte.medios; let idx=index;">
-                <Label row="{{idx}}" text="{{medio.medio}}" col="0"></Label>
-                <Label row="{{idx}}" text="{{medio.referencia}}" col="1"></Label>
+                <Label row="{{idx}}" text="{{medio.medio}}" col="0" textWrap="true"></Label>
+                <Label row="{{idx}}" text="{{medio.referencia}}" col="1" textWrap="true"></Label>
             </GridLayout>
 
         </WrapLayout>

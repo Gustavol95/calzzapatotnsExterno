@@ -1,7 +1,7 @@
 import {Component, ElementRef, ViewChild, OnInit, ViewContainerRef, ChangeDetectorRef} from '@angular/core';
 import {Color} from "color";
 import {Page} from "ui/page";
-import {Router} from "@angular/router";
+import {Router, NavigationExtras} from "@angular/router";
 import {Observable} from "data/observable";
 import {RadSideDrawerComponent, SideDrawerType} from "nativescript-telerik-ui/sidedrawer/angular";
 import {DrawerTransitionBase, SlideInOnTopTransition} from 'nativescript-telerik-ui/sidedrawer';
@@ -17,13 +17,14 @@ import {ClientesMediosModel} from "../../model/clientes_medios.model";
 import {LoginService} from "../login/login.service";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {RecuperarComponent} from "../modals/recuperar/recuperar";
+import {InicioService} from "../inicio/inicio.service";
 var appSettings = require("application-settings");
 var dialogs = require("ui/dialogs");
 
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/home/home.component.html",
-    providers: [LoginService]
+    providers: [LoginService,InicioService]
 })
 
 export class HomeComponent implements OnInit {
@@ -43,7 +44,8 @@ export class HomeComponent implements OnInit {
                 private _clientesMedios: ClientesMediosModel,
                 private _loginService: LoginService,
                 private vcRef: ViewContainerRef,
-                private _modalService: ModalDialogService) {
+                private _modalService: ModalDialogService,
+                private _inicioService:InicioService) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
@@ -99,6 +101,25 @@ export class HomeComponent implements OnInit {
         //console.log("redireccion", args);
         this.routerExtensions.navigate(["/home/" + args], {clearHistory: true});
         this.drawer.closeDrawer();
+    }
+
+    corte(){
+        console.log("inicio corte");
+        this._clienteModel.fetch().then(usuario => {
+            this._inicioService.getClienteInfo(usuario.id)
+                .subscribe(info=>{
+                    let navigationExtras: NavigationExtras = {
+                        queryParams: {
+                            "info": JSON.stringify(info[0])
+                        }
+                    };
+                    this.router.navigate(['/home/corte'], navigationExtras);
+
+                    this.drawer.closeDrawer();
+                });
+        });
+
+
     }
 
     truncateDatabase() {

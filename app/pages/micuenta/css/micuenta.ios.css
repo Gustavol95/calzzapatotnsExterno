@@ -8,11 +8,13 @@
 .imagen {
     margin-top: 15px;
     margin-left: 15px;
-    /*border-radius: 100px;*/
+    border-radius: 45px;
     background-color:#EE2933;
     horiz-align: center;
     vertical-align: center;
 }
+
+
 
 .stack Label {
     font-size: 20px;

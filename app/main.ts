@@ -6,6 +6,6 @@ import * as platform from "platform";
 declare var GMSServices: any;
 // before calling .boostrap
 if( platform.isIOS ) {
-    GMSServices.provideAPIKey("AIzaSyC4ncTi38VWAy0i8gGQ2RkRSZbpPJPm8ls");
+    GMSServices.provideAPIKey("AIzaSyBPOdAzDjMEBF2ZYg-dSKGL6uDpqX0oMxs");
 }
 platformNativeScriptDynamic().bootstrapModule(AppModule);

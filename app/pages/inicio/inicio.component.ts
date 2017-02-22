@@ -27,10 +27,9 @@ export class InicioComponent implements OnInit {
     ngOnInit(): void {
         this.page.actionBar.title="Inicio";
     }
+
     ngAfterViewInit() {
-        console.log("chingado1");
         this._clienteModel.fetch().then(usuario => {
-            console.log(usuario.id);
             this._inicioService.getClienteInfo(usuario.id)
                 .subscribe(info=>{
                     this.info=info[0];
@@ -44,8 +43,6 @@ export class InicioComponent implements OnInit {
     onSaldoClicked(){
         let grid: GridLayout = <GridLayout> this.page.getViewById("gridSaldo");
         this.extenderSaldo=!this.extenderSaldo;
-        //console.log(this.extenderSaldo);
-
         if(this.extenderSaldo==false){
             grid.visibility='visible';
             grid.animate({
@@ -53,6 +50,7 @@ export class InicioComponent implements OnInit {
                 duration: 300
             });
         }
+
         if(this.extenderSaldo==true){
             grid.animate({
                 opacity: 0,

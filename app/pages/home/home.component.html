@@ -2,7 +2,7 @@
     <StackLayout tkDrawerContent style="background-color: white" columns="*">
         <StackLayout class="profile" (tap)="redireccion('inicio')">
             <Image src="~/assets/profile.jpg" horizontalAlignment="left" width="100px" marginTop="3%" marginBottom="5"  (tap)="redireccion('inicio')"></Image>
-            <Label text="{{user.first_name +' '+user.last_name}}" horizontalAlignment="left" style="color:white;font-weight: bold" marginBottom="3%"></Label>
+            <Label text="{{user.first_name +' '+user.last_name}}" horizontalAlignment="left" style="color:white;font-weight: bold" marginBottom="3%" textWrap="true"></Label>
         </StackLayout>
         <ScrollView>
             <StackLayout class="container" style="font-size: 19px">
@@ -10,7 +10,7 @@
                     <Image row="0" col="0" src="~/assets/miCuenta.png" horizontalAlignment="center"></Image>
                     <Label row="0" col="1" text="Mi Cuenta" (tap)="redireccion('micuenta')"></Label>
                     <Image row="1" col="0" src="~/assets/corteSaldoCredigana.png" horizontalAlignment="center"></Image>
-                    <Label row="1" col="1" text="Corte y Saldo" (tap)="redireccion('corte')"></Label>
+                    <Label row="1" col="1" text="Corte y Saldo" (tap)="corte()"></Label>
                     <Image row="2" col="0" src="~/assets/misClientes.png" horizontalAlignment="center"></Image>
                     <Label row="2" col="1" text="Mis Clientes" (tap)="redireccion('clientes')"></Label>
                     <Image row="3" col="0" src="~/assets/misVales.png" horizontalAlignment="center"></Image>
