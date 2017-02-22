@@ -24,7 +24,7 @@ var dialogs = require("ui/dialogs");
 export class FormularioClienteComponent implements OnInit {
     public clientes: any[];
     form: FormGroup;
-
+    valid=true;
     constructor(private router: Router,
                 private routerExtensions: RouterExtensions,
                 private page: Page,
@@ -145,6 +145,8 @@ export class FormularioClienteComponent implements OnInit {
 
     guardar() {
         let cliente: Cliente = this.form.value as Cliente;
+        this.valid=false;
+        console.log("Guardar :)))))",this.valid);
         this._userModel.fetch().then(usuario => {
             cliente.cliente_id = usuario.cliente_id;
             console.log("Va a guardar", JSON.stringify(cliente));
