@@ -4,6 +4,7 @@ import {Page} from "ui/page";
 import {ClienteService} from "../cliente.service";
 
 import { registerElement } from "nativescript-angular/element-registry";
+import {NavigationExtras} from "@angular/router";
 registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 
 @Component({
@@ -24,10 +25,18 @@ export class ListadoClienteComponent implements OnInit {
 
     ngOnInit() {
         //this.page.actionBarHidden = true;
-        this.page.actionBar.title = "Mi Clientes";
+        this.page.actionBar.title = "Mis Clientes";
     }
     nuevo() {
         this.routerExtensions.navigate(["/home/cliente/create"]);
+    }
 
+    detalle(item){
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "detalle": JSON.stringify(item)
+            }
+        };
+        this.routerExtensions.navigate(['/home/cliente/detalle'], navigationExtras);
     }
 }

@@ -1,51 +1,40 @@
 <GridLayout width="100%" height="100%" >
     <TabView #element [(ngModel)]="selectedIndex" >
-        <GridLayout width="100%" height="100%" *tabItem="{title: 'INFO'}" rows="auto,150">
-            <CardView height=50% width="90%" elevation="40" radius="5" style="background-color: white" >
-                <GridLayout style="margin:5;" columns="*,*,*,*" rows="*,*,*,*,*,*,auto,*" row="0">
+        <GridLayout width="100%" height="100%" *tabItem="{title: 'INFO'}" rows="*  ,auto">
 
+               <CardView  width="90%" elevation="40" radius="5" style="background-color: white;margin: 10;" >
+                   <GridLayout style="margin:5;" columns="auto,auto,auto,*" rows="*,auto,auto,auto,auto,*,auto,auto" row="0">
+                       <Label class="circulo" row="0" col="0" height="30" width="30" rowSpan="2" text="LM"  src="~/assets/eventos_r.png" stretch="aspectFit"></Label>
+                       <Label class="nombre" text="Luisa Martinez" row="0" col="1" colSpan="3"  textWrap="true"></Label>
+                       <Label class="titulo" text="Teléfono" row="1" col="1" colSpan="2" textWrap="true"></Label>
+                       <Label class="titulo" text="Celular" row="2" col="1" colSpan="2" textWrap="true"></Label>
+                       <Label class="titulo" text="Email" row="3" col="1" colSpan="2" textWrap="true"></Label>
+                       <Label class="titulo" text="Fecha de Nac." row="4" col="1" colSpan="2" textWrap="true"></Label>
+                       <Label class="titulo" text="Dirección" row="5" col="1" colSpan="2" textWrap="true"></Label>
+                       <Label class="contenido" text="(667) 123 4567" row="1" col="3" textWrap="true"></Label>
+                       <Label class="contenido" text="(667) 123 4567" row="2" col="3" textWrap="true"></Label>
+                       <Label class="contenido" text="luisamartinez@mail.com" row="3" col="3" textWrap="true"></Label>
+                       <Label class="contenido" text="03 Ene 1965" row="4" col="3" textWrap="true" ></Label>
+                       <Label class="contenido" text="Calle Primera 1234, Col. Segunda. C.P. 80000" row="5" col="3" textWrap="true"></Label>
+                       <Image  height="30" width="30" row="5" col="0" src="~/assets/eventos_r.png" stretch="aspectFit" style="horiz-align: left;vertical-align: top;"></Image>
+                       <Label  height="1" row="6" col="1" colSpan="3" style="background-color: #E7E7E7;margin-top: 5; margin-bottom: 3;"></Label>
 
-                    <Label class="circulo" row="0" col="0" height="80" width="80" rowSpan="2" text="LM"  src="~/assets/eventos_r.png" stretch="aspectFit"></Label>
+                       <Image src="~/assets/miCuenta_r.png" height="30" width="30" row="7" col="1" stretch="aspectFit"></Image>
+                       <Image src="~/assets/eventos_r.png" height="30" width="30" row="7" col="2" stretch="aspectFit"></Image>
 
-
-                    <Label class="nombre" text="Luisa Martinez" row="0" col="1" colSpan="3"  textWrap="true"></Label>
-                    <Label class="titulo" text="Teléfono" row="1" col="1" colSpan="2" textWrap="true"></Label>
-                    <Label class="titulo" text="Celular" row="2" col="1" colSpan="2" textWrap="true"></Label>
-                    <Label class="titulo" text="Email" row="3" col="1" colSpan="2" textWrap="true"></Label>
-                    <Label class="titulo" text="Fecha de Nac." row="4" col="1" colSpan="2" textWrap="true"></Label>
-                    <Label class="titulo" text="Dirección" row="5" col="1" colSpan="2" textWrap="true"></Label>
-
-                    <Label class="contenido" text="(667) 123 4567" row="1" col="3" textWrap="true"></Label>
-                    <Label class="contenido" text="(667) 123 4567" row="2" col="3" textWrap="true"></Label>
-                    <Label class="contenido" text="luisamartinez@mail.com" row="3" col="3" textWrap="true"></Label>
-                    <Label class="contenido" text="03 Ene 1965" row="4" col="3" textWrap="true" ></Label>
-                    <Label class="contenido" text="Calle Primera 1234, Col. Segunda. C.P. 80000" row="5" col="3" textWrap="true"></Label>
-
-
-                    <Image  height="40" width="40" row="5" col="0" src="~/assets/eventos_r.png" stretch="aspectFit" style="horiz-align: left;vertical-align: top;"></Image>
-
-                    <Label  height="1" row="6" col="1" colSpan="3" style="background-color: #E7E7E7;margin-top: 5; margin-bottom: 3;"></Label>
-
-                    <Image src="~/assets/miCuenta_r.png" height="40" width="40" row="7" col="1" stretch="aspectFit"></Image>
-                    <Image src="~/assets/eventos_r.png" height="40" width="40" row="7" col="2" stretch="aspectFit"></Image>
-
-
-                    <GridLayout row="7" col="3" style="horiz-align: center;vertical-align: center;">
-                       <WrapLayout style="vertical-align: center;horiz-align: center;">
-                           <Image  height="40" width="40" src="~/assets/eventos_r.png" stretch="aspectFit" ></Image>
-                           <Button text="LLAMAR"  style="margin-left: 5"></Button>
+                       <WrapLayout row="7" col="3" style="horiz-align: right;vertical-align: center;background-color: #00caab" >
+                           <Image  col="0" height="30" width="30" src="~/assets/eventos_r.png" stretch="aspectFit"  style="horiz-align: right;background-color: #009c9b"></Image>
+                           <Label col="1" text="LLAMAR"  style="margin-left: 5;font-size: 10;text-align: right;background-color: #88b205"></Label>
                        </WrapLayout>
 
-                    </GridLayout>
-                    <FAB row="1" icon="~/assets/map-marker.png" rippleColor="#f1f1f1" (tap)="guardar()" class="fab-button"></FAB>
+                   </GridLayout>
+               </CardView>
+
+                <GridLayout width="90%" height="35" columns="*,*"  style="background-color: #004195;margin: 5;"  row="1">
+                    <Label height="30" class="footer" text="REALIZAR PAGO"  col="0"> </Label>
+                    <Label height="30" class="footer" text="PROMESA DE PAGO" col="1" style="text-align: right"> </Label>
                 </GridLayout>
-            </CardView>
-            <CardView elevation="40" radius="5" style="background-color: #004195;margin: 5;"  row="1">
-                <GridLayout width="90%" height="10%" columns="*,*" >
-                    <Label class="footer" text="REALIZAR PAGO" col="0"> </Label>
-                    <Label class="footer" text="PROMESA DE PAGO" col="1"> </Label>
-                </GridLayout>
-            </CardView>
+            <FAB row="1" icon="~/assets/map-marker.png" rippleColor="#f1f1f1"  class="fab-button"></FAB>
         </GridLayout>
         <GridLayout height="100%" width="100%" *tabItem="{title: 'CUENTA'}">
         </GridLayout>
@@ -54,5 +43,4 @@
         <GridLayout height="100%" width="100%" *tabItem="{title: 'COMPRAS'}">
         </GridLayout>
     </TabView>
-
 </GridLayout>

@@ -37,7 +37,7 @@
                 <Label class="saldo-info-extendido" col="2" row="2" [text]="saldo" textWrap="true"></Label>
             </GridLayout>
             <!-- Mis Clientes -->
-            <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
+            <GridLayout class="grid" columns="*,4*,4*,*" (tap)="redireccion('clientes')" rows="auto">
                 <Image class="icono" col="0" src="~/assets/misClientes_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="Mis Clientes" textWrap="true"></Label>
                 <Label class="info" col="2" text="32" textWrap="true"></Label>
@@ -57,17 +57,17 @@
             <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
                 <Image class="icono" col="0" src="~/assets/misVentas_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="Mis Ventas" textWrap="true"></Label>
-                <GridLayout style="vertical-align:center;" col="2" columns="auto,auto">
-                    <Label height="10%" class="info-titulo" col="0" text="Total:" textWrap="true"></Label>
-                    <Label height="10%" class="info" col="1" text="$5,000.00" textWrap="true"></Label>
+                <GridLayout style="vertical-align:center;" col="2" columns="*,auto">
+                    <Label height="10%" class="info-titulo" col="0" text="Total:" textWrap="true" ></Label>
+                    <Label height="10%" class="info" col="1" text="$5,000.00"  textWrap="true"></Label>
                 </GridLayout>
-                <Image class="flecha" col="3" src="~/assets/flecha.png" stretch="aspectFit"></Image>
+                <Image class="flecha" col="3" src="~/assets/flecha.png" stretch="aspectFit" ></Image>
             </GridLayout>
             <!-- Mis Pagos -->
-            <GridLayout class="grid" columns="*,4*,auto,*" rows="auto">
+            <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
                 <Image class="icono" col="0" src="~/assets/misPagos_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="Mis Pagos" textWrap="true"></Label>
-                <GridLayout style="vertical-align:center;" col="2" columns="auto,*">
+                <GridLayout style="vertical-align:center;" col="2" columns="*,auto">
                     <Label height="10%" class="info-titulo" col="0" text="Abonado" textWrap="true"></Label>
                     <Label height="10%" class="info" col="1" text="$5,000.00" textWrap="true"></Label>
                 </GridLayout>
