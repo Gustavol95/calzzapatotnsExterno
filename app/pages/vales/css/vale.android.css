@@ -1,0 +1,30 @@
+.fab-button {
+    height: 70;
+    width: 70;
+    margin: 15;
+    background-color: #EE2933;
+    horizontal-align: right;vertical-align: bottom;
+}
+
+.style1 {
+    background-color: #5c687c;
+}
+
+TabView {
+    tab-text-color: #D3D3D3;
+    tab-background-color: #EE2933;
+    selected-tab-text-color: white;
+    android-selected-tab-highlight-color: #223D98;
+}
+
+.cobrado{
+    background-color: white;
+    margin: 20px 15px 15px 15px;
+    padding: 15px 0px 0px 0px;
+    color:black;
+}
+
+.cobrado Label{
+    margin: 0px 0px 0px 10px;
+    padding: 0px 15px 0px 15px;
+}
