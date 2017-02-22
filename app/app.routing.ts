@@ -23,7 +23,8 @@ import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component
             {path: 'clientes', component:ListadoClienteComponent},
             {path: 'cliente/create', component:FormularioClienteComponent},
             {path: 'modal-recuperar', component:RecuperarComponent},
-			{path: 'cliente/detalle', component:ClienteDetalleComponent},			{path: 'vales', component:ListadoValeComponent}        ]
+			{path: 'cliente/detalle', component:ClienteDetalleComponent},
+            {path: 'vales', component:ListadoValeComponent}        ]
     }
 ];
 export const navigatableComponents = [
@@ -38,4 +39,6 @@ export const navigatableComponents = [
     ListadoClienteComponent,
     FormularioClienteComponent,
     RecuperarComponent,
-	ClienteDetalleComponent,	ListadoValeComponent];
+	ClienteDetalleComponent,
+    ListadoValeComponent
+];
