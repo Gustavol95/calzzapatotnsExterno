@@ -99,7 +99,6 @@ export class HomeComponent implements OnInit {
         //console.log("redireccion", args);
         this.routerExtensions.navigate(["/home/" + args], {clearHistory: true});
         this.drawer.closeDrawer();
-
     }
 
     truncateDatabase() {

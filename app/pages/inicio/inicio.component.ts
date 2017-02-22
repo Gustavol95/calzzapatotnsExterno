@@ -63,7 +63,7 @@ export class InicioComponent implements OnInit {
 
 
      redireccion(args) {
-            this.router.navigate(["/" + args]);
+            this.router.navigate(["/home/" + args]);
         }
 
     corte(){

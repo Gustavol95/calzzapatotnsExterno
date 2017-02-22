@@ -10,8 +10,7 @@ import {FormularioClienteComponent} from "./pages/cliente/formulario/formulario.
 import {CorteComponent} from "./pages/corte/corte.component";
 import {RecuperarComponent} from "./pages/modals/recuperar/recuperar";
 import {ClienteDetalleComponent} from "./pages/cliente/detalle/cliente-detalle.component";
-import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component";
-export const routes = [
+import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component";export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
     {path: 'home',component: HomeComponent,
@@ -24,8 +23,7 @@ export const routes = [
             {path: 'clientes', component:ListadoClienteComponent},
             {path: 'cliente/create', component:FormularioClienteComponent},
             {path: 'modal-recuperar', component:RecuperarComponent},
-            {path: 'vales', component:ListadoValeComponent}
-        ]
+			{path: 'cliente/detalle', component:ClienteDetalleComponent},			{path: 'vales', component:ListadoValeComponent}        ]
     }
 ];
 export const navigatableComponents = [
@@ -40,5 +38,4 @@ export const navigatableComponents = [
     ListadoClienteComponent,
     FormularioClienteComponent,
     RecuperarComponent,
-    ListadoValeComponent
-];
+	ClienteDetalleComponent,	ListadoValeComponent];

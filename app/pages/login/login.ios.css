@@ -18,7 +18,7 @@ TextField{
 Label {
   color:#EE2933;
   font-size: 14;
-  margin: 20;
+  /*margin: 20;*/
 }
 
 CheckBox{
@@ -60,4 +60,13 @@ CheckBox{
 }
 grid-layout Label{
   color:#223D98;
+}
+
+.button-save {
+  background-color:white;
+  color:#223D98;
+  margin:10;
+  border-width: 2;
+  border-color:#223D98 ;
+  border-radius: 4;
 }

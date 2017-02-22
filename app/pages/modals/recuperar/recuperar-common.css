@@ -24,3 +24,10 @@
 .style1 {
     background-color: #5c687c;
 }
+
+TextField{
+    color: #000;
+    border-bottom-width: 2;
+    border-bottom-color: #000000000;
+
+}

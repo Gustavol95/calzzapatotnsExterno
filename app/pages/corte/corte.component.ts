@@ -3,6 +3,7 @@
  */
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
+import {Page} from "ui/page";
 @Component({
     selector: "corte",
     providers: [],
@@ -14,18 +15,18 @@ export class CorteComponent implements OnInit{
     info: any;
     saldo="";
     pagoMinimo="";
-    ngOnInit(): void {
-    }
 
-    constructor(private activatedRoute: ActivatedRoute){
+
+    constructor(private page:Page,private activatedRoute: ActivatedRoute){
         activatedRoute.queryParams.subscribe(params => {
             this.info = JSON.parse(params["info"]);
             this.saldo="$"+this.info.saldo;
             this.pagoMinimo="$"+this.info.pago_minimo;
-
         });
     }
 
-
+    ngOnInit(): void {
+        this.page.actionBar.title="Corte y Saldo";
+    }
 
 }

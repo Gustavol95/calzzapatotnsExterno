@@ -48,3 +48,8 @@ grid-layout Label {
 .style2 {
     background-color: #00aafc;
 }
+.button-save {
+    background-color: #223D98;
+    color:white;
+    padding-right: 15px;
+}

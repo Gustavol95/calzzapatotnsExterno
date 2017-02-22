@@ -33,7 +33,7 @@ import {AnimationCurve} from "ui/enums";
                     <TextField keyboardType="phone"  (tap)="onTap('label4')" fontSize="15" row="1"  text="" formControlName="celular"></TextField>
                     <app-error-feedback [messages]="validationMessages.celular" [formGroup]="form" controlName="celular"></app-error-feedback>
                   </GridLayout>
-                  <GridLayout rows="auto"  columns="*, *">
+                  <GridLayout rows="auto"  columns="*, *" style="margin: 15px;">
                     <Button row="1" col="0" [text]="'CANCELAR'" class="button-save" style="width: 100%" (tap)="cerrar()" horizontalAlignment="center" verticalAlignment="center"></Button>
                     <Button row="1" col="1" [text]="'SOLICITAR'" class="button-save" style="width: 100%"  [ngClass]="{'style1': !form.valid}" isEnabled = "{{form.valid}}" (tap)="solicitar()" horizontalAlignment="center" verticalAlignment="center"></Button>
                   </GridLayout> 
@@ -78,7 +78,7 @@ export class ModalViewComponent implements OnInit {
         this.form = this._fb.group({
             usuario: ['58536', [Validators.required, Validators.minLength(1)]],
             celular: ['', [CustomValidators.celular]],
-            email: ['heris161993@gmail.com', [CustomValidators.email]]
+            email: ['tavols889@gmail.com', [CustomValidators.email]]
         });
         this.onTap('label1');
         this.onTap('label4');
