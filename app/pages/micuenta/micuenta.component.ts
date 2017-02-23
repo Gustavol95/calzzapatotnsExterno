@@ -11,10 +11,11 @@ import moment = require("moment");
 import {ClienteModel} from "../../model/cliente.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
-
+import {MicuentaService} from "./micuenta.service";
+var dialogs = require("ui/dialogs");
 @Component({
     selector: "my-app",
-    providers: [],
+    providers: [MicuentaService],
     templateUrl: "pages/micuenta/micuenta.html",
     styleUrls: ["pages/micuenta/css/micuenta.css"]
 })
@@ -28,7 +29,8 @@ export class MicuentaComponent implements OnInit {
                 private _tiposMediosModel: TiposMedioModel,
                 private page: Page,
                 private vcRef: ViewContainerRef,
-                private _modalService: ModalDialogService) {
+                private _modalService: ModalDialogService,
+                private _micuentaService: MicuentaService) {
     }
 
     ngOnInit() {
@@ -75,12 +77,30 @@ export class MicuentaComponent implements OnInit {
         //console.log("modalpICKER");
         let options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
-            fullscreen: false
+            fullscreen: false,
+            context:{latitude:this.cte.latitude,longitude:this.cte.longitude}
         };
         // >> returning-result
         this._modalService.showModal(MapaComponent, options)
-            .then((dateresult: Date) => {
-                //console.log("date result " + dateresult);
+            .then((data) => {
+                if(data){
+                    console.log("Geolocalizacion",JSON.stringify(data));
+                    this._micuentaService.geolocalizacion(this.cte.codigo,data).subscribe(d=>{
+
+                        this.cte.latitude = data.latitude;
+                        this.cte.longitude = data.longitude;
+
+                        let cltModel = this._clienteModel;
+                        let c = this.cte;
+                        dialogs.alert({
+                            title: "Geolocalización",
+                            message: "Se ha guardado la geolocalización.",
+                            okButtonText: "Aceptar"
+                        }).then(function () {
+                            cltModel.geolocalizacion(c.codigo,data);
+                        });
+                    });
+                }
             });
     }
 

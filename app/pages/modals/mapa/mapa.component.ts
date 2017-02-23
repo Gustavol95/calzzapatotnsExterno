@@ -1,4 +1,4 @@
-import {Component, OnInit,ElementRef, ViewChild} from "@angular/core";
+import {Component, OnInit, ElementRef, ViewChild} from "@angular/core";
 import {ModalDialogParams} from "nativescript-angular/modal-dialog";
 import {Page} from "ui/page";
 import {registerElement} from 'nativescript-angular/element-registry';
@@ -28,17 +28,21 @@ export class MapaComponent implements OnInit {
     centeredOnLocation: boolean = false;
     valid = false;
     public gMap: any;
-
+    position_cliente: any;
 
     constructor(private params: ModalDialogParams, private page: Page) {
+        console.log("ModalContent.constructor geolocalizacion: " + JSON.stringify(params));
+        this.position_cliente = params.context;
     }
 
     ngOnInit() {
 
     }
-    validarButton(){
+
+    validarButton() {
         return !this.valid;
     }
+
     enableLocation() {
         if (!geolocation.isEnabled()) {
             //console.log('Location not enabled, requesting.');
@@ -70,32 +74,47 @@ export class MapaComponent implements OnInit {
         this.mapView.markerSelect = this.onMarkerSelect;
         this.mapView.cameraChanged = this.onCameraChanged;
 
-        if(platform.isIOS){
+        if (platform.isIOS) {
             var UiSettings = this.gMap.settings;
             UiSettings.myLocationButton = true;
             UiSettings.compassButton = true;
             this.gMap.myLocationEnabled = true
 
         }
-        else{
+        else {
             var UiSettings = this.gMap.getUiSettings();
             UiSettings.setMyLocationButtonEnabled(true);
             this.gMap.setMyLocationEnabled(true);
         }
 
-
-
-
-        this.enableLocation()
+        if (this.position_cliente.latitude != null && this.position_cliente.longitude != null) {
+            this.centeredOnLocation = false;
+            let position: Position;
+            position = Position.positionFromLatLng(this.position_cliente.latitude, this.position_cliente.longitude);
+            this.locationReceived(position);
+            this.centeredOnLocation = true;
+            this.removeMarker(this.tapMarker);
+            this.tapMarker = this.addMarker({
+                location: position,
+                title: "",
+                snippet: 'Snippet',
+                userData: [],
+                data: [],
+                icon: "home"
+            });
+            this.valid = true;
+        }else{
+            this.enableLocation()
             .then(this.getLocation)
-            .then(() => {
-                this.watchId = geolocation.watchLocation(this.locationReceived, this.error, {
-                    desiredAccuracy: 10,
-                    updateDistance: 10,
-                    minimumUpdateTime: 10000,
-                    maximumAge: 6000
-                });
-            }, this.error);
+                .then(() => {
+                    this.watchId = geolocation.watchLocation(this.locationReceived, this.error, {
+                        desiredAccuracy: 10,
+                        updateDistance: 10,
+                        minimumUpdateTime: 10000,
+                        maximumAge: 6000
+                    });
+                }, this.error);
+        }
 
     };
 
@@ -107,9 +126,9 @@ export class MapaComponent implements OnInit {
             snippet: 'Snippet',
             userData: [],
             data: [],
-            icon: "~/assets/home.png"
+            icon: "home"
         });
-        this.valid=true;
+        this.valid = true;
     };
 
     locationReceived = (position: Position) => {
@@ -149,7 +168,7 @@ export class MapaComponent implements OnInit {
         marker.snippet = args.title;
         marker.userData = args.userData;
         marker.data = args.data;
-        marker.icon = 'icon';
+        marker.icon = args.icon;
         this.mapView.addMarker(marker);
         return marker;
 
@@ -194,8 +213,7 @@ export class MapaComponent implements OnInit {
     }
 
     guardar() {
-        let position: any = {latitude:this.tapMarker.position.latitude, longitude: this.tapMarker.position.longitude};
-        console.log('position =D => ',JSON.stringify(position));
+        let position: any = {latitude: this.tapMarker.position.latitude, longitude: this.tapMarker.position.longitude};
         this.params.closeCallback(position);
     }
 }
