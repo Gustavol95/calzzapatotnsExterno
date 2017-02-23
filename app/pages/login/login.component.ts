@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
                 private _tipoMedioModel: TiposMedioModel,) {
         this.user = new User();
         this.user.email = "58536";
-        this.user.password = "hola";
+        this.user.password = "secret";
     }
 
     ngAfterViewInit() {
