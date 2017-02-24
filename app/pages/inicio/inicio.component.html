@@ -1,6 +1,6 @@
 <StackLayout >
     <GridLayout class="barra" columns="*,auto" rows="auto">
-        <Label class="nombre" col="0" text="Maribel Orozco Cota" textWrap="true"></Label>
+        <Label class="nombre" col="0" text="{{user.first_name +' '+user.last_name}}" textWrap="true"></Label>
         <GridLayout col="1" columns="*,auto" rows="auto">
             <Label class="nombre-nivel" col="0" text="Platino" textWrap="true"></Label>
             <Image height="30" class="image-nivel" col="1" stretch="aspectFit" src="~/assets/star-circle.png"></Image>
