@@ -4,6 +4,7 @@ import {GridLayout} from "ui/layouts/grid-layout";
 import {Router, NavigationExtras} from "@angular/router";
 import {ClienteModel} from "../../model/cliente.model";
 import {InicioService} from "./inicio.service";
+import {UserModel} from "../../model/user.model";
 
 @Component({
     selector: "inicio-inc",
@@ -19,8 +20,9 @@ export class InicioComponent implements OnInit {
     extenderSaldo=true;
     saldo="";
     pagoMinimo="";
+    public user: any = {};
 
-    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService){
+    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel){
         console.log("constructor");
     }
 
@@ -37,6 +39,11 @@ export class InicioComponent implements OnInit {
                     this.saldo="$"+info[0].saldo;
                     this.pagoMinimo="$"+info[0].pago_minimo;
                 });
+        });
+        this._userModel.fetch().then(usuario => {
+            if (usuario) {
+                this.user = usuario;
+            }
         });
     }
 

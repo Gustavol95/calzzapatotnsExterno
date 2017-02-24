@@ -168,7 +168,14 @@ export class MapaComponent implements OnInit {
         marker.snippet = args.title;
         marker.userData = args.userData;
         marker.data = args.data;
-        marker.icon = args.icon;
+        if (platform.isIOS) {
+            marker.icon='home';
+            console.log("Tranqui");
+
+        }
+        else {
+            marker.icon = args.icon;
+        }
         this.mapView.addMarker(marker);
         return marker;
 
