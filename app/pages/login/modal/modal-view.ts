@@ -78,7 +78,7 @@ export class ModalViewComponent implements OnInit {
         this.form = this._fb.group({
             usuario: ['58536', [Validators.required, Validators.minLength(1)]],
             celular: ['', [CustomValidators.celular]],
-            email: ['jocxan.fh@gmail.com', [CustomValidators.email]]
+            email: ['heris161993@gmail.com', [CustomValidators.email]]
         });
         this.onTap('label1');
         this.onTap('label4');

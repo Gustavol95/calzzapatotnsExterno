@@ -9,7 +9,7 @@ export class ValeService {
     constructor(private http: HttpService) {
     }
 
-    index() {
-        return this.http.get("subclientes").map(response => response.json());
+    index(cliente_id) {
+        return this.http.get("clientes/"+cliente_id+"/vales").map(response => response.json());
     }
 }
