@@ -19,16 +19,16 @@ import {ClienteModel} from "../../../model/cliente.model";
                           <GridLayout style="background-color: #EAEAEA">
                               <GridLayout *ngIf="item.estado == 'Cobrado'" columns="65,*,*" rows="65,auto,auto,auto,auto,auto,auto,auto" class="cobrado">
                                     <Button text="CL" row="0" col="0" backgroundColor="#EE2933" style="border-radius:100;color:white;margin:0px 0px 0px 15px;padding:0;width: 100%"></Button>
-                                    <Label text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;"></Label>
+                                    <Label text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;" textWrap="true"></Label>
                                     <Label text="{{'$'+item.importe}}" row="0" col="2" style="font-size: 18px;font-weight: bold;text-align: right;"></Label>
                                     <Label text="Cliente" row="1" col="1"></Label>
                                     <Label text="{{item.subcliente}}" row="1" col="2" style="font-weight: bold;text-align: right;"></Label>
                                     <Label text="Fecha Asignado" row="2" col="1"></Label> 
-                                    <Label text="{{item.fecha_asignada}}" row="2" col="2" style="font-weight: bold;text-align: right"></Label>
+                                    <Label text="{{item.fecha_asignada | date: 'dd MMM yyyy'}}" row="2" col="2" style="font-weight: bold;text-align: right"></Label>
                                     <Label text="Persona Autorizada" row="3" col="1"></Label>
                                     <Label text="José Luis Camacho" row="3" col="2" style="font-weight: bold;text-align: right"></Label>
                                     <Label text="Fecha de Compra" row="4" col="1"></Label> 
-                                    <Label text="{{item.fecha_compra}}" row="4" col="2" style="font-weight: bold;text-align: right"></Label>
+                                    <Label text="{{item.fecha_compra | date: 'dd MMM yyyy'}}" row="4" col="2" style="font-weight: bold;text-align: right"></Label>
                                     <Label text="Lugar de Compra" row="5" col="1"></Label>
                                     <Label text="{{item.tienda}}" row="5" col="2" style="font-weight: bold;text-align: right"></Label>
                                     <Label text="Pago Quincenal" row="6" col="1"></Label> 
@@ -46,7 +46,7 @@ import {ClienteModel} from "../../../model/cliente.model";
                             </GridLayout>
                             <GridLayout *ngIf="item.estado == 'Recibido'" columns="65,*,*" rows="65,auto,auto,auto,auto,auto,auto,auto" class="cobrado">
                                 <Button text="CL" row="0" col="0" backgroundColor="#EE2933" style="border-radius:100;color:white;margin:0px 0px 0px 15px;padding:0;width: 100%"></Button>
-                                <Label text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;"></Label>
+                                <Label text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;" textWrap="true"></Label>
                                 <Label text="{{'$'+item.importe}}" row="0" col="2" style="font-size: 18px;font-weight: bold;text-align: right;"></Label>
                                 <Label text="Cliente" row="1" col="1"></Label>
                                 <Label text="NA" row="1" col="2" style="font-weight: bold;text-align: right;"></Label>
@@ -60,12 +60,12 @@ import {ClienteModel} from "../../../model/cliente.model";
                             </GridLayout>
                             <GridLayout *ngIf="item.estado == 'Asignado'" columns="65,*,*" rows="65,auto,auto,auto,auto,auto,auto,auto" class="cobrado">
                                 <Button text="CL" row="0" col="0" backgroundColor="#EE2933" style="border-radius:100;color:white;margin:0px 0px 0px 15px;padding:0;width: 100%"></Button>
-                                <Label text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;"></Label>
+                                <Label text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;" textWrap="true"></Label>
                                 <Label text="{{'$'+item.importe}}" row="0" col="2" style="font-size: 18px;font-weight: bold;text-align: right;"></Label>
                                 <Label text="Cliente" row="1" col="1"></Label>
                                 <Label text="{{item.subcliente}}" row="1" col="2" style="font-weight: bold;text-align: right;"></Label>
                                 <Label text="Fecha Asignado" row="2" col="1"></Label> 
-                                <Label text="{{item.fecha_asignada}}" row="2" col="2" style="font-weight: bold;text-align: right"></Label>
+                                <Label text="{{item.fecha_asignada | date: 'dd MMM yyyy'}}" row="2" col="2" style="font-weight: bold;text-align: right"></Label>
                                 <GridLayout row="7" col="0" colSpan="3" style="background-color: #EE2933;margin: 10px 0px 0px 0px;padding: 5px 15px 5px 0px; color: white;">
                                     <GridLayout columns="auto,auto,auto,*" rows="auto" style="margin: 0;padding: 0"> 
                                         <Label text="ASIGNADO" row="0" col="0" style="font-weight: bold" horizontalAlignment="center" verticalAlignment="center"></Label>
