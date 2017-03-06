@@ -26,7 +26,7 @@
                     <Image row="8" col="0" src="~/assets/notificaciones.png" horizontalAlignment="center"></Image>
                     <Label row="8" col="1" text="Notificaciones"></Label>
                     <Image row="9" col="0" src="~/assets/oficinaCredito.png" horizontalAlignment="center"></Image>
-                    <Label row="9" col="1" text="Oficina de Crédito"></Label>
+                    <Label row="9" col="1" text="Oficina de Crédito" (tap)="redireccion('oficinacredito')"></Label>
                     <Image row="10" col="0" src="~/assets/salir.png" horizontalAlignment="center" *ngIf="user.name!='Anónimo'"></Image>
                     <Label row="10" col="1" text="Salir" (tap) = "salir()" *ngIf="user.name!='Anónimo'"></Label>
                 </grid-layout>
@@ -37,7 +37,7 @@
         <ActionBar title="Calzzapato">
             <NavigationButton    text="Menú" android.systemIcon="ic_menu_moreoverflow" (tap)="openDrawer()"></NavigationButton>
             <ActionItem  *ngIf="plataforma" ios.position="left" android.position="none"  text="Menu" android.systemIcon="ic_ab_back_holo_dark" (tap)="openDrawer()"></ActionItem>
-            <ActionItem  android.systemIcon="ic_menu_moreoverflow_normal_holo_light" ios.position="right"></ActionItem>
+            <!--<ActionItem  android.systemIcon="ic_menu_moreoverflow_normal_holo_light" ios.position="right" android.position="none"></ActionItem>-->
         </ActionBar>
 
         <router-outlet></router-outlet>

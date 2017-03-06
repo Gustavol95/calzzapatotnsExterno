@@ -1,0 +1,37 @@
+.list-item {
+    background-color: white;
+    margin-top: 8;
+    margin-bottom: 8;
+    margin-right: 7;
+    margin-left: 7;
+
+}
+
+
+Image{
+    stretch:aspectFit;
+    height:25;
+}
+
+ListView{
+     margin: 0px 8px 15px 8px;
+    background-color: #07314a;
+}
+
+.modal {
+    padding: 10;
+    margin-bottom: 25;
+    height: auto;
+    font-size: 15;
+
+
+}
+.stack-template {
+
+    background-color: #EAEAEA;
+}
+
+.label-info{
+    color: gray;
+    font-size: 14;
+}
