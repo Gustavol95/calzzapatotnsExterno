@@ -10,7 +10,9 @@ import {FormularioClienteComponent} from "./pages/cliente/formulario/formulario.
 import {CorteComponent} from "./pages/corte/corte.component";
 import {RecuperarComponent} from "./pages/modals/recuperar/recuperar";
 import {ClienteDetalleComponent} from "./pages/cliente/detalle/cliente-detalle.component";
-import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component";export const routes = [
+import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component";
+import {OficinacreditoComponent} from "./pages/oficinacredito/oficinacredito.component";
+export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
     {path: 'home',component: HomeComponent,
@@ -24,7 +26,9 @@ import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component
             {path: 'cliente/create', component:FormularioClienteComponent},
             {path: 'modal-recuperar', component:RecuperarComponent},
 			{path: 'cliente/detalle', component:ClienteDetalleComponent},
-            {path: 'vales', component:ListadoValeComponent}        ]
+            {path: 'vales', component:ListadoValeComponent},
+            {path: 'oficinacredito', component:OficinacreditoComponent},
+        ]
     }
 ];
 export const navigatableComponents = [
@@ -40,5 +44,6 @@ export const navigatableComponents = [
     FormularioClienteComponent,
     RecuperarComponent,
 	ClienteDetalleComponent,
-    ListadoValeComponent
+    ListadoValeComponent,
+    OficinacreditoComponent
 ];

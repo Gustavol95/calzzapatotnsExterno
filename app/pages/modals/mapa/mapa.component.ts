@@ -12,7 +12,7 @@ import {Image} from "ui/image";
 import {ImageSource} from "image-source";
 import * as platform from "platform";
 
-registerElement("MapView", () => require("nativescript-google-maps-sdk").MapView);
+registerElement("MapViews", () => require("nativescript-google-maps-sdk").MapView);
 @Component({
     moduleId: module.id,
     templateUrl: "./mapa.html",

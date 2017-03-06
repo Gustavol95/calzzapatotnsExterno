@@ -17,6 +17,7 @@ var dialogs = require("ui/dialogs");
 var appSettings = require("application-settings");
 import {Label} from "ui/label";
 import {AnimationCurve} from "ui/enums";
+import * as application from "application";
 
 @Component({
     selector: "my-app",
@@ -27,6 +28,7 @@ import {AnimationCurve} from "ui/enums";
 export class LoginComponent implements OnInit {
     user: User;
     isLoggingIn = true;
+    plataforma = false;
     @ViewChild("container") container: ElementRef;
     //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
@@ -72,6 +74,14 @@ export class LoginComponent implements OnInit {
         this.page.actionBar.title = "Iniciar Sesión";
         this.onTap('label1');
         this.onTap('label2');
+
+        if (application.android) {
+            console.log("We are running on Android device!");
+            this.plataforma = false;
+        } else if (application.ios) {
+            console.log("We are running on iOS device");
+            this.plataforma = true;
+        }
 
     }
 
