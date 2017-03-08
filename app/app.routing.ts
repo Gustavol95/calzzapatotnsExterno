@@ -12,6 +12,7 @@ import {RecuperarComponent} from "./pages/modals/recuperar/recuperar";
 import {ClienteDetalleComponent} from "./pages/cliente/detalle/cliente-detalle.component";
 import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component";
 import {OficinacreditoComponent} from "./pages/oficinacredito/oficinacredito.component";
+import {ReferenciabancariaComponent} from "./pages/referenciasbancarias/referenciabancaria.component";
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
@@ -28,6 +29,7 @@ export const routes = [
 			{path: 'cliente/detalle', component:ClienteDetalleComponent},
             {path: 'vales', component:ListadoValeComponent},
             {path: 'oficinacredito', component:OficinacreditoComponent},
+            {path: 'referenciabancaria', component:ReferenciabancariaComponent},
         ]
     }
 ];
@@ -45,5 +47,6 @@ export const navigatableComponents = [
     RecuperarComponent,
 	ClienteDetalleComponent,
     ListadoValeComponent,
-    OficinacreditoComponent
+    OficinacreditoComponent,
+    ReferenciabancariaComponent
 ];
