@@ -22,12 +22,14 @@ export class RecuperarComponent implements OnInit {
     protected validationMessages: any = {
         password: {
             required: "El contraseña es obligatoria",
-            minLength: "El tamaño mínimo de la contraseña es de 1 dígito"
+            minLength: "El tamaño mínimo de la contraseña es de 1 dígito",
+            password: "La contraseña por lo menos debe tener 8 caracteres."
         },
         password_confirm: {
             required: "El confirmación de contraseña es obligatorio",
             minLength: "El tamaño mínimo de la confirmación de contraseña es de 1 dígitos",
-            password: "Las contraseñas no coinciden"
+            password: "La contraseña por lo menos debe tener 8 caracteres."
+
         }
     };
 
@@ -37,8 +39,8 @@ export class RecuperarComponent implements OnInit {
     ngOnInit() {
         console.log("aqui");
         this.form = this._fb.group({
-            password: [null, [Validators.required, Validators.minLength(1)]],
-            password_confirm: [null, [Validators.required, Validators.minLength(1)]]
+            password: [null, [Validators.required, Validators.minLength(1),CustomValidators.password]],
+            password_confirm: [null, [Validators.required, Validators.minLength(1)],CustomValidators.password]
         });
         this.onTap('label1');
     }
