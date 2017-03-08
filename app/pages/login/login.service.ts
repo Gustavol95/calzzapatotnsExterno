@@ -15,7 +15,7 @@ export class LoginService {
     }
 
     login(user: User) {
-        return this.http.login("login", {email: user.email, password: user.password}).map(response => response.json());
+        return this.http.login("login", {email: user.email, password: user.password.replace("\n\n","")}).map(response => response.json());
     }
 
     sincronizacion() {

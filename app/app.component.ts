@@ -29,14 +29,13 @@ export class AppComponent extends Observable implements OnInit {
         //page.on("loaded", this.onLoaded, this);
         if (application.android) {
             //console.log("We are running on Android device!");
-            this.plataforma=false;
+            this.plataforma = false;
         } else if (application.ios) {
             //console.log("We are running on iOS device");
-            this.plataforma=true;
+            this.plataforma = true;
         }
     }
 
-    
 
     ngOnInit() {
         this.http.start.subscribe(() => this.isLoading = true);
@@ -62,6 +61,8 @@ export class AppComponent extends Observable implements OnInit {
                 this.error500();
             } else if (e.status == 503) {
                 this.error503();
+            } else if (e.status == 423) {
+                this.error423();
             }
         });
     }
@@ -76,6 +77,7 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/"]);
         });
     }
+
     error403() {
         let r = this.router;
         dialogs.alert({
@@ -86,6 +88,7 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/"]);
         });
     }
+
     error404() {
         let r = this.router;
         dialogs.alert({
@@ -100,7 +103,7 @@ export class AppComponent extends Observable implements OnInit {
     error422(err) {
 
         let msg = "";
-        console.log("Error 422",JSON.stringify(err));
+        console.log("Error 422", JSON.stringify(err));
         for (let error of err.errors) {
             msg += error + "\n";
         }
@@ -139,6 +142,17 @@ export class AppComponent extends Observable implements OnInit {
         dialogs.alert({
             title: "Servidor en mantenimiento",
             message: "Por el momento los servidores están en mantenimiento",
+            okButtonText: "Aceptar"
+        }).then(function () {
+            r.navigate(["/"]);
+        });
+    }
+
+    error423() {
+        let r = this.router;
+        dialogs.alert({
+            title: "Demasiados intentos",
+            message: "Se ha bloqueado tu cuenta por 15 minutos. intente más tarde.",
             okButtonText: "Aceptar"
         }).then(function () {
             r.navigate(["/"]);
