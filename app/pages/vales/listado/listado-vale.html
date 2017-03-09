@@ -1,8 +1,9 @@
-<TabView #element [(ngModel)]="selectedIndex">
-    <GridLayout rows="*" height="100%" width="100%" *tabItem="{title: 'FÍSICOS'}">
-       <StackLayout row="0">
-           <ListView [items]='vales' width="100%" height="100%">
-               <template let-item='item'>
+<GridLayout rows="*" height="100%" width="100%">
+    <TabView #element [(ngModel)]="selectedIndex">
+        <GridLayout width="100%" height="100%" *tabItem="{title: 'FÍSICOS'}">
+            <StackLayout row="0">
+                <ListView [items]='vales'>
+                <template let-item='item'>
                    <GridLayout style="background-color: #EAEAEA">
                        <GridLayout *ngIf="item.estado == 'Cobrado'" columns="55,*,*" rows="55,auto,auto,auto,auto,auto,auto,auto" class="cobrado">
                            <!--<Button text="CL" row="0" col="0" backgroundColor="#EE2933" style="border-radius:100;color:white;margin:0px 0px 0px 15px;padding:0;width: 100%"></Button>-->
