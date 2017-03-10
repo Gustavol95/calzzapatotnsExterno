@@ -6,6 +6,9 @@ import * as elementRegistryModule from 'nativescript-angular/element-registry';
 import {ActivatedRoute} from "@angular/router";
 import {Page} from "ui/page";
 import {Color} from "color";
+
+var phone = require("nativescript-phone");
+
 elementRegistryModule.registerElement("CardView", () => require("nativescript-cardview").CardView);
 @Component({
     selector: "detalle-cliente",
@@ -32,6 +35,10 @@ export class ClienteDetalleComponent extends OnInit {
         });
     }
 
-
+    call(contacto) {
+        if(contacto.celular){
+            phone.dial(contacto.celular, true);
+        }
+    }
 
 }
