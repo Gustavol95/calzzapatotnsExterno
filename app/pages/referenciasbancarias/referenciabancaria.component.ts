@@ -8,9 +8,10 @@ var dialogs = require("ui/dialogs");
     providers: [ReferenciabancariaService],
     //templateUrl: "pages/referenciasbancarias/referenciabancaria.html",
     template:`
-    <TabView>
-        <GridLayout *tabItem="{title: 'PARA CORTES'}">
-           <StackLayout row="0">
+    <GridLayout rows="*" height="100%" width="100%">
+    <TabView #element [(ngModel)]="selectedIndex">
+        <GridLayout width="100%" height="100%" *tabItem="{title: 'PARA CORTE'}">
+            <StackLayout row="0">
                <ListView [items]='referencias' width="100%" height="100%">
                    <template let-item='item'>
                        <GridLayout style="background-color: #EAEAEA">
@@ -22,7 +23,7 @@ var dialogs = require("ui/dialogs");
                                <Label col="1" row="1" text="{{item.convenio}}" style="text-align: right"></Label>
                                
                                <Label col="0" row="2" text="Referencia" style="text-align: left"></Label>
-                               <Label col="1" row="2" text="{{item.referencia}}" style="text-align: right"></Label>
+                               <Label col="1" row="2" text="{{item.referencia}}" style="text-align: right" textWrap="true"></Label>
                            </GridLayout>
                        </GridLayout>
                    </template>
