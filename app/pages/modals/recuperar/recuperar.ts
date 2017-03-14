@@ -37,23 +37,20 @@ export class RecuperarComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("aqui");
         this.form = this._fb.group({
-            password: [null, [Validators.required, Validators.minLength(1),CustomValidators.password]],
-            password_confirm: [null, [Validators.required, Validators.minLength(1)],CustomValidators.password]
+            password: [null, [Validators.required, Validators.minLength(8),CustomValidators.password]],
+            password_confirm: [null, [Validators.required, Validators.minLength(8)],CustomValidators.password]
         });
         this.onTap('label1');
     }
     validarPassword(){
         let usr = this.form.value;
-        //console.log("p => "+usr.password.length+" pc=>"+usr.password_confirm.length);
         this.valid = false;
 
-        if((usr.password.length>0 && usr.password_confirm.length>0) && usr.password == usr.password_confirm){
+        if(usr.password == usr.password_confirm && usr.password.length >=8 && usr.password_confirm.length>=8){
             this.valid = true;
         }
-
-        return !this.valid;
+        return this.valid;
 
     }
     public onTap(lbl) {
@@ -66,7 +63,6 @@ export class RecuperarComponent implements OnInit {
     }
 
     public recuperar() {
-        console.log("Recuperar => ",JSON.stringify(this.form.value));
         this.params.closeCallback(this.form.value);
     }
 
