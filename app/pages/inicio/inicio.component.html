@@ -17,8 +17,7 @@
             </GridLayout>
             <!-- Corte y Saldo -->
             <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
-                <Image class="icono" col="0" src="~/assets/corteSaldoCredigana_r.png" stretch="aspectFit"
-                       (tap)="onSaldoClicked()"></Image>
+                <Image class="icono" col="0" src="~/assets/corteSaldoCredigana_r.png" stretch="aspectFit" (tap)="onSaldoClicked()"></Image>
                 <Label class="titulo" col="1" text="Corte y Saldo" textWrap="true" (tap)="onSaldoClicked()"></Label>
                 <GridLayout visibility="{{extenderSaldo ? 'visible' : 'collapsed'}}" style="vertical-align:center;" col="2" columns="auto,*" (tap)="onSaldoClicked()">
                     <Label height="10%" class="info-titulo" col="0" text="Corte" textWrap="true"></Label>
@@ -27,8 +26,7 @@
                 <Image class="flecha" col="3" src="~/assets/flecha.png" (tap)="corte()" stretch="aspectFit"></Image>
             </GridLayout>
             <!-- Corte y Saldo Extendido -->
-            <GridLayout class="grid-extendido" columns="*,4*,4*,*" rows="auto,auto,auto"
-                        visibility="collapse"  id="gridSaldo">
+            <GridLayout class="grid-extendido" columns="*,4*,4*,*" rows="auto,auto,auto" visibility="collapse"  id="gridSaldo">
                 <Label class="saldo-titulo-extendido" col="1" row="0" text="Corte" textWrap="true"></Label>
                 <Label class="saldo-info-extendido" col="2" row="0" text="03 Oct 2017" textWrap="true"></Label>
                 <Label class="saldo-titulo-extendido" col="1" row="1" text="Pago Mínimo" textWrap="true"></Label>
@@ -54,7 +52,7 @@
                 <Image class="flecha" col="3" src="~/assets/flecha.png" stretch="aspectFit"></Image>
             </GridLayout>
             <!-- Mis Ventas -->
-            <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
+            <GridLayout class="grid" columns="*,4*,4*,*" (tap)="redireccion('ventas')" rows="auto">
                 <Image class="icono" col="0" src="~/assets/misVentas_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="Mis Ventas" textWrap="true"></Label>
                 <GridLayout style="vertical-align:center;" col="2" columns="*,auto">
@@ -85,8 +83,7 @@
             </GridLayout>
             <!-- CrediGana -->
             <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
-                <Image class="icono" col="0" src="~/assets/corteSaldoCredigana_r.png" stretch="aspectFit"
-                ></Image>
+                <Image class="icono" col="0" src="~/assets/corteSaldoCredigana_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="CrediGana" textWrap="true"></Label>
                 <GridLayout style="vertical-align:center;" col="2" columns="*,auto">
                     <Label height="10%" class="info-titulo" col="0" text="Puntos" textWrap="true"></Label>
@@ -96,16 +93,14 @@
             </GridLayout>
             <!-- Notificaciones -->
             <GridLayout class="grid" columns="*,4*,4*,*" rows="auto">
-                <Image class="icono" col="0" src="~/assets/notificaciones_r.png" stretch="aspectFit"
-                ></Image>
+                <Image class="icono" col="0" src="~/assets/notificaciones_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="Notificaciones" textWrap="true"></Label>
                 <Label class="info" col="2" text="6" textWrap="true"></Label>
                 <Image class="flecha" col="3" src="~/assets/flecha.png" stretch="aspectFit"></Image>
             </GridLayout>
             <!-- Oficinas de Credito -->
             <GridLayout class="grid" columns="*,4*,4*,*" rows="auto" (tap)="redireccion('oficinacredito')">
-                <Image class="icono" col="0" src="~/assets/oficinaCredito_r.png" stretch="aspectFit"
-                ></Image>
+                <Image class="icono" col="0" src="~/assets/oficinaCredito_r.png" stretch="aspectFit"></Image>
                 <Label class="titulo" col="1" text="Oficinas de Crédito" textWrap="true"></Label>
                 <Image class="flecha" col="3" src="~/assets/flecha.png" stretch="aspectFit"></Image>
             </GridLayout>

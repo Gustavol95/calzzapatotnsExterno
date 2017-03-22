@@ -5,29 +5,30 @@
     background-color: #EE2933;
     horizontal-align: right;vertical-align: bottom;
 }
-
 TextField {
     margin-top: 15px;
 }
-
 .label {
     margin-left: 20;
     margin-top: 20;
     margin-bottom: 20;
     font-size: 18;
 }
-
 .labelBold {
     margin: 20;
     font-weight: bold;
 }
-
 .button-save {
     background-color: #223D98;
     color:white;
     padding-right: 15px;
 }
-
 .style1 {
     background-color: #5c687c;
+}
+.btn-like{
+    horiz-align: center;
+    vertical-align: center;
+    height: 30;
+    width: 30;
 }

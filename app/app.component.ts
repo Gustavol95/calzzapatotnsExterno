@@ -9,6 +9,7 @@ import {HttpService} from "./custom-http/http-service";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 var dialogs = require("ui/dialogs");
 import * as application from "application";
+
 @Component({
     selector: 'main',
     templateUrl: './app.component.html',
@@ -36,7 +37,6 @@ export class AppComponent extends Observable implements OnInit {
         }
     }
 
-
     ngOnInit() {
         this.http.start.subscribe(() => this.isLoading = true);
         this.http.stop.subscribe(() => this.isLoading = false);
@@ -57,12 +57,12 @@ export class AppComponent extends Observable implements OnInit {
                 this.error404();
             } else if (e.status == 422) {
                 this.error422(e.json());
+            } else if (e.status == 423) {
+                this.error423();
             } else if (e.status == 500) {
                 this.error500();
             } else if (e.status == 503) {
                 this.error503();
-            } else if (e.status == 423) {
-                this.error423();
             }
         });
     }
@@ -115,11 +115,11 @@ export class AppComponent extends Observable implements OnInit {
         });
     }
 
-    errorTimeOut() {
+    error423() {
         let r = this.router;
         dialogs.alert({
-            title: "Tiempo de espera agotado!",
-            message: "Excedio el límite de tiempo de espera",
+            title: "Demasiados intentos",
+            message: "Se ha bloqueado tu cuenta por 15 minutos. intente más tarde.",
             okButtonText: "Aceptar"
         }).then(function () {
             r.navigate(["/"]);
@@ -148,14 +148,15 @@ export class AppComponent extends Observable implements OnInit {
         });
     }
 
-    error423() {
+    errorTimeOut() {
         let r = this.router;
         dialogs.alert({
-            title: "Demasiados intentos",
-            message: "Se ha bloqueado tu cuenta por 15 minutos. intente más tarde.",
+            title: "Tiempo de espera agotado!",
+            message: "Excedio el límite de tiempo de espera",
             okButtonText: "Aceptar"
         }).then(function () {
             r.navigate(["/"]);
         });
     }
+
 }
