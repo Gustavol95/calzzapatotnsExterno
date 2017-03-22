@@ -14,6 +14,7 @@ import {UserModel} from "../../model/user.model";
 import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
+import {VentaModel} from "../../model/venta.model";
 import {LoginService} from "../login/login.service";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {RecuperarComponent} from "../modals/recuperar/recuperar";
@@ -45,7 +46,8 @@ export class HomeComponent implements OnInit {
                 private _loginService: LoginService,
                 private vcRef: ViewContainerRef,
                 private _modalService: ModalDialogService,
-                private _inicioService:InicioService) {
+                private _inicioService:InicioService,
+                private _ventaModel: VentaModel) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
@@ -118,14 +120,13 @@ export class HomeComponent implements OnInit {
                     this.drawer.closeDrawer();
                 });
         });
-
-
     }
 
     truncateDatabase() {
         console.log("truncateDatabase");
         this._userModel.truncate();
         this._clienteModel.truncate();
+        this._ventaModel.truncate();
         this._tiposMediosModel.truncate();
         this._clientesMedios.truncate();
     }

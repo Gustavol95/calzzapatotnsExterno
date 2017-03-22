@@ -3,6 +3,7 @@ import {Page} from "ui/page";
 import {GridLayout} from "ui/layouts/grid-layout";
 import {Router, NavigationExtras} from "@angular/router";
 import {ClienteModel} from "../../model/cliente.model";
+import {VentaModel} from "../../model/venta.model";
 import {InicioService} from "./inicio.service";
 import {UserModel} from "../../model/user.model";
 
@@ -11,7 +12,6 @@ import {UserModel} from "../../model/user.model";
     templateUrl: "pages/inicio/inicio.component.html",
     styleUrls: ["pages/inicio/inicio-common.css", "pages/inicio/inicio.css"],
     providers:[InicioService]
-
 })
 
 export class InicioComponent implements OnInit {
@@ -22,7 +22,7 @@ export class InicioComponent implements OnInit {
     pagoMinimo="";
     public user: any = {};
 
-    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel){
+    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel,  private _ventaModel: VentaModel){
         console.log("constructor");
     }
 
@@ -66,10 +66,9 @@ export class InicioComponent implements OnInit {
         }
     }
 
-
-     redireccion(args) {
-            this.router.navigate(["/home/" + args]);
-        }
+    redireccion(args) {
+        this.router.navigate(["/home/" + args]);
+    }
 
     corte(){
         console.log("Tap corte");
@@ -80,6 +79,5 @@ export class InicioComponent implements OnInit {
         };
         this.router.navigate(['/home/corte'], navigationExtras);
     }
-
 
 }

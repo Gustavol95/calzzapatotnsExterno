@@ -11,8 +11,11 @@ import {CorteComponent} from "./pages/corte/corte.component";
 import {RecuperarComponent} from "./pages/modals/recuperar/recuperar";
 import {ClienteDetalleComponent} from "./pages/cliente/detalle/cliente-detalle.component";
 import {ListadoValeComponent} from "./pages/vales/listado/listado.vale.component";
+import {VentaComponent} from "./pages/venta/venta.component";
+import {TicketComponent} from "./pages/venta/ticket/ticket.component";
 import {OficinacreditoComponent} from "./pages/oficinacredito/oficinacredito.component";
 import {ReferenciabancariaComponent} from "./pages/referenciasbancarias/referenciabancaria.component";
+
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
     {path: 'recuperar-email', component: ModalViewComponent},
@@ -30,9 +33,12 @@ export const routes = [
             {path: 'vales', component:ListadoValeComponent},
             {path: 'oficinacredito', component:OficinacreditoComponent},
             {path: 'referenciabancaria', component:ReferenciabancariaComponent},
+            {path: 'ventas', component:VentaComponent},
+            {path: 'ventas/ticket', component:TicketComponent}
         ]
     }
 ];
+
 export const navigatableComponents = [
     LoginComponent,
     ModalViewComponent,
@@ -48,5 +54,7 @@ export const navigatableComponents = [
 	ClienteDetalleComponent,
     ListadoValeComponent,
     OficinacreditoComponent,
-    ReferenciabancariaComponent
+    ReferenciabancariaComponent,
+    VentaComponent,
+    TicketComponent
 ];

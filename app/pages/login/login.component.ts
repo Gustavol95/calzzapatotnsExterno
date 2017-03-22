@@ -4,7 +4,6 @@ import {LoginService} from "./login.service";
 import {Router} from "@angular/router";
 import {UserModel} from "../../model/user.model";
 import {Page} from "ui/page";
-//import {Page} from "ui/page";
 import {registerElement} from "nativescript-angular/element-registry";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {ModalViewComponent} from "./modal/modal-view";
@@ -82,7 +81,6 @@ export class LoginComponent implements OnInit {
             console.log("We are running on iOS device");
             this.plataforma = true;
         }
-
     }
 
     login() {
@@ -96,10 +94,10 @@ export class LoginComponent implements OnInit {
                 this._clienteModel.insert(this.user.cliente);
                 this._clienteMediosModel.insert(this.user.cliente.medios);
                 this.loginService.sincronizacion().subscribe(d => {
-                    console.log("SINCRONIZAOCION", JSON.stringify(d.tipos_medios));
+                    console.log("SINCRONIZACION", JSON.stringify(d.tipos_medios));
+                    this.isLoggingIn = true;
                     this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
                     this._tiposMediosModel.insert(d.tipos_medios);
-                    this.isLoggingIn = true;
                 });
             });
     }

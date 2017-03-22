@@ -16,7 +16,7 @@
                     <Image row="3" col="0" src="~/assets/misVales.png" horizontalAlignment="center"></Image>
                     <Label row="3" col="1" text="Mis Vales" (tap)="redireccion('vales')"></Label>
                     <Image row="4" col="0" src="~/assets/misVentas.png" horizontalAlignment="center"></Image>
-                    <Label row="4" col="1" text="Mis Ventas"></Label>
+                    <Label row="4" col="1" text="Mis Ventas" (tap)="redireccion('ventas')"></Label>
                     <Image row="5" col="0" src="~/assets/misPagos.png" horizontalAlignment="center"></Image>
                     <Label row="5" col="1" text="Mis Pagos"></Label>
                     <Image row="6" col="0" src="~/assets/eventos.png" horizontalAlignment="center"></Image>
@@ -39,9 +39,6 @@
             <ActionItem  *ngIf="plataforma" ios.position="left" android.position="none"  text="Menu" android.systemIcon="ic_ab_back_holo_dark" (tap)="openDrawer()"></ActionItem>
             <!--<ActionItem  android.systemIcon="ic_menu_moreoverflow_normal_holo_light" ios.position="right" android.position="none"></ActionItem>-->
         </ActionBar>
-
         <router-outlet></router-outlet>
-
-
     </StackLayout>
 </RadSideDrawer>
