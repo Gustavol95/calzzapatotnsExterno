@@ -21,18 +21,18 @@
                 <Label class="titulo" col="1" text="Corte y Saldo" textWrap="true" (tap)="onSaldoClicked()"></Label>
                 <GridLayout visibility="{{extenderSaldo ? 'visible' : 'collapsed'}}" style="vertical-align:center;" col="2" columns="auto,*" (tap)="onSaldoClicked()">
                     <Label height="10%" class="info-titulo" col="0" text="Corte" textWrap="true"></Label>
-                    <Label height="10%" class="info" col="1" text="03 Oct 2017" textWrap="true"></Label>
+                    <Label height="10%" class="info" col="1" [text]="clienteSaldo.fecha" textWrap="true"></Label>
                 </GridLayout>
                 <Image class="flecha" col="3" src="~/assets/flecha.png" (tap)="corte()" stretch="aspectFit"></Image>
             </GridLayout>
             <!-- Corte y Saldo Extendido -->
             <GridLayout class="grid-extendido" columns="*,4*,4*,*" rows="auto,auto,auto" visibility="collapse"  id="gridSaldo">
                 <Label class="saldo-titulo-extendido" col="1" row="0" text="Corte" textWrap="true"></Label>
-                <Label class="saldo-info-extendido" col="2" row="0" text="03 Oct 2017" textWrap="true"></Label>
+                <Label class="saldo-info-extendido" col="2" row="0" [text]="clienteSaldo.fecha" textWrap="true"></Label>
                 <Label class="saldo-titulo-extendido" col="1" row="1" text="Pago Mínimo" textWrap="true"></Label>
-                <Label class="saldo-info-extendido" col="2" row="1" [text]="pagoMinimo" textWrap="true"></Label>
+                <Label class="saldo-info-extendido" col="2" row="1" [text]="clienteSaldo.pago_minimo | currency : 'MXN' : true : '1.2-2'" textWrap="true"></Label>
                 <Label class="saldo-titulo-extendido" col="1" row="2" text="Saldo" textWrap="true"></Label>
-                <Label class="saldo-info-extendido" col="2" row="2" [text]="saldo" textWrap="true"></Label>
+                <Label class="saldo-info-extendido" col="2" row="2" [text]="clienteSaldo.saldo | currency : 'MXN' : true : '1.2-2'" textWrap="true"></Label>
             </GridLayout>
             <!-- Mis Clientes -->
             <GridLayout class="grid" columns="*,4*,4*,*" (tap)="redireccion('clientes')" rows="auto">
