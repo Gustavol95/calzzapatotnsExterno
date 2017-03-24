@@ -38,8 +38,8 @@ export class SaldoDisponibleComponent implements OnInit{
                 console.log("Este es el bueno locoo2",usuario.email);
                this.corteService.getSaldos(usuario.email)
                     .map((info)=>{
-                        this.saldos=info.saldoMayoristas;
-                        this.ultimaActualizacion=this.saldos.fecha;
+                        this.saldos=info;
+                        this.ultimaActualizacion=info.fecha;
                         this.limiteCredito=this.saldos.limite;
                         this.saldo=this.saldos.saldo;
                         this.creditoDisponible=this.saldos.disponible;

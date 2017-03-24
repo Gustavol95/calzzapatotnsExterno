@@ -2,7 +2,7 @@
  * Created by iedeveloper on 15/02/17.
  */
 import {Component, OnInit, LOCALE_ID} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Page} from "ui/page";
 import {RouterExtensions} from "nativescript-angular";
 @Component({
@@ -18,7 +18,7 @@ export class CorteComponent implements OnInit{
     pagoMinimo="";
 
 
-    constructor(private page:Page,private activatedRoute: ActivatedRoute,private routerExtensions: RouterExtensions){
+    constructor(private page:Page,private activatedRoute: ActivatedRoute,private routerExtensions: RouterExtensions, private router:Router){
         activatedRoute.queryParams.subscribe(params => {
             this.info = JSON.parse(params["info"]);
             console.log("INFOOOOO=>",JSON.stringify(this.info));
@@ -31,5 +31,9 @@ export class CorteComponent implements OnInit{
 
     referenciabanc(){
         this.routerExtensions.navigate(["/home/referenciabancaria"]);
+    }
+
+    redireccion(args) {
+        this.router.navigate(["/home/" + args]);
     }
 }

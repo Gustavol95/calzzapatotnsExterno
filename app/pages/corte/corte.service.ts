@@ -11,7 +11,7 @@ export class CorteService {
     }
 
     getSaldos(codigoCliente) {
-        return this.http.get("saldosSoap/"+codigoCliente).map(response => response.json());
+        return this.http.get("saldosDetalleSoap/"+codigoCliente).map(response => response.json());
     }
 }
 
