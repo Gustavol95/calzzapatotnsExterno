@@ -98,17 +98,17 @@ export class FormularioClienteComponent implements OnInit {
     ngOnInit() {
         this.page.actionBar.title = "Agregar Cliente";
         this.form = this._fb.group({
-            nombre: ['Henry', [Validators.required, Validators.minLength(1)]],
-            paterno: ['Cañedo', [Validators.required, Validators.minLength(1)]],
-            materno: ['Zamudio', [Validators.required, Validators.minLength(1)]],
-            celular: ['6691657109', [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
-            email: ['heris161993@gmail.com', [Validators.required, Validators.minLength(1), CustomValidators.email]],
-            fecha_nacimiento: ['09/04/1993', [Validators.required, Validators.minLength(1)]],
-            calle: ['Los Sauces', [Validators.required, Validators.minLength(1)]],
-            numero_exterior: ['896', [Validators.required, Validators.minLength(1)]],
-            numero_interior: ['402', [Validators.required, Validators.minLength(1)]],
-            colonia: ['La campiña', [Validators.required, Validators.minLength(1)]],
-            cp: ['82600', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
+            nombre: [null, [Validators.required, Validators.minLength(1)]],
+            paterno: [null, [Validators.required, Validators.minLength(1)]],
+            materno: [null, [Validators.required, Validators.minLength(1)]],
+            celular: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
+            email: [null, [Validators.required, Validators.minLength(1), CustomValidators.email]],
+            fecha_nacimiento: [null, [Validators.required, Validators.minLength(1)]],
+            calle: [null, [Validators.required, Validators.minLength(1)]],
+            numero_exterior: [null, [Validators.required, Validators.minLength(1)]],
+            numero_interior: [null, [Validators.minLength(1)]],
+            colonia: [null, [Validators.required, Validators.minLength(1)]],
+            cp: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
         });
     }
 
@@ -146,7 +146,7 @@ export class FormularioClienteComponent implements OnInit {
     guardar() {
         let cliente: Cliente = this.form.value as Cliente;
         this.valid=false;
-        console.log("Guardar :)))))",this.valid);
+        console.log("Guardar :)))))",this.form.get('fecha_nacimiento'));
         this._userModel.fetch().then(usuario => {
             cliente.cliente_id = usuario.cliente_id;
             console.log("Va a guardar", JSON.stringify(cliente));

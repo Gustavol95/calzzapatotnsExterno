@@ -21,7 +21,7 @@ export class DatepickerComponent implements OnInit {
         datePicker.year = this.currentdate.getFullYear();
         datePicker.month = this.currentdate.getMonth() + 1;
         datePicker.day = this.currentdate.getDate();
-        datePicker.minDate = new Date(1975, 0, 29);
+        datePicker.minDate = new Date(1900, 0, 29);
         datePicker.maxDate = new Date(2045, 4, 12);
     }
 

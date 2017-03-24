@@ -66,14 +66,14 @@ export class MapaComponent implements OnInit {
 
     //Map events
     onMapReady(event) {
-
+        console.log("1");
         if (this.mapView || !event.object) return;
         this.mapView = event.object;
         this.gMap = event.object.gMap;
         this.mapView.setStyle(style);
         this.mapView.markerSelect = this.onMarkerSelect;
         this.mapView.cameraChanged = this.onCameraChanged;
-
+        console.log("2");
         if (platform.isIOS) {
             var UiSettings = this.gMap.settings;
             UiSettings.myLocationButton = true;
@@ -86,8 +86,9 @@ export class MapaComponent implements OnInit {
             UiSettings.setMyLocationButtonEnabled(true);
             this.gMap.setMyLocationEnabled(true);
         }
-
+        console.log("3");
         if (this.position_cliente.latitude != null && this.position_cliente.longitude != null) {
+            console.log("4");
             this.centeredOnLocation = false;
             let position: Position;
             position = Position.positionFromLatLng(this.position_cliente.latitude, this.position_cliente.longitude);
@@ -104,6 +105,7 @@ export class MapaComponent implements OnInit {
             });
             this.valid = true;
         }else{
+            console.log("5");
             this.enableLocation()
             .then(this.getLocation)
                 .then(() => {
