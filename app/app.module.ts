@@ -21,6 +21,7 @@ import {TiposMedioModel} from "./model/tipos_medio.model";
 import {ClientesMediosModel} from "./model/clientes_medios.model";
 import {ErrorFeedbackComponent} from "./shared/error-feedback/error-feedback.component";
 import {EqualValidator} from "./shared/validators/equal-validator.directive";
+import {CorteService} from "./pages/corte/corte.service";
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import {EqualValidator} from "./shared/validators/equal-validator.directive";
         ClienteModel,
         TiposMedioModel,
         ClientesMediosModel,
-        VentaModel
+        VentaModel,
+        CorteService
     ]
 })
 export class AppModule {

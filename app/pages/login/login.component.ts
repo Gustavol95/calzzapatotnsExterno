@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
     ngAfterViewInit() {
         this._usuarioModel.fetch().then(usuario => {
             if (usuario) {
+                console.log("Que chingados",usuario);
                 this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
             } else {
                 this.routerExtensions.navigate(["/"], {clearHistory: true});

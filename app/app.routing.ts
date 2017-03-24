@@ -15,6 +15,7 @@ import {VentaComponent} from "./pages/venta/venta.component";
 import {TicketComponent} from "./pages/venta/ticket/ticket.component";
 import {OficinacreditoComponent} from "./pages/oficinacredito/oficinacredito.component";
 import {ReferenciabancariaComponent} from "./pages/referenciasbancarias/referenciabancaria.component";
+import {SaldoDisponibleComponent} from "./pages/corte/saldo-disponible/saldo-disponible.component";
 
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
@@ -26,6 +27,7 @@ export const routes = [
             {path: 'modal-datepicker', component: DatepickerComponent},
             {path: 'modal-mapa', component: MapaComponent},
             {path: 'corte', component: CorteComponent},
+            {path: 'saldo-disponible', component: SaldoDisponibleComponent},
             {path: 'clientes', component:ListadoClienteComponent},
             {path: 'cliente/create', component:FormularioClienteComponent},
             {path: 'modal-recuperar', component:RecuperarComponent},
@@ -48,6 +50,7 @@ export const navigatableComponents = [
     HomeComponent,
     MapaComponent,
     CorteComponent,
+    SaldoDisponibleComponent,
     ListadoClienteComponent,
     FormularioClienteComponent,
     RecuperarComponent,

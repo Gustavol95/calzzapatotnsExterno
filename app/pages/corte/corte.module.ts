@@ -3,6 +3,7 @@ import {NativeScriptRouterModule} from "nativescript-angular";
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
+import {SaldoDisponibleComponent} from "./saldo-disponible/saldo-disponible.component";
 /**
  * Created by iedeveloper on 15/02/17.
  */
