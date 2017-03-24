@@ -8,4 +8,12 @@ export class ReferenciabancariaService {
 
     constructor(private http: HttpService) {
     }
+
+    getReferenciasBancarias(codigoCliente) {
+        return this.http.get("referenciasBancariasSoap/" + codigoCliente).map(response => response.json());
+    }
+
+    getReferenciasBancariasGenericas(codigoCliente) {
+        return this.http.get("referenciasBancariasGenericasSoap/" + codigoCliente).map(response => response.json());
+    }
 }
