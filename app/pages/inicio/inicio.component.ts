@@ -18,11 +18,10 @@ moment.locale('es');
 export class InicioComponent implements OnInit {
     extenderSaldo=true;
     clienteSaldo={
-        fecha: '',
+        corte: '',
         pago_minimo:0,
-        saldo:0,
-        disponible:0,
-        limite:0
+        fecha_pago:'',
+        saldo_disponible:0,
     };
     public user: any = {};
 
@@ -36,15 +35,9 @@ export class InicioComponent implements OnInit {
 
     ngAfterViewInit() {
         this._clienteModel.fetch().then(usuario => {
-            this._inicioService.getClienteInfo(usuario.id)
+            this._inicioService.getClienteInfo(usuario.codigo)
                 .subscribe(info=>{
-                    this.clienteSaldo=info[0];
-                    let momentObj = moment(this.clienteSaldo.fecha, 'YYYY-MM-DD');
-                    this.clienteSaldo.fecha = momentObj.format('DD MMM YYYY');
-                    this.clienteSaldo.pago_minimo = parseFloat(info[0].pago_minimo);
-                    this.clienteSaldo.saldo = parseFloat(info[0].saldo);
-                    this.clienteSaldo.disponible = parseFloat(info[0].disponible);
-                    this.clienteSaldo.limite = parseFloat(info[0].limite);
+                    this.clienteSaldo=info;
                     console.log("info",JSON.stringify(this.clienteSaldo));
                 });
         });

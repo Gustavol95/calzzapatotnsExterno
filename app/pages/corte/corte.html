@@ -3,7 +3,7 @@
     <GridLayout row="0" col="0">
         <StackLayout height="100%">
             <Label class="titulo" text="Corte" textWrap="true" > </Label>
-            <Label class="contenido" text="03 Oct 2016" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.corte | date: 'dd MMM yyyy'}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Pronóstico Próximo corte -->
@@ -17,14 +17,14 @@
     <GridLayout  row="1" col="0">
         <StackLayout height="100%">
             <Label class="titulo" text="Pago Mínimo" textWrap="true"> </Label>
-            <Label class="contenido" [text]="pagoMinimo" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.pago_minimo | currency : 'MXN' : true : '1.2-2'}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Fecha de Pago -->
     <GridLayout  row="1" col="1">
         <StackLayout height="100%">
             <Label class="titulo" text="Fecha de Pago" textWrap="true"> </Label>
-            <Label class="contenido" text="17 Oct 2" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.fecha_pago | date: 'dd MMM yyyy'}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Referencias Bancarias -->
@@ -37,7 +37,7 @@
     <GridLayout row="3" col="0" colSpan="2" >
         <StackLayout height="100%" (tap)="redireccion('saldo-disponible')">
             <Label class="titulo" text="Saldo Disponible" textWrap="true"> </Label>
-            <Label class="contenido" [text]="saldo" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.saldo_disponible | currency : 'MXN' : true : '1.2-2'}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Programa CrediGana -->

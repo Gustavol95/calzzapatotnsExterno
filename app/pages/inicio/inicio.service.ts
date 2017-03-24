@@ -9,8 +9,8 @@ export class InicioService {
     constructor(private http: HttpService) {
     }
 
-    getClienteInfo(id) {
-        return this.http.get("clientes/"+id+"/saldo").map(response => response.json());
+    getClienteInfo(codigoCliente) {
+        return this.http.get("saldosSoap/"+codigoCliente).map(response => response.json());
     }
 
     //Ver que es sincronizacion
