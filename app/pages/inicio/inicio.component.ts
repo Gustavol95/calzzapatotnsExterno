@@ -42,7 +42,8 @@ export class InicioComponent implements OnInit {
         });
         this._userModel.fetch().then(usuario => {
             if (usuario) {
-                this.user = usuario;
+                this.user =usuario;
+                console.log("Este es el bueno locoo",usuario.email);
             }
         });
     }

@@ -34,8 +34,8 @@
         </StackLayout>
     </GridLayout>
     <!-- Saldo Disponible -->
-    <GridLayout row="3" col="0" colSpan="2">
-        <StackLayout height="100%">
+    <GridLayout row="3" col="0" colSpan="2" >
+        <StackLayout height="100%" (tap)="redireccion('saldo-disponible')">
             <Label class="titulo" text="Saldo Disponible" textWrap="true"> </Label>
             <Label class="contenido" [text]="saldo" textWrap="true"> </Label>
         </StackLayout>
