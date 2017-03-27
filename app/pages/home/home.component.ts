@@ -107,8 +107,8 @@ export class HomeComponent implements OnInit {
 
     corte(){
         console.log("inicio corte");
-        this._clienteModel.fetch().then(usuario => {
-            this._inicioService.getClienteInfo(usuario.id)
+        this._userModel.fetch().then(usuario => {
+            this._inicioService.getClienteInfo(usuario.email)
                 .subscribe(info=>{
                     let navigationExtras: NavigationExtras = {
                         queryParams: {
