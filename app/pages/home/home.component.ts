@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
                 .subscribe(info=>{
                     let navigationExtras: NavigationExtras = {
                         queryParams: {
-                            "info": JSON.stringify(info[0])
+                            "info": JSON.stringify(info)
                         }
                     };
                     this.router.navigate(['/home/corte'], navigationExtras);

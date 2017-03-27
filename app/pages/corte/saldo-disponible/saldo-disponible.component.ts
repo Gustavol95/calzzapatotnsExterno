@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {CorteService} from "../corte.service";
 import {UserModel} from "../../../model/user.model";
 import {Page} from "ui/page";
+import {ActivatedRoute} from "@angular/router";
 
 /**
  * Created by iedeveloper on 23/03/17.
@@ -23,8 +24,15 @@ export class SaldoDisponibleComponent implements OnInit{
     estatus="";
     saldos:any;
 
-    constructor(private corteService:CorteService,private _userModel:UserModel, private page:Page){
-
+    constructor(private page:Page,private activatedRoute: ActivatedRoute){
+        activatedRoute.queryParams.subscribe(params => {
+            this.saldos = JSON.parse(params["info"]);
+            this.ultimaActualizacion=this.saldos.fecha;
+            this.limiteCredito=this.saldos.limite;
+            this.creditoDisponible=this.saldos.disponible;
+            this.saldo=this.saldos.saldo;
+            console.log("INFOOOOO=>",JSON.stringify(this.saldos));
+        });
     }
     ngOnInit(): void {
         console.log("entra el  Saldo Disponible");
@@ -32,21 +40,7 @@ export class SaldoDisponibleComponent implements OnInit{
     }
 
     ngAfterViewInit() {
-         this._userModel.fetch().then(usuario => {
-            if (usuario) {
 
-                console.log("Este es el bueno locoo2",usuario.email);
-               this.corteService.getSaldos(usuario.email)
-                    .map((info)=>{
-                        this.saldos=info.saldoMayoristas;
-                        this.ultimaActualizacion=this.saldos.fecha;
-                        this.limiteCredito=this.saldos.limite;
-                        this.saldo=this.saldos.saldo;
-                        this.creditoDisponible=this.saldos.disponible;
-
-                    }).subscribe();
-            }
-        });
     }
 
 }

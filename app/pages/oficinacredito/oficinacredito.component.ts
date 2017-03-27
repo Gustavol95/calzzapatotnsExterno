@@ -291,12 +291,12 @@ export class OficinacreditoComponent implements OnInit {
     }
 
     closeDialog() {
-        console.log("closeDialog");
+        //console.log("closeDialog");
         this.showDialog = false;
     }
 
     closeDialog2() {
-        console.log("closeDialog");
+        //console.log("closeDialog");
         this.showDialog2 = false;
     }
 
@@ -308,14 +308,14 @@ export class OficinacreditoComponent implements OnInit {
 
     changeTab() {
         if (this.selectedIndex == 0) {
-            console.log("Cambio de tab Mi ciudad");
+            //console.log("Cambio de tab Mi ciudad");
         } else {
-            console.log("Cambio de tab Mi ubicacion");
+            //console.log("Cambio de tab Mi ubicacion");
         }
     }
 
     cambio() {
-        console.log("Entro cambio");
+        //console.log("Entro cambio");
         if (this.valid) {
             this.lista = !this.lista;
             if (!this.lista) {
@@ -333,39 +333,43 @@ export class OficinacreditoComponent implements OnInit {
     }
 
     mapModal(tienda) {
-        this.tienda = tienda;
-        this.showDialog = true;
-        this.centeredOnLocation = false;
-        this.lista = false;
-        let position: Position;
-        position = Position.positionFromLatLng(tienda.lat, tienda.lng);
-        this.locationReceived(position);
+        if (tienda.lat != "" && tienda.lng != "") {
+            this.tienda = tienda;
+            this.showDialog = true;
+            this.centeredOnLocation = false;
+            this.lista = false;
+            let position: Position;
+            position = Position.positionFromLatLng(tienda.lat, tienda.lng);
+            this.locationReceived(position);
+        }
     }
 
     mapModal2(tienda) {
-        this.tienda2 = tienda;
-        this.showDialog2 = true;
-        this.centeredOnLocation2 = false;
-        this.lista = false;
-        let position: Position;
-        position = Position.positionFromLatLng(tienda.lat, tienda.lng);
-        this.locationReceived3(position);
+        if (tienda.lat != "" && tienda.lng != "") {
+            this.tienda2 = tienda;
+            this.showDialog2 = true;
+            this.centeredOnLocation2 = false;
+            this.lista = false;
+            let position: Position;
+            position = Position.positionFromLatLng(tienda.lat, tienda.lng);
+            this.locationReceived3(position);
+        }
     }
 
     enableLocation() {
         if (!geolocation.isEnabled()) {
-            console.log("enableLocation 1");
-            console.log('Location not enabled, requesting.');
+            //console.log("enableLocation 1");
+            //console.log('Location not enabled, requesting.');
             return geolocation.enableLocationRequest();
         } else {
-            console.log("enableLocation 2");
+            //console.log("enableLocation 2");
             return Promise.resolve(true);
         }
     }
 
     getLocation() {
         if (geolocation.isEnabled()) {
-            console.log("getLocation 1");
+            //console.log("getLocation 1");
             return geolocation.getCurrentLocation({
                 desiredAccuracy: 10,
                 updateDistance: 10,
@@ -373,7 +377,7 @@ export class OficinacreditoComponent implements OnInit {
                 maximumAge: 10000
             })
         }
-        console.log("getLocation 2");
+        //console.log("getLocation 2");
         return Promise.reject('Geolocation not enabled.');
     }
 
@@ -412,7 +416,7 @@ export class OficinacreditoComponent implements OnInit {
                 });
                 num++;
             });
-            console.log("PASO 2");
+            //console.log("PASO 2");
             this.enableLocation()
                 .then(this.getLocation)
                 .then(() => {
@@ -427,7 +431,7 @@ export class OficinacreditoComponent implements OnInit {
     };
 
     onMapReady2(event) {
-        console.log("onMapReady2");
+        //console.log("onMapReady2");
         //let datos = {latitud: "", longitud: "", cliente_id: this.user.cliente_id, ubicacion: 0};
         //this._oficinacreditoService.getTiendas(datos).subscribe(d => {
         //this.tiendas2 = d;
@@ -463,14 +467,14 @@ export class OficinacreditoComponent implements OnInit {
     };
 
     mapTapped = (event) => {
-        console.log('Map Tapped');
+        //console.log('Map Tapped');
     };
 
     mail(tienda) {
         if (tienda.email) {
             let appPath = fs.knownFolders.currentApp().path;
             let logoPath = appPath + "/assets/logo_calzzapato.png";
-            console.log("mail => " + logoPath);
+            //console.log("mail => " + logoPath);
             email.compose({
                 subject: "Yo",
                 body: tienda.nombre,
@@ -484,9 +488,9 @@ export class OficinacreditoComponent implements OnInit {
                 appPickerTitle: 'Compose with..' // for Android, default: 'Open with..'
             }).then(
                 function () {
-                    console.log("Email composer closed");
+                    //console.log("Email composer closed");
                 }, function (err) {
-                    console.log("Error: " + err);
+                    //console.log("Error: " + err);
                 });
         }
     }
@@ -530,7 +534,7 @@ export class OficinacreditoComponent implements OnInit {
                 console.log("Tienda2 => ", JSON.stringify(d));
                 let num: number = 0;
                 this.tiendas2.forEach((tienda) => {
-                    console.log("Tienda2 marker => ", JSON.stringify(tienda));
+                    //console.log("Tienda2 marker => ", JSON.stringify(tienda));
                     this.addMarker2({
                         location: {latitude: tienda.lat, longitude: tienda.lng},
                         title: "",
@@ -583,25 +587,25 @@ export class OficinacreditoComponent implements OnInit {
     }
 
     error(err) {
-        console.log('Error: ' + JSON.stringify(err));
+        //console.log('Error: ' + JSON.stringify(err));
     }
 
     onMarkerSelect(event) {
         this.tienda = event.marker.data;
         this.showDialog = true;
-        console.log('Clicked on ' + JSON.stringify(event.marker.data));
+        //console.log('Clicked on ' + JSON.stringify(event.marker.data));
 
     }
 
     onMarkerSelect2(event) {
         this.tienda2 = event.marker.data;
         this.showDialog2 = true;
-        console.log('Clicked on ' + JSON.stringify(event.marker.data));
+        //console.log('Clicked on ' + JSON.stringify(event.marker.data));
 
     }
 
     onCameraChanged(event) {
-        console.log('Camera changed: ' + JSON.stringify(event.camera));
+        //console.log('Camera changed: ' + JSON.stringify(event.camera));
     }
 }
 export class AddLineArgs {

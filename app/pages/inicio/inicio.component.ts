@@ -6,7 +6,8 @@ import {ClienteModel} from "../../model/cliente.model";
 import {VentaModel} from "../../model/venta.model";
 import {InicioService} from "./inicio.service";
 import {UserModel} from "../../model/user.model";
-
+import moment = require("moment");
+moment.locale('es');
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/inicio/inicio.component.html",
@@ -15,11 +16,13 @@ import {UserModel} from "../../model/user.model";
 })
 
 export class InicioComponent implements OnInit {
-
-    info : any;
     extenderSaldo=true;
-    saldo="";
-    pagoMinimo="";
+    clienteSaldo:any;
+    fecha="";
+    disponible="0";
+    pagoMinimo="0";
+
+
     public user: any = {};
 
     constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel,  private _ventaModel: VentaModel){
@@ -32,12 +35,13 @@ export class InicioComponent implements OnInit {
 
     ngAfterViewInit() {
         this._clienteModel.fetch().then(usuario => {
-            this._inicioService.getClienteInfo(usuario.id)
+            this._inicioService.getClienteInfo(usuario.codigo)
                 .subscribe(info=>{
-                    this.info=info[0];
-                    console.log("info",JSON.stringify(info));
-                    this.saldo="$"+info[0].saldo;
-                    this.pagoMinimo="$"+info[0].pago_minimo;
+                    this.clienteSaldo=info;
+                    this.disponible=info.disponible;
+                    this.fecha=info.fecha;
+                    this.pagoMinimo=info.pagoMinimo;
+                    console.log("info",JSON.stringify(this.clienteSaldo));
                 });
         });
         this._userModel.fetch().then(usuario => {
@@ -75,7 +79,7 @@ export class InicioComponent implements OnInit {
         console.log("Tap corte");
         let navigationExtras: NavigationExtras = {
             queryParams: {
-                "info": JSON.stringify(this.info)
+                "info": JSON.stringify(this.clienteSaldo)
             }
         };
         this.router.navigate(['/home/corte'], navigationExtras);

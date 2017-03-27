@@ -10,6 +10,6 @@ export class OficinacreditoService {
     }
 
     getTiendas(datos) {
-        return this.http.post("tiendas/ubicaciones",datos).map(response => response.json());
+        return this.http.post("oficinasCredito",datos).map(response => response.json());
     }
 }
