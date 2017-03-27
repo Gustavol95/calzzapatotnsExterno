@@ -17,12 +17,12 @@ moment.locale('es');
 
 export class InicioComponent implements OnInit {
     extenderSaldo=true;
-    clienteSaldo={
-        corte: '',
-        pago_minimo:0,
-        fecha_pago:'',
-        saldo_disponible:0,
-    };
+    clienteSaldo:any;
+    fecha="";
+    disponible="0";
+    pagoMinimo="0";
+
+
     public user: any = {};
 
     constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel,  private _ventaModel: VentaModel){
@@ -38,6 +38,9 @@ export class InicioComponent implements OnInit {
             this._inicioService.getClienteInfo(usuario.codigo)
                 .subscribe(info=>{
                     this.clienteSaldo=info;
+                    this.disponible=info.disponible;
+                    this.fecha=info.fecha;
+                    this.pagoMinimo=info.pagoMinimo;
                     console.log("info",JSON.stringify(this.clienteSaldo));
                 });
         });

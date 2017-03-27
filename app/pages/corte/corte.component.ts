@@ -2,7 +2,7 @@
  * Created by iedeveloper on 15/02/17.
  */
 import {Component, OnInit, LOCALE_ID} from "@angular/core";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {Page} from "ui/page";
 import {RouterExtensions} from "nativescript-angular";
 @Component({
@@ -31,6 +31,15 @@ export class CorteComponent implements OnInit{
 
     referenciabanc(){
         this.routerExtensions.navigate(["/home/referenciabancaria"]);
+    }
+    saldoDisponible(){
+        console.log("Tap corte");
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "info": JSON.stringify(this.info)
+            }
+        };
+        this.router.navigate(['/home/saldo-disponible'], navigationExtras);
     }
 
     redireccion(args) {

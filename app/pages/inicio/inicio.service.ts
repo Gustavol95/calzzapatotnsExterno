@@ -10,7 +10,8 @@ export class InicioService {
     }
 
     getClienteInfo(codigoCliente) {
-        return this.http.get("saldosSoap/"+codigoCliente).map(response => response.json());
+        console.log("Entra ela peticion tempranera");
+        return this.http.get("saldosDetalleSoap/"+codigoCliente).map(response => response.json());
     }
 
     //Ver que es sincronizacion
