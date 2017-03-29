@@ -7,6 +7,9 @@ import {VentaModel} from "../../model/venta.model";
 import {InicioService} from "./inicio.service";
 import {UserModel} from "../../model/user.model";
 import moment = require("moment");
+declare var android: any;
+var permissions = require( "nativescript-permissions" );
+import * as platform from "platform";
 moment.locale('es');
 @Component({
     selector: "inicio-inc",
@@ -22,10 +25,10 @@ export class InicioComponent implements OnInit {
     disponible="0";
     pagoMinimo="0";
 
-
     public user: any = {};
 
-    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel,  private _ventaModel: VentaModel){
+    constructor(private page:Page, private router:Router, private _clienteModel: ClienteModel, private _inicioService: InicioService,  private _userModel: UserModel,
+                private _ventaModel: VentaModel){
         console.log("constructor");
     }
 
@@ -83,6 +86,20 @@ export class InicioComponent implements OnInit {
             }
         };
         this.router.navigate(['/home/corte'], navigationExtras);
+    }
+
+    oficinaCredito(){
+        if(platform.isAndroid){
+        permissions.requestPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION, "Necesitamos obtener tu ubicación GPS")
+            .then(()=> {
+                console.log("Woo Hoo, I have the power!");
+                this.redireccion('oficinacredito')
+            })
+            .catch(()=> {
+                console.log("Uh oh, no permissions - plan B time!");
+                console.log("FALLOOOOOOO");
+            });
+        }else { this.redireccion('oficinacredito')}
     }
 
 }
