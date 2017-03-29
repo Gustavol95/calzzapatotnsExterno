@@ -26,7 +26,7 @@
                     <Image row="8" col="0" src="~/assets/notificaciones.png" horizontalAlignment="center"></Image>
                     <Label row="8" col="1" text="Notificaciones"></Label>
                     <Image row="9" col="0" src="~/assets/oficinaCredito.png" horizontalAlignment="center"></Image>
-                    <Label row="9" col="1" text="Oficina de Crédito" (tap)="redireccion('oficinacredito')"></Label>
+                    <Label row="9" col="1" text="Oficina de Crédito" (tap)="oficinaCredito()"></Label>
                     <Image row="10" col="0" src="~/assets/salir.png" horizontalAlignment="center" *ngIf="user.name!='Anónimo'"></Image>
                     <Label row="10" col="1" text="Salir" (tap) = "salir()" *ngIf="user.name!='Anónimo'"></Label>
                 </grid-layout>

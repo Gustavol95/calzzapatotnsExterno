@@ -21,6 +21,9 @@ import {RecuperarComponent} from "../modals/recuperar/recuperar";
 import {InicioService} from "../inicio/inicio.service";
 var appSettings = require("application-settings");
 var dialogs = require("ui/dialogs");
+declare var android: any;
+var permissions = require( "nativescript-permissions" );
+import * as platform from "platform";
 
 @Component({
     selector: "inicio-inc",
@@ -163,5 +166,19 @@ export class HomeComponent implements OnInit {
         }
     }
 
+
+    oficinaCredito(){
+        if(platform.isAndroid){
+            permissions.requestPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION, "Necesitamos obtener tu ubicación GPS")
+                .then(()=> {
+                    console.log("Woo Hoo, I have the power!");
+                    this.redireccion('oficinacredito')
+                })
+                .catch(()=> {
+                    console.log("Uh oh, no permissions - plan B time!");
+                    console.log("FALLOOOOOOO");
+                });
+        }else { this.redireccion('oficinacredito')}
+    }
 
 }

@@ -31,6 +31,7 @@
     "nativescript-google-maps-sdk": "^1.4.3",
     "nativescript-google-maps-utils": "^0.1.2",
     "nativescript-liveedit": "^2.3.0",
+    "nativescript-permissions": "^1.2.3",
     "nativescript-phone": "^1.2.4",
     "nativescript-sqlite": "^1.1.2",
     "nativescript-telerik-ui": "^1.6.0",
