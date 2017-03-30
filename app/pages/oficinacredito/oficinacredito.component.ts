@@ -35,8 +35,8 @@ import {UserModel} from "../../model/user.model";
     <GridLayout width="100%" height="100%" >
         <TabView #element [(ngModel)]="selectedIndex" (ngModelChange)="changeTab($event)">  
             <GridLayout width="100%" height="100%" *tabItem="{title: 'MI CIUDAD'}" backgroundColor="#EAEAEA">
-                <ListView [visibility]="lista ? 'visible' : 'collapse'" [items]='tiendas' separatorColor="#07314a"  >
-                    <template let-item='item'  backgroundColor="#EAEAEA">
+                <ListView [visibility]="lista ? 'visible' : 'collapse'" [items]='tiendas' backgroundColor="#EAEAEA" separatorColor="#07314a"  >
+                    <template let-item='item'  >
                         <GridLayout class="stack-template">
                             <grid-layout columns="55, auto, *, *" rows="55, auto, *,*,*" class="list-item"
                                          style="padding: 10px 15px 15px 1px">
@@ -133,8 +133,8 @@ import {UserModel} from "../../model/user.model";
                 </GridLayout>
             </GridLayout> 
             <GridLayout height="100%" width="100%" *tabItem="{title: 'MI UBICACIÓN'}" backgroundColor="#EAEAEA">
-                <ListView [visibility]="lista ? 'visible' : 'collapse'" [items]='tiendas2' separatorColor="#07314a"  >
-                    <template let-item='item'  backgroundColor="#EAEAEA">
+                <ListView [visibility]="lista ? 'visible' : 'collapse'" [items]='tiendas2'  backgroundColor="#EAEAEA" separatorColor="#07314a"  >
+                    <template let-item='item' >
                         <GridLayout class="stack-template">
                             <grid-layout columns="55, auto, *, *" rows="55, auto, *,*,*" class="list-item"
                                          style="padding: 10px 15px 15px 1px">
