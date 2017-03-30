@@ -22,7 +22,6 @@ export class VentaComponent extends OnInit {
     constructor(private routerExtensions: RouterExtensions, private page:Page, private activatedRoute:ActivatedRoute){
         super();
         console.log("WHATS", "aqui andamos");
-
         if(activatedRoute.queryParams){
             activatedRoute.queryParams.subscribe(params => {
                 if(params["tab"]){
@@ -33,7 +32,6 @@ export class VentaComponent extends OnInit {
                 }
             });
         }
-
     }
 
     viewTicket(tab, id) {

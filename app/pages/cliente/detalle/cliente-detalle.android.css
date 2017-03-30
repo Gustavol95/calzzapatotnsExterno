@@ -1,15 +1,15 @@
 .circulo{
-    margin-top: 5;
+    margin-top: 10;
     background-color: #223D98;
     font-size: 22;
     font-weight:normal;
     text-align: center;
     horiz-align: center;
     vertical-align: center;
-    padding-top: 13;
-    border-radius: 30;
+    padding-top: 0;
+    border-radius: 25;
     color: #fff;
-    horizontal-align: left;
+
 }
 .nombre{
     margin-top:15;
@@ -20,34 +20,39 @@
     color: #5D5D5D;
     font-size: 11;
     font-weight: normal;
+    margin:0;padding:2px 0 2px 15px;text-align: left;
 }
 .contenido{
     color: #000;
     font-size: 13;
     font-weight: normal;
     text-align: right;
-    padding-right: 10;
+    margin:0;
+    padding:2px 15px 2px 0;
 }
 .btn-like{
-    margin-left: 15;
+    horiz-align: right;
+    margin-left: 0;
+    margin-right: 15;
 }
 .btn-unlike{
-    margin-left: 20;
-    margin-right: 20;
+    margin-left: 15;
+    margin-right: 15;
 }
 .btn-call{
     horiz-align: right;
-    text-align: right;
-    margin-right: 5;
-    padding-right: 10;
+    vertical-align: center;
+    margin-left: 15;
+    margin-right: 0;
+
 }
 .lbl-call{
     font-size: 14;
+    horiz-align: left;
     text-align: left;
-    text-align: right;
-    margin-right: 5;
-    padding-bottom: 4;
-    padding-right: 10;
+    padding-right: 15;
+    margin-left: 0;
+    padding-left: 3;
     vertical-align: center;
 }
 .fab-button {
@@ -71,4 +76,10 @@
 .footer_right{
     text-align: right;
     margin-left: 8px;
+}
+TabView {
+    tab-text-color: #D3D3D3;
+    tab-background-color: #EE2933;
+    selected-tab-text-color: white;
+    android-selected-tab-highlight-color: #223D98;
 }

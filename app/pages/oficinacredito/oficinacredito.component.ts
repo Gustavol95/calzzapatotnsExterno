@@ -29,8 +29,8 @@ import {UserModel} from "../../model/user.model";
     //templateUrl: "pages/oficinacredito/oficinacredito.html",
     template: `
     <ActionBarExtension>
-        <ActionItem *ngIf="lista" icon="~/assets/map.png" (tap)="cambio()"></ActionItem> 
-        <ActionItem *ngIf="!lista" icon="~/assets/list.png" (tap)="cambio()"></ActionItem>
+        <ActionItem *ngIf="lista" icon="res://ic_map_white_48dp" ios.position="right" (tap)="cambio()"></ActionItem> 
+        <ActionItem *ngIf="!lista" icon="res://ic_view_list_white_48dp" ios.position="right" (tap)="cambio()"></ActionItem>
     </ActionBarExtension>
     <GridLayout width="100%" height="100%" >
         <TabView #element [(ngModel)]="selectedIndex" (ngModelChange)="changeTab($event)">  
@@ -53,21 +53,21 @@ import {UserModel} from "../../model/user.model";
                                            style="margin:0;padding:0px 0px 0px 15px;text-align: right" textWrap="true"></Label>
                                     <Label class="label-info" *ngIf="item.numint || item.numext"
                                            text="{{(item.numint) ? 'Int. #'+item.numint : ''}}{{(item.numext) ? ' Ext. #'+item.numext : ''}},"
-                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right"></Label>
+                                           style="margin:0;padding:0px 0px 0px 15px;text-align:right" textWrap="true"></Label>
                                     <Label class="label-info" *ngIf="item.colonia" text="Col. {{item.colonia}},"
-                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right"></Label>
+                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right" textWrap="true"></Label>
                                     <Label class="label-info" *ngIf="item.cp" text="C.P. {{item.cp}}."
-                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right"></Label>
+                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right" textWrap="true"></Label>
                                 </stack-layout>
      
                                 <stack-layout row="3" col="1"
                                               style="margin:0px 0px 20px 0px;padding:0px 0px 10px 0px;  border-color: #D9D9D9;border-width: 0 0 1 0;">
-                                    <Label class="label-info" text="Teléfono" style="margin:0;padding:0px 0px 0px 1px;"></Label>
+                                    <Label class="label-info" text="Teléfono" style="margin:0;padding:0px 0px 0px 1px;" textWrap="true"></Label>
                                 </stack-layout>
                                 <stack-layout row="3" col="2" colSpan="3"
                                               style="margin:0px 0px 20px 0px;padding:0px 0px 10px 0px;  border-color: #D9D9D9;border-width: 0 0 1 0;">
                                     <Label class="label-info" *ngIf="item.telefono" text="{{item.telefono}}"
-                                           style="margin:0;padding:0px 0px 0px 15px;text-align: left"></Label>
+                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right" textWrap="true"></Label>
                                 </stack-layout>
                                 <Image  class="imagen-bottom-card" row="4" col="1" src="~/assets/map2.png" stretch="aspectFit" horizontalAlignment="center"
                                        (tap)="mapModal(item)"></Image>
@@ -165,7 +165,7 @@ import {UserModel} from "../../model/user.model";
                                 <stack-layout row="3" col="2" colSpan="3"
                                               style="margin:0px 0px 20px 0px;padding:0px 0px 10px 0px;  border-color: #D9D9D9;border-width: 0 0 1 0;">
                                     <Label class="label-info" *ngIf="item.telefono" text="{{item.telefono}}"
-                                           style="margin:0;padding:0px 0px 0px 15px;text-align: left"></Label>
+                                           style="margin:0;padding:0px 0px 0px 15px;text-align: right"></Label>
                                 </stack-layout>
                                 <Image  class="imagen-bottom-card" row="4" col="1" src="~/assets/map2.png" stretch="aspectFit" horizontalAlignment="center"
                                        (tap)="mapModal2(item)"></Image>

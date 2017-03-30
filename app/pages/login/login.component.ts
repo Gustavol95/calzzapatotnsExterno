@@ -17,6 +17,9 @@ var appSettings = require("application-settings");
 import {Label} from "ui/label";
 import {AnimationCurve} from "ui/enums";
 import * as application from "application";
+declare var android: any;
+var permissions = require( "nativescript-permissions" );
+import * as platform from "platform";
 
 @Component({
     selector: "my-app",
@@ -85,7 +88,32 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        this.loginService.login(this.user)
+        if(platform.isAndroid){
+            permissions.requestPermission([android.Manifest.permission.WRITE_EXTERNAL_STORAGE,android.Manifest.permission.READ_EXTERNAL_STORAGE], "Necesitamos obtener tu ubicación GPS")
+                .then(()=> {
+                    console.log("Podemos escribir y leer memoria en marshmallow/Nougat");
+                    this.loginService.login(this.user)
+                        .subscribe(data => {
+                            this.user = data.user as User;
+                            console.log("USUARIO", JSON.stringify(this.user));
+                            console.log("CLIENTE", JSON.stringify(this.user.cliente));
+                            appSettings.setString("token", data.token);
+                            this._usuarioModel.insert(this.user);
+                            this._clienteModel.insert(this.user.cliente);
+                            this._clienteMediosModel.insert(this.user.cliente.medios);
+                            this.loginService.sincronizacion().subscribe(d => {
+                                console.log("SINCRONIZACION", JSON.stringify(d.tipos_medios));
+                                this.isLoggingIn = true;
+                                this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
+                                this._tiposMediosModel.insert(d.tipos_medios);
+                            });
+                        });
+                })
+                .catch(()=> {
+                    console.log("Uh oh, no permissions - plan B time!");
+                    console.log("FALLOOOOOOO");
+                });
+        }else { this.loginService.login(this.user)
             .subscribe(data => {
                 this.user = data.user as User;
                 console.log("USUARIO", JSON.stringify(this.user));
@@ -100,7 +128,9 @@ export class LoginComponent implements OnInit {
                     this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
                     this._tiposMediosModel.insert(d.tipos_medios);
                 });
-            });
+            });}
+
+
     }
 
     recuperarPassword() {
