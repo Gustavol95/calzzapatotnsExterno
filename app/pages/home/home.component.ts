@@ -28,7 +28,7 @@ import * as platform from "platform";
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/home/home.component.html",
-    providers: [LoginService,InicioService]
+    providers: [LoginService, InicioService]
 })
 
 export class HomeComponent implements OnInit {
@@ -37,6 +37,12 @@ export class HomeComponent implements OnInit {
     public user: any = {};
     plataforma = false;
     isLoggingIn = false;
+    clienteSaldo = {
+        corte: '',
+        pago_minimo: 0,
+        fecha_pago: '',
+        saldo_disponible: 0,
+    };
 
     constructor(private routerExtensions: RouterExtensions,
                 private page: Page,
@@ -49,7 +55,7 @@ export class HomeComponent implements OnInit {
                 private _loginService: LoginService,
                 private vcRef: ViewContainerRef,
                 private _modalService: ModalDialogService,
-                private _inicioService:InicioService,
+                private _inicioService: InicioService,
                 private _ventaModel: VentaModel) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
@@ -150,9 +156,9 @@ export class HomeComponent implements OnInit {
             // >> returning-result
             this._modalService.showModal(RecuperarComponent, options)
                 .then((dato) => {
-                    if(dato){
-                        let datos = {cliente_id:this.user.cliente_id,dato:dato};
-                        this._loginService.cambiarPassword(datos).subscribe(d=>{
+                    if (dato) {
+                        let datos = {cliente_id: this.user.cliente_id, dato: dato};
+                        this._loginService.cambiarPassword(datos).subscribe(d => {
                             this._userModel.cambiarSolicitud();
                             dialogs.alert({
                                 title: "Recuperar contraseña",

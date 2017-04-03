@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, LOCALE_ID} from "@angular/core";
 import {Page} from "ui/page";
 import {GridLayout} from "ui/layouts/grid-layout";
 import {Router, NavigationExtras} from "@angular/router";
@@ -15,7 +15,7 @@ moment.locale('es');
     selector: "inicio-inc",
     templateUrl: "pages/inicio/inicio.component.html",
     styleUrls: ["pages/inicio/inicio-common.css", "pages/inicio/inicio.css"],
-    providers:[InicioService]
+    providers:[InicioService,{ provide: LOCALE_ID, useValue: "es-MX" }]
 })
 
 export class InicioComponent implements OnInit {
@@ -49,8 +49,7 @@ export class InicioComponent implements OnInit {
         });
         this._userModel.fetch().then(usuario => {
             if (usuario) {
-                this.user =usuario;
-                console.log("Este es el bueno locoo",usuario.email);
+                this.user = usuario;
             }
         });
     }
