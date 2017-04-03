@@ -4,7 +4,7 @@
   "readme": "NativeScript Application",
   "repository": "<fill-your-repository-here>",
   "nativescript": {
-    "id": "org.nativescript.calzzapatotns1",
+    "id": "org.nativescript.calzzapatotns2",
     "tns-ios": {
       "version": "2.5.0"
     },
