@@ -20,7 +20,7 @@ export class HttpService extends Http {
 	@Output() start : EventEmitter<any> = new EventEmitter(true);
 	@Output() stop : EventEmitter<any> = new EventEmitter(true);
 
-	private _timeout : number = 10000;
+	private _timeout : number = 25000;
 
 
     constructor(backend: XHRBackend,

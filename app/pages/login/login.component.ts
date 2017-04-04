@@ -4,7 +4,6 @@ import {LoginService} from "./login.service";
 import {Router} from "@angular/router";
 import {UserModel} from "../../model/user.model";
 import {Page} from "ui/page";
-//import {Page} from "ui/page";
 import {registerElement} from "nativescript-angular/element-registry";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {ModalViewComponent} from "./modal/modal-view";
@@ -17,6 +16,10 @@ var dialogs = require("ui/dialogs");
 var appSettings = require("application-settings");
 import {Label} from "ui/label";
 import {AnimationCurve} from "ui/enums";
+import * as application from "application";
+declare var android: any;
+var permissions = require( "nativescript-permissions" );
+import * as platform from "platform";
 
 @Component({
     selector: "my-app",
@@ -27,6 +30,7 @@ import {AnimationCurve} from "ui/enums";
 export class LoginComponent implements OnInit {
     user: User;
     isLoggingIn = true;
+    plataforma = false;
     @ViewChild("container") container: ElementRef;
     //@ViewChild("CB1") FirstCheckBox: ElementRef;
 
@@ -49,6 +53,7 @@ export class LoginComponent implements OnInit {
     ngAfterViewInit() {
         this._usuarioModel.fetch().then(usuario => {
             if (usuario) {
+                console.log("Que chingados",usuario);
                 this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
             } else {
                 this.routerExtensions.navigate(["/"], {clearHistory: true});
@@ -73,10 +78,42 @@ export class LoginComponent implements OnInit {
         this.onTap('label1');
         this.onTap('label2');
 
+        if (application.android) {
+            console.log("We are running on Android device!");
+            this.plataforma = false;
+        } else if (application.ios) {
+            console.log("We are running on iOS device");
+            this.plataforma = true;
+        }
     }
 
     login() {
-        this.loginService.login(this.user)
+        if(platform.isAndroid){
+            permissions.requestPermission([android.Manifest.permission.WRITE_EXTERNAL_STORAGE,android.Manifest.permission.READ_EXTERNAL_STORAGE], "Necesitamos obtener tu ubicación GPS")
+                .then(()=> {
+                    console.log("Podemos escribir y leer memoria en marshmallow/Nougat");
+                    this.loginService.login(this.user)
+                        .subscribe(data => {
+                            this.user = data.user as User;
+                            console.log("USUARIO", JSON.stringify(this.user));
+                            console.log("CLIENTE", JSON.stringify(this.user.cliente));
+                            appSettings.setString("token", data.token);
+                            this._usuarioModel.insert(this.user);
+                            this._clienteModel.insert(this.user.cliente);
+                            this._clienteMediosModel.insert(this.user.cliente.medios);
+                            this.loginService.sincronizacion().subscribe(d => {
+                                console.log("SINCRONIZACION", JSON.stringify(d.tipos_medios));
+                                this.isLoggingIn = true;
+                                this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
+                                this._tiposMediosModel.insert(d.tipos_medios);
+                            });
+                        });
+                })
+                .catch(()=> {
+                    console.log("Uh oh, no permissions - plan B time!");
+                    console.log("FALLOOOOOOO");
+                });
+        }else { this.loginService.login(this.user)
             .subscribe(data => {
                 this.user = data.user as User;
                 console.log("USUARIO", JSON.stringify(this.user));
@@ -86,12 +123,14 @@ export class LoginComponent implements OnInit {
                 this._clienteModel.insert(this.user.cliente);
                 this._clienteMediosModel.insert(this.user.cliente.medios);
                 this.loginService.sincronizacion().subscribe(d => {
-                    console.log("SINCRONIZAOCION", JSON.stringify(d.tipos_medios));
+                    console.log("SINCRONIZACION", JSON.stringify(d.tipos_medios));
+                    this.isLoggingIn = true;
                     this.routerExtensions.navigate(["/home/inicio"], {clearHistory: true});
                     this._tiposMediosModel.insert(d.tipos_medios);
-                    this.isLoggingIn = true;
                 });
-            });
+            });}
+
+
     }
 
     recuperarPassword() {

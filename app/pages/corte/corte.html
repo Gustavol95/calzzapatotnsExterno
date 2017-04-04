@@ -3,7 +3,7 @@
     <GridLayout row="0" col="0">
         <StackLayout height="100%">
             <Label class="titulo" text="Corte" textWrap="true" > </Label>
-            <Label class="contenido" text="03 Oct 2016" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.fecha}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Pronóstico Próximo corte -->
@@ -17,27 +17,27 @@
     <GridLayout  row="1" col="0">
         <StackLayout height="100%">
             <Label class="titulo" text="Pago Mínimo" textWrap="true"> </Label>
-            <Label class="contenido" [text]="pagoMinimo" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.pagoMinimo | currency : 'MXN' : true : '1.2-2'}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Fecha de Pago -->
     <GridLayout  row="1" col="1">
         <StackLayout height="100%">
             <Label class="titulo" text="Fecha de Pago" textWrap="true"> </Label>
-            <Label class="contenido" text="17 Oct 2" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.fecha}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Referencias Bancarias -->
     <GridLayout row="2" col="0" colSpan="2">
-        <StackLayout height="100%" style="background-color: #223D98;">
+        <StackLayout height="100%" style="background-color: #223D98;" (tap)="referenciabanc()">
             <Label class="bancarias" text="Referencias Bancarias" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Saldo Disponible -->
-    <GridLayout row="3" col="0" colSpan="2">
-        <StackLayout height="100%">
+    <GridLayout row="3" col="0" colSpan="2" >
+        <StackLayout height="100%" (tap)="saldoDisponible()">
             <Label class="titulo" text="Saldo Disponible" textWrap="true"> </Label>
-            <Label class="contenido" [text]="saldo" textWrap="true"> </Label>
+            <Label class="contenido" text="{{info.disponible | currency : 'MXN' : true : '1.2-2'}}" textWrap="true"> </Label>
         </StackLayout>
     </GridLayout>
     <!-- Programa CrediGana -->

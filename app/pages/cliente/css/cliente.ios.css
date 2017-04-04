@@ -5,3 +5,9 @@ TextField{
     margin-top: 15;
     padding-left: 5;
 }
+.btn-like{
+    horiz-align: center;
+    vertical-align: center;
+    height: 30;
+    width: 30;
+}

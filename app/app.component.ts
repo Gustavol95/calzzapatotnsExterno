@@ -9,6 +9,7 @@ import {HttpService} from "./custom-http/http-service";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 var dialogs = require("ui/dialogs");
 import * as application from "application";
+
 @Component({
     selector: 'main',
     templateUrl: './app.component.html',
@@ -29,14 +30,12 @@ export class AppComponent extends Observable implements OnInit {
         //page.on("loaded", this.onLoaded, this);
         if (application.android) {
             //console.log("We are running on Android device!");
-            this.plataforma=false;
+            this.plataforma = false;
         } else if (application.ios) {
             //console.log("We are running on iOS device");
-            this.plataforma=true;
+            this.plataforma = true;
         }
     }
-
-    
 
     ngOnInit() {
         this.http.start.subscribe(() => this.isLoading = true);
@@ -58,6 +57,8 @@ export class AppComponent extends Observable implements OnInit {
                 this.error404();
             } else if (e.status == 422) {
                 this.error422(e.json());
+            } else if (e.status == 423) {
+                this.error423();
             } else if (e.status == 500) {
                 this.error500();
             } else if (e.status == 503) {
@@ -76,6 +77,7 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/"]);
         });
     }
+
     error403() {
         let r = this.router;
         dialogs.alert({
@@ -86,6 +88,7 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/"]);
         });
     }
+
     error404() {
         let r = this.router;
         dialogs.alert({
@@ -100,7 +103,7 @@ export class AppComponent extends Observable implements OnInit {
     error422(err) {
 
         let msg = "";
-        console.log("Error 422",JSON.stringify(err));
+        console.log("Error 422", JSON.stringify(err));
         for (let error of err.errors) {
             msg += error + "\n";
         }
@@ -112,11 +115,11 @@ export class AppComponent extends Observable implements OnInit {
         });
     }
 
-    errorTimeOut() {
+    error423() {
         let r = this.router;
         dialogs.alert({
-            title: "Tiempo de espera agotado!",
-            message: "Excedio el límite de tiempo de espera",
+            title: "Demasiados intentos",
+            message: "Se ha bloqueado tu cuenta por 15 minutos. intente más tarde.",
             okButtonText: "Aceptar"
         }).then(function () {
             r.navigate(["/"]);
@@ -144,4 +147,16 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/"]);
         });
     }
+
+    errorTimeOut() {
+        let r = this.router;
+        dialogs.alert({
+            title: "Tiempo de espera agotado!",
+            message: "Excedio el límite de tiempo de espera",
+            okButtonText: "Aceptar"
+        }).then(function () {
+            r.navigate(["/"]);
+        });
+    }
+
 }
