@@ -18,7 +18,8 @@ export class ListadoValeComponent implements OnInit {
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _valeService: ValeService, private _clienteModel : ClienteModel) {
         this._clienteModel.fetch().then(cliente=>{
-            this._valeService.index(cliente.id).subscribe(vales => {
+            this._valeService.index(cliente.codigo).subscribe(vales => {
+                console.log(JSON.stringify(vales));
                 this.vales = vales;
                 this.listLoaded = true;
             });
