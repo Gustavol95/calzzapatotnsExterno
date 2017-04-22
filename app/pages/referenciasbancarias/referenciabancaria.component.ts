@@ -18,7 +18,7 @@ var dialogs = require("ui/dialogs");
                            <GridLayout style="background-color: #EAEAEA">
                                <GridLayout columns="100,*" rows="auto,auto,auto" class="cobrado">
                                    <Label col="0" row="0" text="{{item.Entidad}}" style="text-align: left"></Label>
-                                   <Label col="1" row="0" text="{{item.FechaPago | date: 'dd MMM yyyy'}}" style="text-align: right"></Label>
+                                   <Label col="1" row="0" text="{{item.FechaPago| date: 'dd MMM yyyy'}}" style="text-align: right"></Label>
                                    
                                    <Label col="0" row="1" text="Convenio" style="text-align: left"></Label>
                                    <Label col="1" row="1" text="{{item.Convenio}}" style="text-align: right"></Label>
@@ -59,17 +59,34 @@ var dialogs = require("ui/dialogs");
 export class ReferenciabancariaComponent implements OnInit {
     public referencias:any;
     public referenciasg:any;
+    temp:string;
+
+    fecha:Date;
     constructor(private router: Router, private _referenciabancariaService : ReferenciabancariaService, private page: Page,private _clienteModel: ClienteModel) {
     }
 
     ngOnInit() {
         this.page.actionBar.title = "Referencias Bancarias";
+        this.fecha=new Date('2017-04-19T00:00:00')
         this._clienteModel.fetch().then(cliente => {
             console.log("cliente",JSON.stringify(cliente));
             if (cliente) {
                 this._referenciabancariaService.getReferenciasBancarias(cliente.codigo).subscribe(referencias=>{
-                    this.referencias = referencias.ReferenciasBancarias;
-                    console.log("referencias123=> ",JSON.stringify(this.referencias));
+
+
+
+                    let json=referencias.ReferenciasBancarias;
+
+                    json.forEach((item)=>{
+                        this.temp=item.FechaPago;
+                        this.temp=this.temp.replace(" ","T");
+                        item.FechaPago=this.temp;
+                        console.log("hola",this.temp);
+                    });
+                    console.log("referencias123=> ",JSON.stringify(json));
+                    this.referencias = json;
+
+
                 });
                 this._referenciabancariaService.getReferenciasBancariasGenericas(cliente.codigo).subscribe(referenciasg=>{
                     this.referenciasg = referenciasg;
