@@ -90,3 +90,17 @@
     vertical-align: bottom;
     background-color: #EE2933;
 }
+
+.actualizacion-titulo-extendido{
+    text-align: right;
+    color: #e0e0e0;
+    font-size: 15;
+    font-weight: bold;
+}
+
+.actualizacion-info-extendido{
+    text-align: left;
+    color: white;
+    font-size: 15;
+    font-weight: bold;
+}
