@@ -20,6 +20,7 @@ import * as application from "application";
 declare var android: any;
 var permissions = require( "nativescript-permissions" );
 import * as platform from "platform";
+import {Config} from "../../shared/config";
 
 @Component({
     selector: "my-app",
@@ -91,12 +92,13 @@ export class LoginComponent implements OnInit {
         if(platform.isAndroid){
             permissions.requestPermission([android.Manifest.permission.WRITE_EXTERNAL_STORAGE,android.Manifest.permission.READ_EXTERNAL_STORAGE], "Necesitamos obtener tu ubicación GPS")
                 .then(()=> {
-                    console.log("Podemos escribir y leer memoria en marshmallow/Nougat");
+                    console.log("Podemos escribir y leer memoria en marshmallow/Nougat a huevooo");
                     this.loginService.login(this.user)
                         .subscribe(data => {
                             this.user = data.user as User;
                             console.log("USUARIO", JSON.stringify(this.user));
                             console.log("CLIENTE", JSON.stringify(this.user.cliente));
+                            console.log("APIURL", JSON.stringify(Config.apiUrl)+" a hueboooo")
                             appSettings.setString("token", data.token);
                             this._usuarioModel.insert(this.user);
                             this._clienteModel.insert(this.user.cliente);
