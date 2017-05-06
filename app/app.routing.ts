@@ -16,6 +16,7 @@ import {TicketComponent} from "./pages/venta/ticket/ticket.component";
 import {OficinacreditoComponent} from "./pages/oficinacredito/oficinacredito.component";
 import {ReferenciabancariaComponent} from "./pages/referenciasbancarias/referenciabancaria.component";
 import {SaldoDisponibleComponent} from "./pages/corte/saldo-disponible/saldo-disponible.component";
+import {ElectronicoValeComponent} from "./pages/vales/electronico/electronico.component";
 
 export const routes = [
     {path: '', component: LoginComponent, useAsDefault: true},
@@ -33,6 +34,7 @@ export const routes = [
             {path: 'modal-recuperar', component:RecuperarComponent},
 			{path: 'cliente/detalle', component:ClienteDetalleComponent},
             {path: 'vales', component:ListadoValeComponent},
+            {path: 'vale-electronico', component:ElectronicoValeComponent},
             {path: 'oficinacredito', component:OficinacreditoComponent},
             {path: 'referenciabancaria', component:ReferenciabancariaComponent},
             {path: 'ventas', component:VentaComponent},
@@ -56,6 +58,7 @@ export const navigatableComponents = [
     RecuperarComponent,
 	ClienteDetalleComponent,
     ListadoValeComponent,
+    ElectronicoValeComponent,
     OficinacreditoComponent,
     ReferenciabancariaComponent,
     VentaComponent,

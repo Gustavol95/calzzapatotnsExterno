@@ -32,7 +32,7 @@ export class ListadoValeComponent implements OnInit {
 
     }
     nuevo() {
-        this.routerExtensions.navigate(["/home/vale/create"]);
+        this.routerExtensions.navigate(["/home/vale-electronico"]);
 
     }
 }

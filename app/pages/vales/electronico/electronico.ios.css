@@ -1,0 +1,28 @@
+Button {
+    background-color: #223D98;
+    color: #fff;
+
+}
+.label-formulario{
+    color: black;
+}
+
+.style1 {
+    background-color: #5c687c;
+}
+TextField{
+    color:#000;
+    border-bottom-width: 2;
+    border-bottom-color: #EE2933;
+    margin-left:10;
+    margin-right:10;
+}
+
+Label{
+    padding-left: 2;
+}
+
+StackLayout {
+    margin-left: 3;
+    margin-right: 3;
+}

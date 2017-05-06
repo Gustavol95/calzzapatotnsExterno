@@ -76,7 +76,13 @@
        </StackLayout>
 
     </GridLayout>
-    <GridLayout *tabItem="{title: 'ELECTRÓNICOS'}" >
+    <GridLayout *tabItem="{title: 'ELECTRÓNICOS'}" rows="auto,*"  columns="*,*" height="100%" width="100%">
 
+        <Label col="0" row="0" text="Ultima Actualización" ></Label>
+        <Label col="1" row="0" text="01/20/2017" ></Label>
+        <ListView row="1" col="0" colSpan="2" [items] = 'electronicos'>
+
+        </ListView>
+        <FAB row="1" col="1" (tap)="nuevo()" icon="~/assets/ic_add_white.png" rippleColor="#f1f1f1" backColor="#EE2933" class="fab-button" style="width: 60; height: 60;margin:15;" horizontalAlignment="right" verticalAlignment="bottom"></FAB>
     </GridLayout>
 </TabView>
