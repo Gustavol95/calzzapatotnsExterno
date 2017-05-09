@@ -18,6 +18,7 @@ export class ListadoValeComponent implements OnInit {
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _valeService: ValeService, private _clienteModel : ClienteModel) {
         this._clienteModel.fetch().then(cliente=>{
+            console.log("Le mando el "+cliente.codigo)
             this._valeService.index(cliente.codigo).subscribe(vales => {
                 console.log(JSON.stringify(vales));
                 this.vales = vales;

@@ -24,6 +24,7 @@ export class InicioComponent implements OnInit {
     fecha="";
     disponible="0";
     pagoMinimo="0";
+    ultimaAct="Última Actualizacion: ";
 
     public user: any = {};
 
@@ -43,6 +44,7 @@ export class InicioComponent implements OnInit {
                     this.clienteSaldo=info;
                     this.disponible=info.disponible;
                     this.fecha=info.fecha;
+                    this.ultimaAct=this.ultimaAct+" "info.fecha;
                     this.pagoMinimo=info.pagoMinimo;
                     console.log("info",JSON.stringify(this.clienteSaldo));
                 });

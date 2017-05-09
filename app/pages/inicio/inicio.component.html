@@ -33,7 +33,7 @@
                 <Label class="saldo-info-extendido" col="2" row="1" text="{{pagoMinimo | currency : 'MXN' : true : '1.2-2'}}" textWrap="true"></Label>
                 <Label class="saldo-titulo-extendido" col="1" row="2" text="Saldo" textWrap="true"></Label>
                 <Label class="saldo-info-extendido" col="2" row="2" text="{{disponible | currency : 'MXN' : true : '1.2-2'}}" textWrap="true"></Label>
-                <Label class="actualizacion-titulo-extendido" col="2" row="3" colSpan="2" text="Última actualización:" textAlign="right"></Label>
+                <Label class="actualizacion-titulo-extendido" col="0" row="3" colSpan="4" text="{{'Última Actualización:  '+fecha}}" style="padding-right: 10" textAlign="right" textWrap="true"></Label>
             </GridLayout>
             <!-- Mis Clientes -->
             <GridLayout class="grid" columns="*,4*,4*,*" (tap)="redireccion('clientes')" rows="auto">

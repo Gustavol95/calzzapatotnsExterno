@@ -55,7 +55,7 @@ export class ErrorFeedbackComponent implements OnInit {
         this.formErrors = '';
         const control = form.get(this.name);
 
-        if (control && control.dirty && !control.valid) {
+        if (control.touched && control.dirty && !control.valid) {
             let attribute = this.name;
             const messages = this.validationMessages;
 

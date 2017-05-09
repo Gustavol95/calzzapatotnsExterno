@@ -9,6 +9,9 @@ import {Label} from "ui/label";
 import {AnimationCurve} from "ui/enums";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../shared/validators/CustomValidators";
+var LoadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
+var dialogs = require("ui/dialogs");
+
 //registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 
 @Component({
@@ -19,11 +22,20 @@ import {CustomValidators} from "../../../shared/validators/CustomValidators";
 })
 export class ElectronicoValeComponent implements OnInit {
     form: FormGroup;
+    telefonoCM="";
+    cliente="";
+    monto="";
+    personaAutorizada="";
+    ineAutorizada="";
+    telefonoAutorizada="";
+    isLoading:boolean= false;
+
     protected validationMessages: any = {
         telefonoCM: {
             required: "Teléfono del emisor del vale obligatorio",
             maxLength: "El tamaño máximo del nombre es de 255 dígitos",
-            minLength: "El tamaño mínimo del nombre es de 1 dígito"
+            minLength: "El tamaño mínimo del nombre es de 1 dígito",
+            celular: "Celular de 10 dígitos obligatorio"
         },
         cliente: {
             required: "Nombre de cliente obligatorio",
@@ -39,17 +51,20 @@ export class ElectronicoValeComponent implements OnInit {
         monto: {
             required: "Debe especificar un monto de crédito",
             maxLength: "El tamaño máximo del nombre es de 255 dígitos",
-            minLength: "El tamaño mínimo del nombre es de 1 dígito"
+            minLength: "El tamaño mínimo del nombre es de 1 dígito",
+            pattern: "Solo números"
         },
         ineAutorizada: {
             required: "4 últimos dígitos obligatorios",
             maxLength: "El tamaño máximo del nombre es de 255 dígitos",
-            minLength: "El tamaño mínimo del nombre es de 1 dígito"
+            minLength: "El tamaño mínimo del nombre es de 1 dígito",
+            pattern:"4 últimos numeros obligatorios"
         },
         telefonoAutorizada: {
             required: "Telefono de persona autorizada para canje",
             maxLength: "El tamaño máximo del nombre es de 255 dígitos",
-            minLength: "El tamaño mínimo del nombre es de 1 dígito"
+            minLength: "El tamaño mínimo del nombre es de 1 dígito",
+            celular: "Celular de 10 dígitos obligatorio"
         },
         correoAutorizada: {
             required: "Correo de persona autorizada para cange obligatorio",
@@ -71,13 +86,13 @@ export class ElectronicoValeComponent implements OnInit {
         this.page.actionBar.title = "Vale Electrónico";
 
         this.form = this._fb.group({
-           // telefonoAutorizada: [null, [Validators.required, Validators.minLength(1)]],
-            telefonoCM: [null, [Validators.required, Validators.minLength(1)]],
+            telefonoAutorizada: [null, [Validators.required, Validators.minLength(1),CustomValidators.celular]],
+            telefonoCM: [null, [Validators.required, Validators.minLength(1),CustomValidators.celular]],
             cliente: [null, [Validators.required, Validators.minLength(1)]],
             personaAutorizada: [null, [Validators.required]],
-            monto: [null, [Validators.required, Validators.minLength(1)]],
-            ineAutorizada: [null, [Validators.required, Validators.minLength(1)]],
-            correoAutorizada: [null, [Validators.required, Validators.minLength(1)]]
+            monto: [null, [Validators.required, Validators.minLength(1),Validators.pattern('[0-9]+')]],
+            ineAutorizada: [null, [Validators.required, Validators.pattern('[0-9][0-9][0-9][0-9]')]]/*,
+            correoAutorizada: [null, [Validators.required, Validators.minLength(1)]]*/
 
         });
     }
@@ -92,7 +107,44 @@ export class ElectronicoValeComponent implements OnInit {
     }
 
     public solicitar(){
-            console.log("Ahueboosoo2")
+       this.isLoading=true;
+        let datos = {
+            movil:this.form.value.telefonoCM+"",/*6671222612*/
+            importe:this.form.value.monto+"",
+            tipo_medio: "1",
+            referencia_destino:this.form.value.telefonoAutorizada+"",
+            ife: this.form.value.ineAutorizada+"",
+            nombre_receptor:this.form.value.personaAutorizada+""
+        };
+        console.log("Se envía "+JSON.stringify(datos));
+
+            this._valeService.valeElectronico(datos)
+                .subscribe(content =>{
+                    let route = this.routerExtensions;
+                    console.log("Ahi te va", JSON.stringify(content));
+                    this.isLoading=false;
+                    dialogs.alert({
+                        title: "Vale asignado",
+                        message: "Asignado exitosamente.",
+                        okButtonText: "Aceptar"
+                    }).then(function () {
+                        route.navigate(["/home/vales"],{transition: {
+                            name: "fade",
+                            duration: 200,
+                            curve: "linear"
+                        }});
+                    });
+                    },(error)=>{
+                    dialogs.alert({
+                        title: "Hubo un problema",
+                        message: "No se pudo asignar el vale debido a problemas en el servidor.",
+                        okButtonText: "Aceptar"
+                    }).then(function () {
+                    });
+                        this.isLoading=false;
+                    }
+
+                );
 
     }
 

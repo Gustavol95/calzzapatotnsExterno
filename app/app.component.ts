@@ -112,6 +112,7 @@ export class AppComponent extends Observable implements OnInit {
             message: msg,
             okButtonText: "Aceptar"
         }).then(function () {
+            console.log("AJEJISUESUCHINGADAMARE");
         });
     }
 

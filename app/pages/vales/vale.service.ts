@@ -13,6 +13,10 @@ export class ValeService {
         return this.http.get("clientes/"+cliente_id+"/vales").map(response => response.json());
     }
 
+
+
+
+
     /* POST - Asignar vale Electronico
        A MANDAR
        movilEmisor  ->  Telefono del Cliente Mayorista (Usar para pruebas: )
@@ -23,7 +27,6 @@ export class ValeService {
        nombreReceptor  -> Nombre de persona autorizada
       vales/electronicos
      */
-
     valeElectronico(datos){
         return this.http.post("vales/electronicos",datos);
     }
