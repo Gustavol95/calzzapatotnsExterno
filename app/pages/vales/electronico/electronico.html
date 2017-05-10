@@ -5,7 +5,7 @@
             <StackLayout [formGroup]="form" [visibility]="isLoading ? 'collapse' : 'visible'">
                 <GridLayout rows="20 auto,auto">
                     <Label row="1" class="label-formulario" id="label1" fontSize="15" (tap)="onTap('label1')" text="Teléfono del Emisor de Vales" textWrap="true"></Label>
-                    <TextField keyboardType="next"  (tap)="onTap('label1')" fontSize="15" row="1"  [ngModel]="telefonoCM" formControlName="telefonoCM"></TextField>
+                    <TextField keyboardType="number"  (tap)="onTap('label1')" fontSize="15" row="1"  [ngModel]="telefonoCM" formControlName="telefonoCM"></TextField>
                     <app-error-feedback row="2" [messages]="validationMessages.telefonoCM" [formGroup]="form" controlName="telefonoCM" ></app-error-feedback>
                 </GridLayout>
                 <GridLayout rows="20 auto,auto">
@@ -30,7 +30,7 @@
                 </GridLayout>
                 <GridLayout rows="20 auto,auto">
                     <Label row="1" class="label-formulario" id="label6" fontSize="15" (tap)="onTap('label6')" text="Telefono de p. Autorizada" textWrap="true"></Label>
-                    <TextField keyboardType="next"  (tap)="onTap('label6')" fontSize="15" row="1"  [ngModel]="telefonoAutorizada" formControlName="telefonoAutorizada"></TextField>
+                    <TextField keyboardType="number"  (tap)="onTap('label6')" fontSize="15" row="1"  [ngModel]="telefonoAutorizada" formControlName="telefonoAutorizada"></TextField>
                     <app-error-feedback row="2" [messages]="validationMessages.telefonoAutorizada" [formGroup]="form" controlName="telefonoAutorizada" ></app-error-feedback>
                 </GridLayout>
             </StackLayout>

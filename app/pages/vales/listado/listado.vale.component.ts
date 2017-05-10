@@ -15,6 +15,7 @@ import {ClienteModel} from "../../../model/cliente.model";
 })
 export class ListadoValeComponent implements OnInit {
     public vales: any[];
+    public valesElec:any[];
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _valeService: ValeService, private _clienteModel : ClienteModel) {
 
@@ -28,8 +29,11 @@ export class ListadoValeComponent implements OnInit {
         });
 
         this._valeService.indexElectronicos().subscribe(elec =>{
-            console.log(JSON.stringify(elec));
-        })
+
+            console.log(JSON.stringify(elec)+ " MIRA MAMAAAA");
+            this.valesElec = elec;
+
+        });
     }
 
     ngOnInit() {

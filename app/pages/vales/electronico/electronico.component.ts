@@ -50,7 +50,7 @@ export class ElectronicoValeComponent implements OnInit {
         },
         monto: {
             required: "Debe especificar un monto de crédito",
-            maxLength: "El tamaño máximo del nombre es de 255 dígitos",
+            maxLength: "El tamaño máximo del numero es de 9 dígitos",
             minLength: "El tamaño mínimo del nombre es de 1 dígito",
             pattern: "Solo números"
         },
@@ -90,7 +90,7 @@ export class ElectronicoValeComponent implements OnInit {
             telefonoCM: [null, [Validators.required, Validators.minLength(1),CustomValidators.celular]],
             cliente: [null, [Validators.required, Validators.minLength(1)]],
             personaAutorizada: [null, [Validators.required]],
-            monto: [null, [Validators.required, Validators.minLength(1),Validators.pattern('[0-9]+')]],
+            monto: [null, [Validators.required, Validators.minLength(1),Validators.maxLength(9),Validators.pattern('[0-9]+')]],
             ineAutorizada: [null, [Validators.required, Validators.pattern('[0-9][0-9][0-9][0-9]')]]/*,
             correoAutorizada: [null, [Validators.required, Validators.minLength(1)]]*/
 
