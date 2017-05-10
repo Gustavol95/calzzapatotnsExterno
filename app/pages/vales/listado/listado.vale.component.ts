@@ -17,6 +17,7 @@ export class ListadoValeComponent implements OnInit {
     public vales: any[];
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _valeService: ValeService, private _clienteModel : ClienteModel) {
+
         this._clienteModel.fetch().then(cliente=>{
             console.log("Le mando el "+cliente.codigo)
             this._valeService.index(cliente.codigo).subscribe(vales => {
@@ -25,6 +26,10 @@ export class ListadoValeComponent implements OnInit {
                 this.listLoaded = true;
             });
         });
+
+        this._valeService.indexElectronicos().subscribe(elec =>{
+            console.log(JSON.stringify(elec));
+        })
     }
 
     ngOnInit() {

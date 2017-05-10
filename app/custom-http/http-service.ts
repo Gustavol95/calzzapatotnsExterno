@@ -49,6 +49,7 @@ export class HttpService extends Http {
      * @returns {Observable<>}
      */
     get(url: string, options?: RequestOptionsArgs): Observable<any> {
+        console.log(this.getFullUrl(url));
         this.requestInterceptor();
         return super.get(this.getFullUrl(url), this.requestOptions(options))
 			.timeout(this._timeout, Observable.throw('timeout_exceeded') )

@@ -16,7 +16,12 @@ export class ValeService {
 
 
 
+    /* GET Listado de vales Electrónicos
 
+    * */
+    indexElectronicos(){
+        return this.http.get("vales/electronicos/cliente/lista").map(response =>response.json());
+    }
     /* POST - Asignar vale Electronico
        A MANDAR
        movilEmisor  ->  Telefono del Cliente Mayorista (Usar para pruebas: )
