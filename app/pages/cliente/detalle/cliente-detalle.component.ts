@@ -23,7 +23,7 @@ export class ClienteDetalleComponent extends OnInit {
     public selectedIndex: number;
 
     ngOnInit(): void {
-        this.page.actionBar.title=this.detalle.nombre+" "+this.detalle.paterno+" "+this.detalle.materno;
+        this.page.actionBar.title=this.detalle.nombre;
         this.page.backgroundColor=new Color("#EEEEEE");
     }
 

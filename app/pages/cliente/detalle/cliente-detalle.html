@@ -5,7 +5,7 @@
                 <GridLayout style="margin:5;" rows="*,auto,auto,auto,auto,*,auto,auto" columns="auto,auto,auto,auto,*" row="0">
                     <!--<Label class="circulo" row="0" col="0" height="55" width="55" rowSpan="1" text="LM" stretch="aspectFit"></Label>-->
                     <Button class="circulo" row="0" col="0" height="55" width="55" rowSpan="1" text="LM" stretch="aspectFit"></Button>
-                    <Label class="nombre" row="0" col="1" colSpan="4" text="{{detalle.nombre}} {{detalle.paterno}} {{detalle.materno}}" textWrap="true"></Label>
+                    <Label class="nombre" row="0" col="1" colSpan="4" text="{{detalle.nombre}}" textWrap="true"></Label>
 
                     <Label class="titulo" row="1" col="1" colSpan="3" text="Teléfono" textWrap="true"></Label>
                     <Label class="titulo" row="2" col="1" colSpan="3" text="Celular" textWrap="true"></Label>
@@ -17,7 +17,7 @@
                     <Label class="contenido" row="2" col="4" text="{{detalle.celular}}" textWrap="true"></Label>
                     <Label class="contenido" row="3" col="4" text="{{detalle.email}}" textWrap="true"></Label>
                     <Label class="contenido" row="4" col="4" text="{{detalle.fecha_nacimiento}}" textWrap="true" ></Label>
-                    <Label class="contenido" row="5" col="4" text="Calle {{detalle.calle}} #{{detalle.numero_exterior}} Int. {{detalle.numero_interior}}, Col. {{detalle.colonia}}. C.P. {{detalle.cp}}" textWrap="true"></Label>
+                    <Label class="contenido" row="5" col="4" text="Calle {{detalle.calle}} #{{detalle.numero_exterior}} C.P. {{detalle.cp}}" textWrap="true"></Label>
 
                     <Image height="25" width="25" row="5" col="0" src="~/assets/map-marker-r.png" stretch="aspectFit" style="horiz-align: right;vertical-align: top;"></Image>
 
