@@ -41,16 +41,6 @@ export class FormularioClienteComponent implements OnInit {
             maxLength: "El tamaño máximo del nombre es de 255 dígitos",
             minLength: "El tamaño mínimo del nombre es de 1 dígito"
         },
-        paterno: {
-            required: "El apellido paterno es obligatorio",
-            maxLength: "El tamaño máximo del apellido paterno es de 255 dígitos",
-            minLength: "El tamaño mínimo del apellido paterno es de 1 dígito"
-        },
-        materno: {
-            required: "El apellido materno es obligatorio",
-            maxLength: "El tamaño máximo del apellido materno es de 255 dígitos",
-            minLength: "El tamaño mínimo del apellido materno es de 1 dígito"
-        },
         celular: {
             required: "El celular es obligatorio",
             maxLength: "El tamaño máximo del celular es de 10 dígitos",
@@ -78,16 +68,6 @@ export class FormularioClienteComponent implements OnInit {
             maxLength: "El tamaño máximo del número exterior es de 255 dígitos",
             minLength: "El tamaño mínimo del número exterior es de 1 dígito"
         },
-        numero_interior: {
-            required: "El número interior es obligatorio",
-            maxLength: "El tamaño máximo del número interior es de 255 dígitos",
-            minLength: "El tamaño mínimo del número interior es de 1 dígito"
-        },
-        colonia: {
-            required: "La colonia es obligatorio",
-            maxLength: "La tamaño máximo del colonia es de 255 dígitos",
-            minLength: "La tamaño mínimo del colonia es de 1 dígito"
-        },
         cp: {
             required: "El código postal es obligatorio",
             maxLength: "El tamaño máximo del código postal es de 10 dígitos",
@@ -99,15 +79,11 @@ export class FormularioClienteComponent implements OnInit {
         this.page.actionBar.title = "Agregar Cliente";
         this.form = this._fb.group({
             nombre: [null, [Validators.required, Validators.minLength(1)]],
-            paterno: [null, [Validators.required, Validators.minLength(1)]],
-            materno: [null, [Validators.required, Validators.minLength(1)]],
             celular: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
             email: [null, [Validators.required, Validators.minLength(1), CustomValidators.email]],
             fecha_nacimiento: [null, [Validators.required, Validators.minLength(1)]],
             calle: [null, [Validators.required, Validators.minLength(1)]],
             numero_exterior: [null, [Validators.required, Validators.minLength(1)]],
-            numero_interior: [null, [Validators.minLength(1)]],
-            colonia: [null, [Validators.required, Validators.minLength(1)]],
             cp: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
         });
     }
@@ -122,7 +98,7 @@ export class FormularioClienteComponent implements OnInit {
         this._modalService.showModal(DatepickerComponent, options)
             .then((dateresult: Date) => {
                 this.form.get('fecha_nacimiento').setValue(moment(dateresult).format('DD/MM/YYYY'));
-                this.onTap('label7');
+                this.onTap('label7'); 
             });
     }
 
@@ -146,7 +122,7 @@ export class FormularioClienteComponent implements OnInit {
     guardar() {
         let cliente: Cliente = this.form.value as Cliente;
         this.valid=false;
-        console.log("Guardar :)))))",this.form.get('fecha_nacimiento'));
+        console.log("Guardar:", this.form.get('fecha_nacimiento'));
         this._userModel.fetch().then(usuario => {
             cliente.cliente_id = usuario.cliente_id;
             console.log("Va a guardar", JSON.stringify(cliente));
