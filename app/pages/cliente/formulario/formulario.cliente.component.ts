@@ -97,7 +97,7 @@ export class FormularioClienteComponent implements OnInit {
         // >> returning-result
         this._modalService.showModal(DatepickerComponent, options)
             .then((dateresult: Date) => {
-                this.form.get('fecha_nacimiento').setValue(moment(dateresult).format('YYYY-MM-DD'));
+                this.form.get('fecha_nacimiento').setValue(moment(dateresult).format('DD/MM/YYYY'));
                 this.onTap('label7');
             });
     }
