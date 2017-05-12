@@ -13,10 +13,10 @@
                     <Label class="titulo" row="4" col="1" colSpan="3" text="Fecha de Nacimiento" textWrap="true"></Label>
                     <Label class="titulo" row="5" col="1" colSpan="3" text="Dirección" textWrap="true"></Label>
 
-                    <Label class="contenido" row="1" col="4" text="{{detalle.celular}}" textWrap="true"></Label>
+                    <Label class="contenido" row="1" col="4" text="{{detalle.telefono}}" textWrap="true"></Label>
                     <Label class="contenido" row="2" col="4" text="{{detalle.celular}}" textWrap="true"></Label>
                     <Label class="contenido" row="3" col="4" text="{{detalle.email}}" textWrap="true"></Label>
-                    <Label class="contenido" row="4" col="4" text="{{detalle.fecha_nacimiento}}" textWrap="true" ></Label>
+                    <Label class="contenido" row="4" col="4" text="{{detalle.fecha_nacimiento | date:'dd/MM/y'}}" textWrap="true" ></Label>
                     <Label class="contenido" row="5" col="4" text="Calle {{detalle.calle}} #{{detalle.numero_exterior}} C.P. {{detalle.cp}}" textWrap="true"></Label>
 
                     <Image height="25" width="25" row="5" col="0" src="~/assets/map-marker-r.png" stretch="aspectFit" style="horiz-align: right;vertical-align: top;"></Image>

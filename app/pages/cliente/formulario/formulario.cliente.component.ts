@@ -70,8 +70,9 @@ export class FormularioClienteComponent implements OnInit {
         },
         cp: {
             required: "El código postal es obligatorio",
-            maxLength: "El tamaño máximo del código postal es de 10 dígitos",
-            minLength: "El tamaño mínimo del código postal es de 1 dígito"
+            maxLength: "El tamaño máximo del código postal es de 5 dígitos",
+            minLength: "El tamaño mínimo del código postal es de 5 dígito",
+            celular: "Ingrese un codigo postal válido"
         }
     }
 
@@ -84,7 +85,7 @@ export class FormularioClienteComponent implements OnInit {
             fecha_nacimiento: [null, [Validators.required, Validators.minLength(1)]],
             calle: [null, [Validators.required, Validators.minLength(1)]],
             numero_exterior: [null, [Validators.required, Validators.minLength(1)]],
-            cp: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
+            cp: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(5), CustomValidators.cp]]
         });
     }
 
