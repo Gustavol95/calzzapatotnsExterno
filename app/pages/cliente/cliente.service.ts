@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 export class ClienteService {
 
     constructor(private http: HttpService) {
+
     }
 
     index() {
@@ -17,6 +18,5 @@ export class ClienteService {
 
     public save(cliente: Cliente): Observable<Cliente> {
         return this.http.post('subclientes', cliente).map(response => response.json());
-
     }
 }
