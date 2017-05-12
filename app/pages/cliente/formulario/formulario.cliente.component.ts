@@ -24,7 +24,7 @@ var dialogs = require("ui/dialogs");
 export class FormularioClienteComponent implements OnInit {
     public clientes: any[];
     form: FormGroup;
-    valid=true;
+    valid = true;
     constructor(private router: Router,
                 private routerExtensions: RouterExtensions,
                 private page: Page,
@@ -120,13 +120,20 @@ export class FormularioClienteComponent implements OnInit {
     }
 
     guardar() {
-        let cliente: Cliente = this.form.value as Cliente;
-        this.valid=false;
-        console.log("Guardar:", this.form.get('fecha_nacimiento'));
+        this.valid = false;
         this._userModel.fetch().then(usuario => {
-            cliente.cliente_id = usuario.cliente_id;
-            console.log("Va a guardar", JSON.stringify(cliente));
-            this._clienteService.save(cliente).subscribe(d => {
+            let cli = new Cliente();
+            cli.nombre = this.form.value.nombre;
+            cli.celular = this.form.value.celular;
+            cli.email = this.form.value.email;
+            cli.fecha_nacimiento = this.form.value.fecha_nacimiento;
+            cli.calle = this.form.value.calle;
+            cli.numero_exterior = this.form.value.numero_exterior;
+            cli.cp = this.form.value.cp;
+
+            console.log("Va a guardar", JSON.stringify(cli));
+
+            this._clienteService.save(cli).subscribe(d => {
                 let route = this.routerExtensions;
                 dialogs.alert({
                     title: "Cliente",
