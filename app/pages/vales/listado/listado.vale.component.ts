@@ -16,11 +16,12 @@ import {ClienteModel} from "../../../model/cliente.model";
 export class ListadoValeComponent implements OnInit {
     public vales: any[];
     public valesElec:any[];
+    public fechaElec:any="2017-04-19T00:00:00";
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _valeService: ValeService, private _clienteModel : ClienteModel) {
 
         this._clienteModel.fetch().then(cliente=>{
-            console.log("Le mando el "+cliente.codigo)
+            console.log("Le mando el "+JSON.stringify(cliente));
             this._valeService.index(cliente.codigo).subscribe(vales => {
                 console.log(JSON.stringify(vales));
                 this.vales = vales;
@@ -30,8 +31,11 @@ export class ListadoValeComponent implements OnInit {
 
         this._valeService.indexElectronicos().subscribe(elec =>{
 
-            console.log(JSON.stringify(elec)+ " MIRA MAMAAAA");
-            this.valesElec = elec;
+            this.valesElec = elec.vales;
+            let temp=elec.ultima_actualizacion;
+            temp=temp.replace(" ","T");
+            this.fechaElec=temp;
+            console.log(" MIRA MAMAAAA"+temp);
 
         });
     }
@@ -39,7 +43,7 @@ export class ListadoValeComponent implements OnInit {
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Mis Vales";
-
+        this.fechaElec="2017-04-19T00:00:00";
     }
     nuevo() {
         this.routerExtensions.navigate(["/home/vale-electronico"]);

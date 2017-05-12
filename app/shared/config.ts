@@ -6,5 +6,5 @@ export class Config {
   //static apiUrl = "http://lab.ie-soluciones.com/calzzapato/v1/api/";               /* Laboratorio */
    static apiUrl = "http://192.168.125.244/calzzapato/v1/api/";                     /* Nuevo Lab   */
 
-    static token = "";
+   static token = "";
 }

@@ -18,7 +18,8 @@ export class ListadoClienteComponent implements OnInit {
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _clienteService: ClienteService) {
         this._clienteService.index().subscribe(clientes => {
-            this.clientes = clientes.data;
+            this.clientes = clientes;
+            console.log("Clientes: "+JSON.stringify(clientes));
             this.listLoaded = true;
         });
     }

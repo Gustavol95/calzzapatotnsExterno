@@ -79,7 +79,7 @@
     <GridLayout *tabItem="{title: 'ELECTRÓNICOS'}" style="background-color: #EAEAEA" rows="auto,*"  columns="*,*" height="100%" width="100%">
 
         <Label col="0" row="0" text="Ultima Actualización"  ></Label>
-        <Label col="1" row="0" text="01/20/2017"  style="text-align: right;padding-right: 10;"></Label>
+        <Label col="1" row="0" [text]="fechaElec.substring(0,10)" style="text-align: right;padding-right: 10;"></Label>
 
         <ListView row="1" col="0" colSpan="2"  height="100%" [items]='valesElec' style="background-color: #EAEAEA;">
             <template let-item='item'>

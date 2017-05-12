@@ -166,6 +166,7 @@ export class HttpService extends Http {
         }
         options.headers.append('Authorization', 'Bearer ' +appSettings.getString("token"));
 		options.headers.append('Accept', 'application/json');
+		console.log("TOKEN : "+appSettings.getString("token"));
         return options;
     }
 
