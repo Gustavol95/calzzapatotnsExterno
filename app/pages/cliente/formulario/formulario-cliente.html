@@ -1,49 +1,49 @@
-<ScrollView>
+<ScrollView orientation="vertical">
     <StackLayout [formGroup]="form" style="margin: 15px">
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
-          <TextField keyboardType="next"  (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="nombre"></TextField>
-          <app-error-feedback row="2" [messages]="validationMessages.nombre" [formGroup]="form" controlName="nombre"></app-error-feedback>
+            <Label row="1" id="label1" fontSize="15" (tap)="onTap('label1')" text="Nombre(s)" textWrap="true"></Label>
+            <TextField keyboardType="next"  (tap)="onTap('label1')" fontSize="15" row="1"  text="" formControlName="nombre"></TextField>
+            <app-error-feedback row="2" [messages]="validationMessages.nombre" [formGroup]="form" controlName="nombre"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label4" fontSize="15" (tap)="onTap('label4')" text="Celular" textWrap="true"></Label>
-          <TextField keyboardType="phone"  (tap)="onTap('label4')" fontSize="15" row="1"  text="" formControlName="celular"></TextField>
-          <app-error-feedback [messages]="validationMessages.celular" [formGroup]="form" controlName="celular"></app-error-feedback>
+            <Label row="1" id="label4" fontSize="15" (tap)="onTap('label4')" text="Celular" textWrap="true"></Label>
+            <TextField keyboardType="phone"  (tap)="onTap('label4')" fontSize="15" row="1"  text="" formControlName="celular"></TextField>
+            <app-error-feedback [messages]="validationMessages.celular" [formGroup]="form" controlName="celular"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Email" textWrap="true"></Label>
-          <TextField keyboardType="next"  (tap)="onTap('label6')" fontSize="15" row="1"  text="" formControlName="email"></TextField>
-          <app-error-feedback [messages]="validationMessages.email" [formGroup]="form" controlName="email"></app-error-feedback>
+            <Label row="1" id="label6" fontSize="15" (tap)="onTap('label6')" text="Email" textWrap="true"></Label>
+            <TextField keyboardType="next"  (tap)="onTap('label6')" fontSize="15" row="1"  text="" formControlName="email"></TextField>
+            <app-error-feedback [messages]="validationMessages.email" [formGroup]="form" controlName="email"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label7" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
-          <TextField keyboardType="next"  (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha_nacimiento"></TextField>
-          <app-error-feedback [messages]="validationMessages.fecha_nacimiento" [formGroup]="form" controlName="fecha_nacimiento"></app-error-feedback>
+            <Label row="1" id="label7" fontSize="15" text="Fecha de Nacimiento" textWrap="true"></Label>
+            <TextField keyboardType="next"  (tap)="modalPicker()" fontSize="15" row="1"  text="" [editable]="false" formControlName="fecha_nacimiento"></TextField>
+            <app-error-feedback [messages]="validationMessages.fecha_nacimiento" [formGroup]="form" controlName="fecha_nacimiento"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label8" fontSize="15" (tap)="onTap('label8')" text="Calle" textWrap="true"></Label>
-          <TextField keyboardType="next"  (tap)="onTap('label8')" fontSize="15" row="1"  text="" formControlName="calle"></TextField>
-          <app-error-feedback [messages]="validationMessages.calle" [formGroup]="form" controlName="calle"></app-error-feedback>
+            <Label row="1" id="label8" fontSize="15" (tap)="onTap('label8')" text="Calle" textWrap="true"></Label>
+            <TextField keyboardType="next"  (tap)="onTap('label8')" fontSize="15" row="1"  text="" formControlName="calle"></TextField>
+            <app-error-feedback [messages]="validationMessages.calle" [formGroup]="form" controlName="calle"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label9" fontSize="15" (tap)="onTap('label9')" text="Número exterior" textWrap="true"></Label>
-          <TextField keyboardType="number"  (tap)="onTap('label9')" fontSize="15" row="1"  text="" formControlName=numero_exterior></TextField>
-          <app-error-feedback [messages]="validationMessages.numero_exterior" [formGroup]="form" controlName="numero_exterior"></app-error-feedback>
+            <Label row="1" id="label9" fontSize="15" (tap)="onTap('label9')" text="Número exterior" textWrap="true"></Label>
+            <TextField keyboardType="number"  (tap)="onTap('label9')" fontSize="15" row="1"  text="" formControlName=numero_exterior></TextField>
+            <app-error-feedback [messages]="validationMessages.numero_exterior" [formGroup]="form" controlName="numero_exterior"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto,auto">
-          <Label row="1" id="label12" fontSize="15" (tap)="onTap('label12')" text="Cp" textWrap="true"></Label>
-          <TextField keyboardType="number"  (tap)="onTap('label12')" fontSize="15" row="1"  text="" formControlName="cp"></TextField>
-          <app-error-feedback [messages]="validationMessages.cp" [formGroup]="form" controlName="cp"></app-error-feedback>
+            <Label row="1" id="label12" fontSize="15" (tap)="onTap('label12')" text="Cp" textWrap="true"></Label>
+            <TextField keyboardType="number"  (tap)="onTap('label12')" fontSize="15" row="1"  text="" formControlName="cp"></TextField>
+            <app-error-feedback [messages]="validationMessages.cp" [formGroup]="form" controlName="cp"></app-error-feedback>
         </GridLayout>
 
         <GridLayout rows="20 auto">
-          <Button row="1" [text]="'Guardar'" class="button-save" [ngClass]="{'style1': !form.valid}" isEnabled = "{{ form.valid && valid }}" (tap)="guardar()"></Button>
+            <Button row="1" [text]="'Guardar'" class="button-save" [ngClass]="{'style1': !form.valid}" isEnabled = "{{ form.valid && valid }}" (tap)="guardar()"></Button>
         </GridLayout>
     </StackLayout>
 </ScrollView>
