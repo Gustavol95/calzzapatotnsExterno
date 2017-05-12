@@ -33,4 +33,12 @@ export class CustomValidators {
         }
         return null;
     }
+
+    static cp(control: FormControl): any {
+        let exp: any = /^[0-9]{5}$/;
+        if (!isNullOrUndefined(control.value) && control.value !== "" && !exp.test(control.value)) {
+            return {'cp': true, 'currentValue': control.value};
+        }
+        return null;
+    }
 }

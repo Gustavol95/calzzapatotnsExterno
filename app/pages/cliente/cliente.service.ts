@@ -12,7 +12,7 @@ export class ClienteService {
     }
 
     index() {
-        return this.http.get("subclientes").map(response => response.json());
+        return this.http.get("subclientes/clientes/lista").map(response => response.json());
     }
 
     public save(cliente: Cliente): Observable<Cliente> {
