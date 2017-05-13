@@ -43,7 +43,7 @@ export class ListadoValeComponent implements OnInit {
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Mis Vales";
-        this.fechaElec="2017-04-19T00:00:00";
+
     }
     nuevo() {
         this.routerExtensions.navigate(["/home/vale-electronico"]);
