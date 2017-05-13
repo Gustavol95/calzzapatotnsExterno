@@ -73,5 +73,6 @@ app/shared/error-feedback/error-feedback.component.js
 app/shared/validators/CustomValidators.js
 app/shared/validators/equal-validator.directive.js
 app/app.routing.ts.orig
-
 *.js
+
+*.log

@@ -33,6 +33,7 @@
     "nativescript-liveedit": "^2.3.0",
     "nativescript-loading-indicator": "^2.3.2",
     "nativescript-phone": "^1.2.4",
+    "nativescript-screen-orientation": "^2.0.0",
     "nativescript-sqlite": "^1.1.2",
     "nativescript-telerik-ui": "^1.6.0",
     "nativescript-textinputlayout": "^0.1.4",
