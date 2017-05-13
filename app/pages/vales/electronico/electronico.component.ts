@@ -163,6 +163,7 @@ export class ElectronicoValeComponent implements OnInit {
 
     }
     modalPicker() {
+        this.onTap('label2');
         let options: ModalDialogOptions = {
             viewContainerRef: this.vcRef,
             fullscreen: false
