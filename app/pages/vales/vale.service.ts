@@ -24,6 +24,7 @@ export class ValeService {
     }
     /* POST - Asignar vale Electronico
        A MANDAR
+       subcliente_id -> codigo id del cliente;
        movilEmisor  ->  Telefono del Cliente Mayorista (Usar para pruebas: )
        importe  -> Monto del vale (SIEMPREEEE $1 porque chaleco)
        tipoMedio  -> 1 para telefono y 2 para correo (Ahorita calar siempre 1)
@@ -37,3 +38,4 @@ export class ValeService {
     }
 
 }
+

@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {RouterExtensions} from "nativescript-angular";
+import {Component, OnInit, ViewContainerRef} from "@angular/core";
+import {ModalDialogOptions, ModalDialogService, RouterExtensions} from "nativescript-angular";
 import {Page} from "ui/page";
 
 //import { registerElement } from "nativescript-angular/element-registry";
@@ -9,6 +9,8 @@ import {Label} from "ui/label";
 import {AnimationCurve} from "ui/enums";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CustomValidators} from "../../../shared/validators/CustomValidators";
+import {SubclientesComponent} from "../../modals/subclientes/subclientes.component";
+import moment = require("moment");
 var LoadingIndicator = require("nativescript-loading-indicator").LoadingIndicator;
 var dialogs = require("ui/dialogs");
 
@@ -29,6 +31,8 @@ export class ElectronicoValeComponent implements OnInit {
     ineAutorizada="";
     telefonoAutorizada="";
     isLoading:boolean= false;
+    nombreCliente="";
+    idCliente:any;
 
     protected validationMessages: any = {
         telefonoCM: {
@@ -77,7 +81,9 @@ export class ElectronicoValeComponent implements OnInit {
                 private page: Page,
                 private _fb: FormBuilder,
                 private _valeService: ValeService,
-                private _clienteModel : ClienteModel) {
+                private _clienteModel : ClienteModel,
+                private _modalService: ModalDialogService,
+                private vcRef: ViewContainerRef) {
 
     }
 
@@ -88,7 +94,7 @@ export class ElectronicoValeComponent implements OnInit {
         this.form = this._fb.group({
             telefonoAutorizada: [null, [Validators.required, Validators.minLength(1),CustomValidators.celular]],
             telefonoCM: [null, [Validators.required, Validators.minLength(1),CustomValidators.celular]],
-            cliente: [null, [Validators.required, Validators.minLength(1)]],
+            cliente: [this.nombreCliente, [Validators.required, Validators.minLength(1)]],
             personaAutorizada: [null, [Validators.required]],
             monto: [null, [Validators.required, Validators.minLength(1),Validators.maxLength(9),Validators.pattern('[0-9]+')]],
             ineAutorizada: [null, [Validators.required, Validators.pattern('[0-9][0-9][0-9][0-9]')]]/*,
@@ -104,11 +110,20 @@ export class ElectronicoValeComponent implements OnInit {
             duration: 500,
             curve: AnimationCurve.cubicBezier(0.1, 0.1, 0.1, 1)
         });
+
     }
 
     public solicitar(){
        this.isLoading=true;
+        if(this.form.value.cliente==this.nombreCliente){
+            console.log("son iguales");
+
+        }else {
+            console.log("No son iguales");
+            this.idCliente=null;
+        }
         let datos = {
+            subcliente_id:this.idCliente,
             movil:this.form.value.telefonoCM+"",/*6671222612*/
             importe:this.form.value.monto+"",
             tipo_medio: "1",
@@ -147,6 +162,25 @@ export class ElectronicoValeComponent implements OnInit {
                 );
 
     }
+    modalPicker() {
+        let options: ModalDialogOptions = {
+            viewContainerRef: this.vcRef,
+            fullscreen: false
+        };
+
+        this._modalService.showModal(SubclientesComponent, options)
+            .then((result) => {
+            console.log(JSON.stringify(result.id));
+                //Aqui saca el texto para el form y el codigo que le enviaras el servicioWEB
+                console.log("Este valor :" +result.nombre);
+                this.idCliente=result.id;
+                this.form.get('cliente').setValue(result.nombre);
+                this.nombreCliente=result.nombre;
+
+
+            });
+    }
+
 
 
 }/**

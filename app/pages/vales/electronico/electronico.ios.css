@@ -26,3 +26,9 @@ StackLayout {
     margin-left: 3;
     margin-right: 3;
 }
+
+.icono{
+    width:20;
+    height:20;
+    margin-right:20px;
+}

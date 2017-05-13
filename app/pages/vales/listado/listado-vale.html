@@ -87,7 +87,7 @@
                     <GridLayout columns="55,*,*" rows="55,auto,auto,auto,auto,auto,auto,auto" class="cobrado" >
                         <!--<Button text="CL" row="0" col="0" backgroundColor="#EE2933" style="border-radius:100;color:white;margin:0px 0px 0px 15px;padding:0;width: 100%"></Button>-->
                         <GridView row="0" col="0" style="border-radius: 30px;background-color:#EE2933;" height="55" width="55">
-                            <Label class="label-suc" text="{{item.folio.substring(0,2)}}" height="55" width="55" style="color: white;font-weight: bold;border-radius: 30;text-align: center;vertical-align: center;background-color:#EE2933;"></Label>
+                            <Label class="label-suc" text="{{item.persona_autorizada.substring(0,1)}}" height="55" width="55" style="color: white;font-weight: bold;border-radius: 30;text-align: center;vertical-align: center;background-color:#EE2933;"></Label>
                         </GridView>
                         <Label class="cobrado-label" text="{{item.folio}}" row="0" col="1" style="font-size: 18px;font-weight: bold;" textWrap="true"></Label>
                         <Label class="cobrado-label" text="{{'$'+item.importe}}" row="0" col="2" style="font-size: 18px;font-weight: bold;text-align: right;" textWrap="true"></Label>

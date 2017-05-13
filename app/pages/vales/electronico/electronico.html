@@ -8,10 +8,11 @@
                     <TextField keyboardType="number"  (tap)="onTap('label1')" fontSize="15" row="1"  [ngModel]="telefonoCM" formControlName="telefonoCM"></TextField>
                     <app-error-feedback row="2" [messages]="validationMessages.telefonoCM" [formGroup]="form" controlName="telefonoCM" ></app-error-feedback>
                 </GridLayout>
-                <GridLayout rows="20 auto,auto">
-                    <Label row="1" class="label-formulario" id="label2" fontSize="15" (tap)="onTap('label2')" text="Nombre del cliente" textWrap="true"></Label>
-                    <TextField keyboardType="next"  (tap)="onTap('label2')" fontSize="15" row="1"  [ngModel]="cliente" formControlName="cliente"></TextField>
-                    <app-error-feedback row="2" [messages]="validationMessages.cliente" [formGroup]="form" controlName="cliente" ></app-error-feedback>
+                <GridLayout rows="20 auto,auto" columns="*,auto">
+                    <Label row="1" col="0" colSpan="2" class="label-formulario" id="label2" fontSize="15" (tap)="onTap('label2')" text="Nombre del cliente" textWrap="true"></Label>
+                    <TextField keyboardType="next"  (tap)="onTap('label2')" fontSize="15" row="1" col="0" colSpan="2"  [ngModel]="cliente" formControlName="cliente"></TextField>
+                    <Image class="icono" row="1" col="1"  src="~/assets/magnify.png" stretch="aspectFit" (tap)="modalPicker()"></Image>
+                    <app-error-feedback row="2" col="0" colSpan="2" [messages]="validationMessages.cliente" [formGroup]="form" controlName="cliente" ></app-error-feedback>
                 </GridLayout>
                 <GridLayout rows="20 auto,auto">
                     <Label row="1" class="label-formulario" id="label3" fontSize="15" (tap)="onTap('label3')" text="Monto límite del crédito" textWrap="true"></Label>
