@@ -30,6 +30,7 @@
     "nativescript-geolocation": "0.0.17",
     "nativescript-google-maps-sdk": "^1.4.3",
     "nativescript-google-maps-utils": "^0.1.2",
+    "nativescript-iqkeyboardmanager": "^1.0.1",
     "nativescript-liveedit": "^2.3.0",
     "nativescript-loading-indicator": "^2.3.2",
     "nativescript-phone": "^1.2.4",

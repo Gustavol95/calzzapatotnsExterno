@@ -79,7 +79,7 @@
     <GridLayout *tabItem="{title: 'ELECTRÓNICOS'}" style="background-color: #EAEAEA" rows="auto,*"  columns="*,*" height="100%" width="100%">
 
         <Label col="0" row="0" text="Ultima Actualización"  ></Label>
-        <Label col="1" row="0" [text]="fechaElec.substring(0,10)" style="text-align: right;padding-right: 10;"></Label>
+        <Label col="1" row="0" text="{{fechaElec | date: 'dd MMM yyyy'}}" style="text-align: right;padding-right: 10;"></Label>
 
         <ListView row="1" col="0" colSpan="2"  height="100%" [items]='valesElec' style="background-color: #EAEAEA;">
             <template let-item='item'>
@@ -94,7 +94,7 @@
                         <Label class="cobrado-label" text="Cliente" row="1" col="1" textWrap="true"></Label>
                         <Label class="cobrado-label" text="{{item.subcliente}}" row="1" col="2" style="font-weight: bold;text-align: right;" textWrap="true"></Label>
                         <Label class="cobrado-label" text="Fecha Asignado" row="2" col="1" textWrap="true"></Label>
-                        <Label class="cobrado-label" text="{{item.fecha_asignada}}" row="2" col="2" style="font-weight: bold;text-align: right" textWrap="true"></Label>
+                        <Label class="cobrado-label" text="{{item.fecha_asignada | date: 'dd MMM yyyy'}}" row="2" col="2" style="font-weight: bold;text-align: right" textWrap="true"></Label>
                         <Label class="cobrado-label" text="Persona Autorizada" row="3" col="1" textWrap="true"></Label>
                         <Label class="cobrado-label" text="{{item.persona_autorizada}}" row="3" col="2" style="font-weight: bold;text-align: right" textWrap="true"></Label>
                         <GridLayout row="7" col="0" colSpan="3" style="background-color: #EE2933;margin: 10px 0px 0px 0px;padding: 5px 15px 5px 0px; color: white; border-radius: 5;" textWrap="true">

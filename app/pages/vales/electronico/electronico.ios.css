@@ -13,7 +13,7 @@ Button {
 TextField{
     color:#000;
     border-bottom-width: 2;
-    border-bottom-color: #EE2933;
+    border-bottom-color: #000;
     margin-left:10;
     margin-right:10;
 }

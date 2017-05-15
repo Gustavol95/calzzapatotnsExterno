@@ -25,8 +25,8 @@ export class SubclientesComponent implements OnInit {
 
     constructor(private params: ModalDialogParams,private _clienteService: ClienteService) {
         this._clienteService.index().subscribe(clientes => {
-            this.clientes = clientes.data;
-            this.filtro=clientes.data;
+            this.clientes = clientes;
+            this.filtro=clientes;
         });
     }
 
