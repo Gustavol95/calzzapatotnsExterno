@@ -46,10 +46,12 @@ export class InicioComponent implements OnInit {
                     this.pagoMinimo=info.pagoMinimo;
                     console.log("info",JSON.stringify(this.clienteSaldo));
                 });
+
         });
         this._userModel.fetch().then(usuario => {
             if (usuario) {
                 this.user = usuario;
+
             }
         });
     }

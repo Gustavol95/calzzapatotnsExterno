@@ -18,7 +18,7 @@ export class ListadoClienteComponent implements OnInit {
     listLoaded = false;
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _clienteService: ClienteService) {
         this._clienteService.index().subscribe(clientes => {
-            this.clientes = clientes.data;
+            this.clientes = clientes;
             this.listLoaded = true;
             console.log(" SACA EL FILTER LOCO"+JSON.stringify(this.clientes.filter(datos => datos.nombre.toLowerCase().includes("jesus"))));
         });
