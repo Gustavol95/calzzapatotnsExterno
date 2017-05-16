@@ -8,7 +8,7 @@
 android {  
   defaultConfig {  
     generatedDensities = []
-    applicationId = "org.nativescript.calzzapatotns" 
+    applicationId = "org.nativescript.calzzapatotns1"
     
     //override supported platforms
     // ndk {

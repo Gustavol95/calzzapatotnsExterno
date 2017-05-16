@@ -8,7 +8,15 @@ import {UserModel} from "./model/user.model";
 import {HttpService} from "./custom-http/http-service";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 var dialogs = require("ui/dialogs");
+var appSettings = require("application-settings");
 import * as application from "application";
+import {ClientesMediosModel} from "./model/clientes_medios.model";
+import {TiposMedioModel} from "./model/tipos_medio.model";
+import {ClienteModel} from "./model/cliente.model";
+import {VentaModel} from "./model/venta.model";
+import {RouterExtensions} from "nativescript-angular";
+import {ios} from "utils/utils";
+
 
 @Component({
     selector: 'main',
@@ -23,11 +31,20 @@ export class AppComponent extends Observable implements OnInit {
     public user: any = {};
     plataforma = false;
 
-    constructor(private page: Page, private _changeDetectionRef: ChangeDetectorRef, private router: Router, private usr: UserModel, private dbService: DbService, private http: HttpService) {
+
+    constructor(private page: Page,
+                private routerExtensions: RouterExtensions,
+                private _changeDetectionRef: ChangeDetectorRef,
+                private router: Router, private usr: UserModel,
+                private dbService: DbService,
+                private http: HttpService,
+                private _userModel: UserModel,
+                private _clienteModel: ClienteModel,
+                private _tiposMediosModel: TiposMedioModel,
+                private _clientesMedios: ClientesMediosModel,
+                private _ventaModel: VentaModel) {
         super();
-        //this.onDrawerOpening();
-        //this.user = {name: "Anónimo"};
-        //page.on("loaded", this.onLoaded, this);
+
         if (application.android) {
             //console.log("We are running on Android device!");
             this.plataforma = false;
@@ -44,13 +61,14 @@ export class AppComponent extends Observable implements OnInit {
         this.page.backgroundColor = new Color("#EEEEEE");
 
         this.http.errorEvent.subscribe(e => {
+            console.log("TRANQUI ERROR  HTTP "+JSON.stringify(e));
             if (e instanceof ErrorObservable) {
                 let error = e;
                 if (error.error == 'timeout_exceeded') {
                     this.errorTimeOut();
                 }
             } else if (e.status == 401) {
-                this.error401();
+                this.error401(e);
             } else if (e.status == 403) {
                 this.error403();
             } else if (e.status == 404) {
@@ -63,19 +81,40 @@ export class AppComponent extends Observable implements OnInit {
                 this.error500();
             } else if (e.status == 503) {
                 this.error503();
+            }else if (e.status == 400) {
+                this.error400();
             }
+
+
         });
     }
 
-    error401() {
-        let r = this.router;
-        dialogs.alert({
-            title: "Permisos!",
-            message: "No cuenta con suficientes permisos.",
-            okButtonText: "Aceptar"
-        }).then(function () {
-            r.navigate(["/"]);
-        });
+    error401(e) {
+
+        let yo =this;
+        if(e._body.error=="token_expired"){
+
+
+
+             dialogs.alert({
+                 title: "Hubo un problema",
+                 message: "Tu sesión ha expirado. Vuelva a iniciar sesión.",
+               okButtonText: "Aceptar"
+             }).then(function () {
+
+             });
+
+        }
+        if(e._body.error=="invalid_credentials"){
+            dialogs.alert({
+                title: "Permisos",
+                message: "No cuenta con suficientes permisos.",
+                okButtonText: "Aceptar"
+            }).then(function () {
+                yo.router.navigate(["/"]);
+            });
+        }
+
     }
 
     error403() {
@@ -87,6 +126,19 @@ export class AppComponent extends Observable implements OnInit {
         }).then(function () {
             r.navigate(["/"]);
         });
+    }
+
+    error400() {
+        let r = this.router;
+        dialogs.alert({
+            title: "Hubo un problema",
+            message: "La información se envió incompleta.",
+            okButtonText: "Aceptar"
+        }).then(function () {
+            r.navigate(["/home/inicio"]);
+        });
+
+
     }
 
     error404() {
@@ -112,6 +164,7 @@ export class AppComponent extends Observable implements OnInit {
             message: msg,
             okButtonText: "Aceptar"
         }).then(function () {
+            console.log("AJEJISUESUCHINGADAMARE");
         });
     }
 
@@ -158,5 +211,21 @@ export class AppComponent extends Observable implements OnInit {
             r.navigate(["/"]);
         });
     }
+    truncateDatabase() {
+        console.log("truncateDatabase");
+        this._userModel.truncate();
+        this._clienteModel.truncate();
+        this._ventaModel.truncate();
+        this._tiposMediosModel.truncate();
+        this._clientesMedios.truncate();
+    }
+
+    salir() {
+        this.truncateDatabase();
+        this.user = {name: "Anónimo"};
+        appSettings.clear(); //borrar token sesion
+        this.routerExtensions.navigate(["/"], {clearHistory: true});
+    }
+
 
 }

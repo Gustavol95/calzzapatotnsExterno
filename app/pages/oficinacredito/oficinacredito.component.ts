@@ -315,7 +315,7 @@ export class OficinacreditoComponent implements OnInit {
     }
 
     cambio() {
-        //console.log("Entro cambio");
+        console.log("Entro cambio "+this.valid);
         if (this.valid) {
             this.lista = !this.lista;
             if (!this.lista) {

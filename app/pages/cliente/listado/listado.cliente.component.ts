@@ -20,13 +20,16 @@ export class ListadoClienteComponent implements OnInit {
         this._clienteService.index().subscribe(clientes => {
             this.clientes = clientes.data;
             this.listLoaded = true;
+            console.log(" SACA EL FILTER LOCO"+JSON.stringify(this.clientes.filter(datos => datos.nombre.toLowerCase().includes("jesus"))));
         });
     }
+
 
     ngOnInit() {
         //this.page.actionBarHidden = true;
         this.page.actionBar.title = "Mis Clientes";
     }
+
     nuevo() {
         this.routerExtensions.navigate(["/home/cliente/create"]);
     }
