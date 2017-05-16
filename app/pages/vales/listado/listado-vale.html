@@ -78,8 +78,8 @@
     </GridLayout>
     <GridLayout *tabItem="{title: 'ELECTRÓNICOS'}" style="background-color: #EAEAEA" rows="auto,*"  columns="*,*" height="100%" width="100%">
 
-        <Label col="0" row="0" text="Ultima Actualización"  ></Label>
-        <Label col="1" row="0" text="{{fechaElec | date: 'dd MMM yyyy'}}" style="text-align: right;padding-right: 10;"></Label>
+        <Label col="0" row="0" text="Ultima Actualización" textWrap="true" ></Label>
+        <Label col="1" row="0" text="{{fechaElec | date: 'dd MMM yyyy'}}" textWrap="true" style="text-align: right;padding-right: 10;"></Label>
 
         <ListView row="1" col="0" colSpan="2"  height="100%" [items]='valesElec' style="background-color: #EAEAEA;">
             <template let-item='item'>
