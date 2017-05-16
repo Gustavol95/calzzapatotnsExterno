@@ -24,6 +24,16 @@ export class ListadoValeComponent implements OnInit {
                 this.listLoaded = true;
             });
         });
+
+        this._valeService.indexElectronicos().subscribe(elec =>{
+            console.log("vales elec",JSON.stringify(elec));
+            this.valesElec = elec.vales;
+            let temp=elec.ultima_actualizacion;
+            temp=temp.replace(" ","T");
+            this.fechaElec=temp;
+            console.log(" MIRA MAMAAAA"+temp);
+
+        });
     }
 
     ngOnInit() {
