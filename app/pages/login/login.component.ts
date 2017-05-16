@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
                 private vcRef: ViewContainerRef,
                 private _tipoMedioModel: TiposMedioModel,) {
         this.user = new User();
-        this.user.email = "038289";
+        this.user.email = "049914";
         this.user.password = "secret";
     }
 
