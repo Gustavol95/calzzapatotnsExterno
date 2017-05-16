@@ -9,14 +9,14 @@ import {Observable} from "rxjs";
 export class ClienteService {
 
     constructor(private http: HttpService) {
+
     }
 
     index() {
-        return this.http.get("subclientes").map(response => response.json());
+        return this.http.get("subclientes/clientes/lista").map(response => response.json());
     }
 
     public save(cliente: Cliente): Observable<Cliente> {
         return this.http.post('subclientes', cliente).map(response => response.json());
-
     }
 }

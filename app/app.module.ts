@@ -16,12 +16,12 @@ import {Config} from "./shared/config";
 import actionBarModule = require("ui/action-bar");
 import { ModalDialogService } from "nativescript-angular/modal-dialog";
 import {ClienteModel} from "./model/cliente.model";
+import {VentaModel} from "./model/venta.model";
 import {TiposMedioModel} from "./model/tipos_medio.model";
 import {ClientesMediosModel} from "./model/clientes_medios.model";
 import {ErrorFeedbackComponent} from "./shared/error-feedback/error-feedback.component";
 import {EqualValidator} from "./shared/validators/equal-validator.directive";
-
-
+import {CorteService} from "./pages/corte/corte.service";
 
 @NgModule({
     imports: [
@@ -47,12 +47,12 @@ import {EqualValidator} from "./shared/validators/equal-validator.directive";
         ModalDialogService,
         ClienteModel,
         TiposMedioModel,
-        ClientesMediosModel
+        ClientesMediosModel,
+        VentaModel,
+        CorteService
     ]
 })
 export class AppModule {
     constructor(dbServ : DbService){
     }
-
 }
-

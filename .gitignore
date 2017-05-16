@@ -9,10 +9,7 @@ app/pages/registro/inicio-registro/inicio-registro.component.js.BACKUP.11944.js
 app/pages/registro/inicio-registro/inicio-registro.component.js.BASE.11944.js
 app/pages/registro/inicio-registro/inicio-registro.component.js.LOCAL.11944.js
 app/pages/registro/inicio-registro/inicio-registro.component.js.REMOTE.11944.js
-app/shared/config.js.BACKUP.9360.js
-app/shared/config.js.BASE.9360.js
-app/shared/config.js.LOCAL.9360.js
-app/shared/config.js.REMOTE.9360.js
+
 node_modules/nativescript-sqlite/
 node_modules/nativescript-telerik-ui/
 platforms/android/.gradle/
@@ -76,3 +73,6 @@ app/shared/error-feedback/error-feedback.component.js
 app/shared/validators/CustomValidators.js
 app/shared/validators/equal-validator.directive.js
 app/app.routing.ts.orig
+*.js
+
+*.log

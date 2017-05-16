@@ -6,6 +6,9 @@ import * as elementRegistryModule from 'nativescript-angular/element-registry';
 import {ActivatedRoute} from "@angular/router";
 import {Page} from "ui/page";
 import {Color} from "color";
+
+var phone = require("nativescript-phone");
+
 elementRegistryModule.registerElement("CardView", () => require("nativescript-cardview").CardView);
 @Component({
     selector: "detalle-cliente",
@@ -20,7 +23,7 @@ export class ClienteDetalleComponent extends OnInit {
     public selectedIndex: number;
 
     ngOnInit(): void {
-        this.page.actionBar.title=this.detalle.nombre+" "+this.detalle.paterno+" "+this.detalle.materno;
+        this.page.actionBar.title=this.detalle.nombre;
         this.page.backgroundColor=new Color("#EEEEEE");
     }
 
@@ -32,6 +35,10 @@ export class ClienteDetalleComponent extends OnInit {
         });
     }
 
-
+    call() {
+        if(this.detalle.celular){
+           phone.dial(this.detalle.celular, true);
+        }
+    }
 
 }

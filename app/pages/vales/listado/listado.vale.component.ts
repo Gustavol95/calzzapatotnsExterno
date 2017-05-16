@@ -15,13 +15,29 @@ import {ClienteModel} from "../../../model/cliente.model";
 })
 export class ListadoValeComponent implements OnInit {
     public vales: any[];
+    public valesElec:any[];
+    public fechaElec:any="2017-04-19T00:00:00";
     listLoaded = false;
+
     constructor(private routerExtensions: RouterExtensions, private page: Page, private _valeService: ValeService, private _clienteModel : ClienteModel) {
+
         this._clienteModel.fetch().then(cliente=>{
-            this._valeService.index(cliente.id).subscribe(vales => {
+            console.log("Le mando el "+JSON.stringify(cliente));
+            this._valeService.index(cliente.codigo).subscribe(vales => {
+                console.log("AJEJIJUESU "+JSON.stringify(vales));
                 this.vales = vales;
                 this.listLoaded = true;
             });
+        });
+
+        this._valeService.indexElectronicos().subscribe(elec =>{
+            console.log("AHUEBO "+JSON.stringify(elec));
+            this.valesElec = elec.vales;
+            let temp=elec.ultima_actualizacion;
+            temp=temp.replace(" ","T");
+            this.fechaElec=temp;
+            console.log(" MIRA MAMAAAA"+temp);
+
         });
     }
 
@@ -31,7 +47,7 @@ export class ListadoValeComponent implements OnInit {
 
     }
     nuevo() {
-        this.routerExtensions.navigate(["/home/vale/create"]);
+        this.routerExtensions.navigate(["/home/vale-electronico"]);
 
     }
 }

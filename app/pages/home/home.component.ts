@@ -14,17 +14,21 @@ import {UserModel} from "../../model/user.model";
 import {ClienteModel} from "../../model/cliente.model";
 import {TiposMedioModel} from "../../model/tipos_medio.model";
 import {ClientesMediosModel} from "../../model/clientes_medios.model";
+import {VentaModel} from "../../model/venta.model";
 import {LoginService} from "../login/login.service";
 import {ModalDialogService, ModalDialogOptions} from "nativescript-angular/modal-dialog";
 import {RecuperarComponent} from "../modals/recuperar/recuperar";
 import {InicioService} from "../inicio/inicio.service";
 var appSettings = require("application-settings");
 var dialogs = require("ui/dialogs");
+declare var android: any;
+var permissions = require( "nativescript-permissions" );
+import * as platform from "platform";
 
 @Component({
     selector: "inicio-inc",
     templateUrl: "pages/home/home.component.html",
-    providers: [LoginService,InicioService]
+    providers: [LoginService, InicioService]
 })
 
 export class HomeComponent implements OnInit {
@@ -33,6 +37,12 @@ export class HomeComponent implements OnInit {
     public user: any = {};
     plataforma = false;
     isLoggingIn = false;
+    clienteSaldo = {
+        corte: '',
+        pago_minimo: 0,
+        fecha_pago: '',
+        saldo_disponible: 0,
+    };
 
     constructor(private routerExtensions: RouterExtensions,
                 private page: Page,
@@ -45,7 +55,8 @@ export class HomeComponent implements OnInit {
                 private _loginService: LoginService,
                 private vcRef: ViewContainerRef,
                 private _modalService: ModalDialogService,
-                private _inicioService:InicioService) {
+                private _inicioService: InicioService,
+                private _ventaModel: VentaModel) {
         this.onDrawerOpening();
         this.user = {name: "Anónimo"};
         page.on("loaded", this.onLoaded, this);
@@ -105,12 +116,12 @@ export class HomeComponent implements OnInit {
 
     corte(){
         console.log("inicio corte");
-        this._clienteModel.fetch().then(usuario => {
-            this._inicioService.getClienteInfo(usuario.id)
+        this._userModel.fetch().then(usuario => {
+            this._inicioService.getClienteInfo(usuario.email)
                 .subscribe(info=>{
                     let navigationExtras: NavigationExtras = {
                         queryParams: {
-                            "info": JSON.stringify(info[0])
+                            "info": JSON.stringify(info)
                         }
                     };
                     this.router.navigate(['/home/corte'], navigationExtras);
@@ -118,14 +129,13 @@ export class HomeComponent implements OnInit {
                     this.drawer.closeDrawer();
                 });
         });
-
-
     }
 
     truncateDatabase() {
         console.log("truncateDatabase");
         this._userModel.truncate();
         this._clienteModel.truncate();
+        this._ventaModel.truncate();
         this._tiposMediosModel.truncate();
         this._clientesMedios.truncate();
     }
@@ -146,9 +156,9 @@ export class HomeComponent implements OnInit {
             // >> returning-result
             this._modalService.showModal(RecuperarComponent, options)
                 .then((dato) => {
-                    if(dato){
-                        let datos = {cliente_id:this.user.cliente_id,dato:dato};
-                        this._loginService.cambiarPassword(datos).subscribe(d=>{
+                    if (dato) {
+                        let datos = {cliente_id: this.user.cliente_id, dato: dato};
+                        this._loginService.cambiarPassword(datos).subscribe(d => {
                             this._userModel.cambiarSolicitud();
                             dialogs.alert({
                                 title: "Recuperar contraseña",
@@ -162,5 +172,19 @@ export class HomeComponent implements OnInit {
         }
     }
 
+
+    oficinaCredito(){
+        if(platform.isAndroid){
+            permissions.requestPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION, "Necesitamos obtener tu ubicación GPS")
+                .then(()=> {
+                    console.log("Woo Hoo, I have the power!");
+                    this.redireccion('oficinacredito')
+                })
+                .catch(()=> {
+                    console.log("Uh oh, no permissions - plan B time!");
+                    console.log("FALLOOOOOOO");
+                });
+        }else { this.redireccion('oficinacredito')}
+    }
 
 }

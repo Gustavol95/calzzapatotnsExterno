@@ -22,6 +22,7 @@ TabView {
     padding-right: 0;
     padding-left: 0;
     color:black;
+    border-radius: 5;
 }
 
 .cobrado Label{
@@ -32,4 +33,13 @@ TabView {
     horiz-align: center;
     vertical-align: center;
     padding-top: 15;
+}
+
+.cobrado-label{
+    margin: 0px 0px 0px 10px;
+    padding: 0px 15px 0px 15px;
+}
+
+.dashboard{
+  background-color: #9e9e9e;
 }

@@ -24,7 +24,7 @@ var dialogs = require("ui/dialogs");
 export class FormularioClienteComponent implements OnInit {
     public clientes: any[];
     form: FormGroup;
-    valid=true;
+    valid = true;
     constructor(private router: Router,
                 private routerExtensions: RouterExtensions,
                 private page: Page,
@@ -40,16 +40,6 @@ export class FormularioClienteComponent implements OnInit {
             required: "El nombre es obligatorio",
             maxLength: "El tamaño máximo del nombre es de 255 dígitos",
             minLength: "El tamaño mínimo del nombre es de 1 dígito"
-        },
-        paterno: {
-            required: "El apellido paterno es obligatorio",
-            maxLength: "El tamaño máximo del apellido paterno es de 255 dígitos",
-            minLength: "El tamaño mínimo del apellido paterno es de 1 dígito"
-        },
-        materno: {
-            required: "El apellido materno es obligatorio",
-            maxLength: "El tamaño máximo del apellido materno es de 255 dígitos",
-            minLength: "El tamaño mínimo del apellido materno es de 1 dígito"
         },
         celular: {
             required: "El celular es obligatorio",
@@ -78,37 +68,24 @@ export class FormularioClienteComponent implements OnInit {
             maxLength: "El tamaño máximo del número exterior es de 255 dígitos",
             minLength: "El tamaño mínimo del número exterior es de 1 dígito"
         },
-        numero_interior: {
-            required: "El número interior es obligatorio",
-            maxLength: "El tamaño máximo del número interior es de 255 dígitos",
-            minLength: "El tamaño mínimo del número interior es de 1 dígito"
-        },
-        colonia: {
-            required: "La colonia es obligatorio",
-            maxLength: "La tamaño máximo del colonia es de 255 dígitos",
-            minLength: "La tamaño mínimo del colonia es de 1 dígito"
-        },
         cp: {
             required: "El código postal es obligatorio",
-            maxLength: "El tamaño máximo del código postal es de 10 dígitos",
-            minLength: "El tamaño mínimo del código postal es de 1 dígito"
+            maxLength: "El tamaño máximo del código postal es de 5 dígitos",
+            minLength: "El tamaño mínimo del código postal es de 5 dígito",
+            celular: "Ingrese un codigo postal válido"
         }
     }
 
     ngOnInit() {
         this.page.actionBar.title = "Agregar Cliente";
         this.form = this._fb.group({
-            nombre: ['Henry', [Validators.required, Validators.minLength(1)]],
-            paterno: ['Cañedo', [Validators.required, Validators.minLength(1)]],
-            materno: ['Zamudio', [Validators.required, Validators.minLength(1)]],
-            celular: ['6691657109', [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
-            email: ['heris161993@gmail.com', [Validators.required, Validators.minLength(1), CustomValidators.email]],
-            fecha_nacimiento: ['09/04/1993', [Validators.required, Validators.minLength(1)]],
-            calle: ['Los Sauces', [Validators.required, Validators.minLength(1)]],
-            numero_exterior: ['896', [Validators.required, Validators.minLength(1)]],
-            numero_interior: ['402', [Validators.required, Validators.minLength(1)]],
-            colonia: ['La campiña', [Validators.required, Validators.minLength(1)]],
-            cp: ['82600', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]]
+            nombre: [null, [Validators.required, Validators.minLength(1)]],
+            celular: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), CustomValidators.celular]],
+            email: [null, [Validators.required, Validators.minLength(1), CustomValidators.email]],
+            fecha_nacimiento: [null, [Validators.required, Validators.minLength(1)]],
+            calle: [null, [Validators.required, Validators.minLength(1)]],
+            numero_exterior: [null, [Validators.required, Validators.minLength(1)]],
+            cp: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(5), CustomValidators.cp]]
         });
     }
 
@@ -144,13 +121,20 @@ export class FormularioClienteComponent implements OnInit {
     }
 
     guardar() {
-        let cliente: Cliente = this.form.value as Cliente;
-        this.valid=false;
-        console.log("Guardar :)))))",this.valid);
+        this.valid = false;
         this._userModel.fetch().then(usuario => {
-            cliente.cliente_id = usuario.cliente_id;
-            console.log("Va a guardar", JSON.stringify(cliente));
-            this._clienteService.save(cliente).subscribe(d => {
+            let cli = new Cliente();
+            cli.nombre = this.form.value.nombre;
+            cli.celular = this.form.value.celular;
+            cli.email = this.form.value.email;
+            cli.fecha_nacimiento = this.form.value.fecha_nacimiento;
+            cli.calle = this.form.value.calle;
+            cli.numero_exterior = this.form.value.numero_exterior;
+            cli.cp = this.form.value.cp;
+
+            console.log("Va a guardar", JSON.stringify(cli));
+
+            this._clienteService.save(cli).subscribe(d => {
                 let route = this.routerExtensions;
                 dialogs.alert({
                     title: "Cliente",

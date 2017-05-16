@@ -1,0 +1,11 @@
+<GridLayout rows="auto, *,auto" columns="*">
+    <TextField row="0" col="0" keyboardType="next" [ngModel]='buscarText' (ngModelChange)='triggerBusqueda($event)' hint="Buscar" fontSize="15"  ></TextField>
+    <ListView row="1" col="0" [items]="filtro">
+        <template let-item='item'>
+            <GridLayout rows="auto" columns="*">
+                <Label row="0" col="0" text="{{item.nombre}}"  (tap)="selected(item)" textWrap="true"></Label>
+            </GridLayout>
+        </template>
+    </ListView>
+    <Button row="2" col="0" text="Cerrar" (tap)="cerrar()"></Button>
+</GridLayout>

@@ -1,0 +1,43 @@
+<GridLayout rows="*,auto" >
+    <StackLayout row="0">
+        <ActivityIndicator [busy]="isLoading" [visibility]="isLoading ? 'visible' : 'collapse'"  horizontalAlignment="center" verticalAlignment="center" style="height: 100%;"></ActivityIndicator>
+        <ScrollView>
+            <StackLayout [formGroup]="form" [visibility]="isLoading ? 'collapse' : 'visible'">
+                <GridLayout rows="20 auto,auto">
+                    <Label row="1" class="label-formulario" id="label1" fontSize="15" (tap)="onTap('label1')" text="Teléfono del Emisor de Vales" textWrap="true"></Label>
+                    <TextField keyboardType="number"  (tap)="onTap('label1')" fontSize="15" row="1"  [ngModel]="telefonoCM" formControlName="telefonoCM"></TextField>
+                    <app-error-feedback row="2" [messages]="validationMessages.telefonoCM" [formGroup]="form" controlName="telefonoCM" ></app-error-feedback>
+                </GridLayout>
+                <GridLayout rows="20 auto,auto" columns="*,auto">
+                    <Label row="1" col="0" colSpan="2" class="label-formulario" id="label2" fontSize="15" (tap)="onTap('label2')" text="Nombre del cliente" textWrap="true"></Label>
+                    <TextField keyboardType="next"  (tap)="onTap('label2')" fontSize="15" row="1" col="0" colSpan="2"  [ngModel]="cliente" formControlName="cliente"></TextField>
+                    <Image class="icono" row="1" col="1"  src="~/assets/magnify.png" stretch="aspectFit" (tap)="modalPicker()"></Image>
+                    <app-error-feedback row="2" col="0" colSpan="2" [messages]="validationMessages.cliente" [formGroup]="form" controlName="cliente" ></app-error-feedback>
+                </GridLayout>
+                <GridLayout rows="20 auto,auto">
+                    <Label row="1" class="label-formulario" id="label3" fontSize="15" (tap)="onTap('label3')" text="Monto límite del crédito" textWrap="true"></Label>
+                    <TextField keyboardType="number"  (tap)="onTap('label3')" fontSize="15" row="1"  [ngModel]="monto" formControlName="monto"></TextField>
+                    <app-error-feedback row="2" [messages]="validationMessages.monto" [formGroup]="form" controlName="monto" ></app-error-feedback>
+                </GridLayout>
+                <GridLayout rows="20 auto,auto">
+                    <Label row="1" class="label-formulario" id="label4" fontSize="15" (tap)="onTap('label4')" text="Nombre de la Persona Autorizada" textWrap="true"></Label>
+                    <TextField keyboardType="next"  (tap)="onTap('label4')" fontSize="15" row="1"  [ngModel]="personaAutorizada" formControlName="personaAutorizada"></TextField>
+                    <app-error-feedback row="2" [messages]="validationMessages.personaAutorizada" [formGroup]="form" controlName="personaAutorizada" ></app-error-feedback>
+                </GridLayout>
+                <GridLayout rows="20 auto,auto">
+                    <Label row="1" class="label-formulario" id="label5" fontSize="15" (tap)="onTap('label5')" text="INE (Últ. 4 dígitos) p. Autorizada" textWrap="true"></Label>
+                    <TextField keyboardType="number"  (tap)="onTap('label5')" fontSize="15" row="1"  [ngModel]="ineAutorizada" formControlName="ineAutorizada"></TextField>
+                    <app-error-feedback row="2" [messages]="validationMessages.ineAutorizada" [formGroup]="form" controlName="ineAutorizada" ></app-error-feedback>
+                </GridLayout>
+                <GridLayout rows="20 auto,auto">
+                    <Label row="1" class="label-formulario" id="label6" fontSize="15" (tap)="onTap('label6')" text="Telefono de p. Autorizada" textWrap="true"></Label>
+                    <TextField keyboardType="number"  (tap)="onTap('label6')" fontSize="15" row="1"  [ngModel]="telefonoAutorizada" formControlName="telefonoAutorizada"></TextField>
+                    <app-error-feedback row="2" [messages]="validationMessages.telefonoAutorizada" [formGroup]="form" controlName="telefonoAutorizada" ></app-error-feedback>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+    <Button row="1" [text]="'Asignar Vale'"  [ngClass]="{'style1': !form.valid && !isLoading}"  [isEnabled]="form.valid && !isLoading" (tap)="solicitar()"></Button>
+</GridLayout>
+
